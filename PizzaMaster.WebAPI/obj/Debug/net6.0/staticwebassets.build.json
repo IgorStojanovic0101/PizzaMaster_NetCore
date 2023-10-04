@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "Cl2P+y2i/ByveygxX1B530O/fXoHKwofv+oi6gnwP1c=",
+  "Source": "PizzaMaster.WebAPI",
+  "BasePath": "_content/PizzaMaster.WebAPI",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

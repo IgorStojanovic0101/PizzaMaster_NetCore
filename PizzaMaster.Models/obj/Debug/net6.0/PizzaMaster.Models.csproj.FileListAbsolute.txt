@@ -1,0 +1,12 @@
+D:\Projects\.NET Core\PizzaMaster\PizzaMaster.Models\bin\Debug\net6.0\PizzaMaster.Models.deps.json
+D:\Projects\.NET Core\PizzaMaster\PizzaMaster.Models\bin\Debug\net6.0\PizzaMaster.Models.dll
+D:\Projects\.NET Core\PizzaMaster\PizzaMaster.Models\bin\Debug\net6.0\PizzaMaster.Models.pdb
+D:\Projects\.NET Core\PizzaMaster\PizzaMaster.Models\obj\Debug\net6.0\PizzaMaster.Models.csproj.AssemblyReference.cache
+D:\Projects\.NET Core\PizzaMaster\PizzaMaster.Models\obj\Debug\net6.0\PizzaMaster.Models.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projects\.NET Core\PizzaMaster\PizzaMaster.Models\obj\Debug\net6.0\PizzaMaster.Models.AssemblyInfoInputs.cache
+D:\Projects\.NET Core\PizzaMaster\PizzaMaster.Models\obj\Debug\net6.0\PizzaMaster.Models.AssemblyInfo.cs
+D:\Projects\.NET Core\PizzaMaster\PizzaMaster.Models\obj\Debug\net6.0\PizzaMaster.Models.csproj.CoreCompileInputs.cache
+D:\Projects\.NET Core\PizzaMaster\PizzaMaster.Models\obj\Debug\net6.0\PizzaMaster.Models.dll
+D:\Projects\.NET Core\PizzaMaster\PizzaMaster.Models\obj\Debug\net6.0\refint\PizzaMaster.Models.dll
+D:\Projects\.NET Core\PizzaMaster\PizzaMaster.Models\obj\Debug\net6.0\PizzaMaster.Models.pdb
+D:\Projects\.NET Core\PizzaMaster\PizzaMaster.Models\obj\Debug\net6.0\ref\PizzaMaster.Models.dll
