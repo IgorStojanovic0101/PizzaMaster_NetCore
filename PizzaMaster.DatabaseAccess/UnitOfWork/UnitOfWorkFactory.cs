@@ -1,16 +1,20 @@
 ﻿using DataAccess;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace WebAPI
 {
     public class UnitOfWorkFactory : IUnitOfWorkFactory
     {
-        private readonly ApplicationDbContext _applicationDbContext;
+        private readonly string _connectionString;
 
-        public UnitOfWorkFactory(ApplicationDbContext applicationDbContext) { 
-            _applicationDbContext = applicationDbContext; 
-        }
+
+
+        public UnitOfWorkFactory(string connectionString) => _connectionString = connectionString;
+
+
+        public IUnitOfWork Create() => new UnitOfWork(new ApplicationDbContext(new DbContextOptionsBuilder<ApplicationDbContext>().UseSqlServer(_connectionString).Options));
         
-        public IUnitOfWork Create() => new UnitOfWork(_applicationDbContext);
-        
+
     }
 }
