@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "IbMB0x8Z/qshOo+/6KTizJSEJNvmDpGMeIHWuCyzrlgn04WRdAMQi010jVIUmpQEi6xXdA3sjb0mBs4Z4ntnfA==",
+  "dgSpecHash": "sXWpEnJ2vpQgoAKy6xAkq7hIQBAo0mdjV3S+1BH4Omp4bCRGOuaTN5Yt87HYxKDDjYK9NX5+r6+m1bj0qXcW8g==",
   "success": true,
   "projectFilePath": "D:\\Projects\\.NET Core\\PizzaMaster\\PizzaMaster.WebAPI\\PizzaMaster.WebAPI.csproj",
   "expectedPackageFiles": [
@@ -11,6 +11,7 @@
     "C:\\Users\\Lenovo\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.aspnetcore.authentication.core\\2.2.0\\microsoft.aspnetcore.authentication.core.2.2.0.nupkg.sha512",
+    "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\6.0.23\\microsoft.aspnetcore.authentication.jwtbearer.6.0.23.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.aspnetcore.authorization\\2.2.0\\microsoft.aspnetcore.authorization.2.2.0.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.aspnetcore.authorization.policy\\2.2.0\\microsoft.aspnetcore.authorization.policy.2.2.0.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.aspnetcore.hosting.abstractions\\2.2.0\\microsoft.aspnetcore.hosting.abstractions.2.2.0.nupkg.sha512",

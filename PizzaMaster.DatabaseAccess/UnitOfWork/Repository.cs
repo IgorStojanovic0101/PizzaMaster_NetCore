@@ -1,8 +1,9 @@
-﻿using DataAccess;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using PizzaMaster.Application.Repositories;
+using PizzaMaster.Data.EF;
 using System.Linq.Expressions;
 
-namespace WebAPI
+namespace PizzaMaster.DatabaseAccess.UnitOfWork
 {
     public abstract class Repository<T> : IRepository<T> where T: class
     {
@@ -21,9 +22,11 @@ namespace WebAPI
 
         public async Task<T> SingleOrDefaultAsync(Expression<Func<T, bool>> expression) => await _dbSet.SingleOrDefaultAsync(expression);
 
+        public bool Any(Expression<Func<T, bool>> expression) =>  _dbSet.Any(expression);
+
         public void Add(T entity)
         {
-            this._dbSet.Add(entity);
+            this._dbSet.AddAsync(entity);
         }
 
         public void Update(T entity)

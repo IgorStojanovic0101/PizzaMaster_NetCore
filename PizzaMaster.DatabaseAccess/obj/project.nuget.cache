@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "haNUVUdOP4lbb+aB/WQiq+rob2m9ZLsNOJE4yC/myapdWocIg6u2K3bHD/ybbYTLIiBEhIM9f+nuN4XzhKldIA==",
+  "dgSpecHash": "PJcv/wIZnRuWR+dkdA8RdmqRsPD9AipWGS/aXfyq+a3ZVm5RwZ6UAT3c5HxOaBls4rV6/GB0uveziJj77Kt15g==",
   "success": true,
-  "projectFilePath": "D:\\Projects\\.NET Core\\PizzaMaster\\PizzaMaster.DatabaseAccess\\PizzaMaster.DatabaseAccess.csproj",
+  "projectFilePath": "D:\\Projects\\.NET Core\\PizzaMaster\\PizzaMaster.DatabaseAccess\\PizzaMaster.Data.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Lenovo\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",

@@ -5,8 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
+using PizzaMaster.Application;
 
-namespace PizzaMaster.DatabaseAccess.SQLConnection
+namespace PizzaMaster.Data.SQLConnection
 {
     public class SqlConnectionFactory : ISqlConnectionFactory
     {

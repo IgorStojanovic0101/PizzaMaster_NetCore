@@ -1,8 +1,9 @@
-﻿using DataAccess;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using PizzaMaster.Application;
+using PizzaMaster.Data.EF;
 
-namespace WebAPI
+namespace PizzaMaster.DatabaseAccess.UnitOfWork
 {
     public class UnitOfWorkFactory : IUnitOfWorkFactory
     {

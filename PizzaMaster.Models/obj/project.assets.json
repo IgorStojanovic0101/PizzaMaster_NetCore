@@ -13,9 +13,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Projects\\.NET Core\\PizzaMaster\\PizzaMaster.Models\\PizzaMaster.Models.csproj",
-      "projectName": "PizzaMaster.Models",
-      "projectPath": "D:\\Projects\\.NET Core\\PizzaMaster\\PizzaMaster.Models\\PizzaMaster.Models.csproj",
+      "projectUniqueName": "D:\\Projects\\.NET Core\\PizzaMaster\\PizzaMaster.Models\\PizzaMaster.Domain.csproj",
+      "projectName": "PizzaMaster.Domain",
+      "projectPath": "D:\\Projects\\.NET Core\\PizzaMaster\\PizzaMaster.Models\\PizzaMaster.Domain.csproj",
       "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
       "outputPath": "D:\\Projects\\.NET Core\\PizzaMaster\\PizzaMaster.Models\\obj\\",
       "projectStyle": "PackageReference",

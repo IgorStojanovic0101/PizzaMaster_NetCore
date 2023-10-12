@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "lBb+tyn6T9Yejq9c0oHfMOzLPikVLx2FjuqAEX6z9uTFXr6RhRJfPwrT8lRF3+rvH9fzmCzBoeK73xzcj923Eg==",
+  "dgSpecHash": "8RhtnYF0QlsYVjbnSlWhpsSedKtbdfl4Gei/q1DbaXUCxmQa4oOWe+xdsMSbIQnq6kLzUO01C/X46CEqpjnRgg==",
   "success": true,
-  "projectFilePath": "D:\\Projects\\.NET Core\\PizzaMaster\\PizzaMaster.Utilities\\PizzaMaster.Utilities.csproj",
+  "projectFilePath": "D:\\Projects\\.NET Core\\PizzaMaster\\PizzaMaster.Utilities\\PizzaMaster.Infrastructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Lenovo\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",

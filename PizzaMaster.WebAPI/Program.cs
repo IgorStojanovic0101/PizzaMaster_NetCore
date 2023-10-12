@@ -1,14 +1,19 @@
-using BusinessLogic.Repositories;
-using DataAccess;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using PizzaMaster.DatabaseAccess.SQLConnection;
-using PizzaMaster.Utilities.ProgramConfig;
+using Microsoft.OpenApi.Models;
+using PizzaMaster.Application;
+using PizzaMaster.Data.EF;
+using PizzaMaster.Data.SQLConnection;
+using PizzaMaster.DatabaseAccess.UnitOfWork;
+using PizzaMaster.Infrastructure.System;
 using Serilog;
 using Serilog.Formatting.Compact;
-using Utilities;
-using WebAPI;
+using PizzaMaster.BussinessLogic.Services;
+using PizzaMaster.Application.Services;
+using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,14 +22,82 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
+
+
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Swagger Pizza Master Solution", Version = "v1" });
+
+    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        Description = @"JWT Authorization header using the Bearer scheme. \r\n\r\n
+                      Enter 'Bearer' [space] and then your token in the text input below.
+                      \r\n\r\nExample: 'Bearer 12345abcdef'",
+        Name = "Authorization",
+        In = ParameterLocation.Header,
+        Type = SecuritySchemeType.ApiKey,
+        Scheme = "Bearer"
+    });
+
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement()
+                  {
+                    {
+                      new OpenApiSecurityScheme
+                      {
+                        Reference = new OpenApiReference
+                          {
+                            Type = ReferenceType.SecurityScheme,
+                            Id = "Bearer"
+                          },
+                          Scheme = "oauth2",
+                          Name = "Bearer",
+                          In = ParameterLocation.Header,
+                        },
+                        new List<string>()
+        }
+    });
+});
+
+string issuer = builder.Configuration.GetValue<string>("Tokens:Issuer");
+string signingKey = builder.Configuration.GetValue<string>("Tokens:Key");
+byte[] signingKeyBytes = System.Text.Encoding.UTF8.GetBytes(signingKey);
+
+builder.Services.AddAuthentication(opt =>
+{
+    opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+.AddJwtBearer(options =>
+{
+    options.RequireHttpsMetadata = false;
+    options.SaveToken = true;
+    options.TokenValidationParameters = new TokenValidationParameters()
+    {
+        ValidateIssuer = false,
+     //   ValidIssuer = issuer,
+        ValidateAudience = false,
+        //ValidAudience = issuer,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        ClockSkew = System.TimeSpan.Zero,
+        IssuerSigningKey = new SymmetricSecurityKey(signingKeyBytes)
+    };
+});
+        
+
+
+
 builder.Services.AddSwaggerGen();
 
-//builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-//builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddSingleton<IUnitOfWorkFactory>(new UnitOfWorkFactory(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddSingleton<ISqlConnectionFactory>(new SqlConnectionFactory(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddScoped<RetoraniLogic>();
+builder.Services.AddScoped<RetoranService>();
+builder.Services.AddScoped<IUserService,UserService>();
+builder.Services.AddScoped<IErrorService,ErrorService>();
+
+
 
 builder.Services.AddMvc(options => options.Conventions.Add(new RouteConvention()));
 
@@ -45,13 +118,20 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Swagger Pizza Master Solution v1");
+    });
 }
 
 app.UseHttpsRedirection();
 
-app.UseAuthorization();
+
+
+
 app.UseAuthentication();
+app.UseRouting();
+app.UseAuthorization();
 
 app.UseMiddleware<GlobalExceptionHandlingMiddleware>();
 

@@ -1017,14 +1017,38 @@
           }
         }
       },
-      "PizzaMaster.Models/1.0.0": {
+      "PizzaMaster.Application/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "PizzaMaster.Domain": "1.0.0",
+          "PizzaMaster.Shared": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/PizzaMaster.Application.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/PizzaMaster.Application.dll": {}
+        }
+      },
+      "PizzaMaster.Domain/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "compile": {
-          "bin/placeholder/PizzaMaster.Models.dll": {}
+          "bin/placeholder/PizzaMaster.Domain.dll": {}
         },
         "runtime": {
-          "bin/placeholder/PizzaMaster.Models.dll": {}
+          "bin/placeholder/PizzaMaster.Domain.dll": {}
+        }
+      },
+      "PizzaMaster.Shared/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/PizzaMaster.Shared.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/PizzaMaster.Shared.dll": {}
         }
       }
     }
@@ -2687,10 +2711,20 @@
         "useSharedDesignerContext.txt"
       ]
     },
-    "PizzaMaster.Models/1.0.0": {
+    "PizzaMaster.Application/1.0.0": {
       "type": "project",
-      "path": "../PizzaMaster.Models/PizzaMaster.Models.csproj",
-      "msbuildProject": "../PizzaMaster.Models/PizzaMaster.Models.csproj"
+      "path": "../PizzaMaster.Application/PizzaMaster.Application.csproj",
+      "msbuildProject": "../PizzaMaster.Application/PizzaMaster.Application.csproj"
+    },
+    "PizzaMaster.Domain/1.0.0": {
+      "type": "project",
+      "path": "../PizzaMaster.Domain/PizzaMaster.Domain.csproj",
+      "msbuildProject": "../PizzaMaster.Domain/PizzaMaster.Domain.csproj"
+    },
+    "PizzaMaster.Shared/1.0.0": {
+      "type": "project",
+      "path": "../PizzaMaster.Shared/PizzaMaster.Shared.csproj",
+      "msbuildProject": "../PizzaMaster.Shared/PizzaMaster.Shared.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -2699,7 +2733,8 @@
       "Microsoft.EntityFrameworkCore >= 6.0.22",
       "Microsoft.EntityFrameworkCore.SqlServer >= 6.0.22",
       "Microsoft.EntityFrameworkCore.Tools >= 6.0.22",
-      "PizzaMaster.Models >= 1.0.0"
+      "PizzaMaster.Application >= 1.0.0",
+      "PizzaMaster.Domain >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -2708,9 +2743,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Projects\\.NET Core\\PizzaMaster\\PizzaMaster.DatabaseAccess\\PizzaMaster.DatabaseAccess.csproj",
-      "projectName": "PizzaMaster.DatabaseAccess",
-      "projectPath": "D:\\Projects\\.NET Core\\PizzaMaster\\PizzaMaster.DatabaseAccess\\PizzaMaster.DatabaseAccess.csproj",
+      "projectUniqueName": "D:\\Projects\\.NET Core\\PizzaMaster\\PizzaMaster.DatabaseAccess\\PizzaMaster.Data.csproj",
+      "projectName": "PizzaMaster.Data",
+      "projectPath": "D:\\Projects\\.NET Core\\PizzaMaster\\PizzaMaster.DatabaseAccess\\PizzaMaster.Data.csproj",
       "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
       "outputPath": "D:\\Projects\\.NET Core\\PizzaMaster\\PizzaMaster.DatabaseAccess\\obj\\",
       "projectStyle": "PackageReference",
@@ -2729,8 +2764,11 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "D:\\Projects\\.NET Core\\PizzaMaster\\PizzaMaster.Models\\PizzaMaster.Models.csproj": {
-              "projectPath": "D:\\Projects\\.NET Core\\PizzaMaster\\PizzaMaster.Models\\PizzaMaster.Models.csproj"
+            "D:\\Projects\\.NET Core\\PizzaMaster\\PizzaMaster.Application\\PizzaMaster.Application.csproj": {
+              "projectPath": "D:\\Projects\\.NET Core\\PizzaMaster\\PizzaMaster.Application\\PizzaMaster.Application.csproj"
+            },
+            "D:\\Projects\\.NET Core\\PizzaMaster\\PizzaMaster.Domain\\PizzaMaster.Domain.csproj": {
+              "projectPath": "D:\\Projects\\.NET Core\\PizzaMaster\\PizzaMaster.Domain\\PizzaMaster.Domain.csproj"
             }
           }
         }

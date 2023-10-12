@@ -1,9 +1,10 @@
-﻿using DataAccess;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using PizzaMaster.Application;
+using PizzaMaster.Application.Repositories;
+using PizzaMaster.Data.EF;
 using PizzaMaster.DatabaseAccess.UnitOfWork;
-using PizzaMaster.DatabaseAccess.UnitOfWork.IRepositories;
 
-namespace WebAPI
+namespace PizzaMaster.DatabaseAccess.UnitOfWork
 {
     public class UnitOfWork :  IUnitOfWork
     {
@@ -11,16 +12,20 @@ namespace WebAPI
         private readonly ApplicationDbContext _applicationDbContext;
 
 
-        public IRestoraniRepository RestoraniRepository { get; private set; }
-        public IErrorsRepository ErrorsRepository { get; private set; }
+        public IRestoranRepository RestoranRepository { get; private set; }
+        public IErrorRepository ErrorRepository { get; private set; }
+
+        public IUserRepository UserRepository { get; private set; }
+
 
 
         public UnitOfWork(ApplicationDbContext databaseContext)
         {
             _applicationDbContext = databaseContext;
 
-            RestoraniRepository = new RestoraniRepository(_applicationDbContext);
-            ErrorsRepository = new ErrorsRepository(_applicationDbContext);
+            RestoranRepository = new RestoranRepository(_applicationDbContext);
+            ErrorRepository = new ErrorRepository(_applicationDbContext);
+            UserRepository = new UserRepository(_applicationDbContext);
         }
         public void SaveChanges()
         {

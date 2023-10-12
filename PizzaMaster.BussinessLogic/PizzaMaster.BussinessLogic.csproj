@@ -12,7 +12,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PizzaMaster.DatabaseAccess\PizzaMaster.DatabaseAccess.csproj" />
+    <ProjectReference Include="..\PizzaMaster.Application\PizzaMaster.Application.csproj" />
+    <ProjectReference Include="..\PizzaMaster.DatabaseAccess\PizzaMaster.Data.csproj" />
+    <ProjectReference Include="..\PizzaMaster.Domain\PizzaMaster.Domain.csproj" />
+    <ProjectReference Include="..\PizzaMaster.Infrastructure\PizzaMaster.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

@@ -9,12 +9,14 @@
       "PizzaMaster.WebAPI/1.0.0": {
         "dependencies": {
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "12.0.1",
+          "Microsoft.AspNetCore.Authentication.JwtBearer": "6.0.23",
           "Microsoft.EntityFrameworkCore": "6.0.22",
           "Microsoft.EntityFrameworkCore.SqlServer": "6.0.22",
           "Microsoft.EntityFrameworkCore.Tools": "6.0.22",
+          "PizzaMaster.Application": "1.0.0",
           "PizzaMaster.BussinessLogic": "1.0.0",
-          "PizzaMaster.DatabaseAccess": "1.0.0",
-          "PizzaMaster.Utilities": "1.0.0",
+          "PizzaMaster.Data": "1.0.0",
+          "PizzaMaster.Infrastructure": "1.0.0",
           "Serilog.AspNetCore": "7.0.0",
           "Swashbuckle.AspNetCore": "6.2.3"
         },
@@ -99,6 +101,17 @@
           "Microsoft.AspNetCore.Authentication.Abstractions": "2.2.0",
           "Microsoft.AspNetCore.Http": "2.2.0",
           "Microsoft.AspNetCore.Http.Extensions": "2.2.0"
+        }
+      },
+      "Microsoft.AspNetCore.Authentication.JwtBearer/6.0.23": {
+        "dependencies": {
+          "Microsoft.IdentityModel.Protocols.OpenIdConnect": "6.24.0"
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll": {
+            "assemblyVersion": "6.0.23.0",
+            "fileVersion": "6.0.2323.48007"
+          }
         }
       },
       "Microsoft.AspNetCore.Authorization/2.2.0": {
@@ -971,40 +984,60 @@
           }
         }
       },
+      "PizzaMaster.Application/1.0.0": {
+        "dependencies": {
+          "PizzaMaster.Domain": "1.0.0",
+          "PizzaMaster.Shared": "1.0.0"
+        },
+        "runtime": {
+          "PizzaMaster.Application.dll": {}
+        }
+      },
       "PizzaMaster.BussinessLogic/1.0.0": {
         "dependencies": {
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "12.0.1",
-          "PizzaMaster.DatabaseAccess": "1.0.0",
+          "PizzaMaster.Application": "1.0.0",
+          "PizzaMaster.Data": "1.0.0",
+          "PizzaMaster.Domain": "1.0.0",
+          "PizzaMaster.Infrastructure": "1.0.0",
           "Serilog.AspNetCore": "7.0.0"
         },
         "runtime": {
           "PizzaMaster.BussinessLogic.dll": {}
         }
       },
-      "PizzaMaster.DatabaseAccess/1.0.0": {
+      "PizzaMaster.Data/1.0.0": {
         "dependencies": {
           "Microsoft.Data.SqlClient": "5.1.1",
           "Microsoft.EntityFrameworkCore": "6.0.22",
           "Microsoft.EntityFrameworkCore.SqlServer": "6.0.22",
-          "PizzaMaster.Models": "1.0.0"
+          "PizzaMaster.Application": "1.0.0",
+          "PizzaMaster.Domain": "1.0.0"
         },
         "runtime": {
-          "PizzaMaster.DatabaseAccess.dll": {}
+          "PizzaMaster.Data.dll": {}
         }
       },
-      "PizzaMaster.Models/1.0.0": {
+      "PizzaMaster.Domain/1.0.0": {
         "runtime": {
-          "PizzaMaster.Models.dll": {}
+          "PizzaMaster.Domain.dll": {}
         }
       },
-      "PizzaMaster.Utilities/1.0.0": {
+      "PizzaMaster.Infrastructure/1.0.0": {
         "dependencies": {
-          "AutoMapper.Extensions.Microsoft.DependencyInjection": "12.0.1",
+          "AutoMapper": "12.0.1",
           "Microsoft.AspNetCore.Mvc.Core": "2.2.5",
-          "PizzaMaster.Models": "1.0.0"
+          "PizzaMaster.Application": "1.0.0",
+          "PizzaMaster.Domain": "1.0.0",
+          "PizzaMaster.Shared": "1.0.0"
         },
         "runtime": {
-          "PizzaMaster.Utilities.dll": {}
+          "PizzaMaster.Infrastructure.dll": {}
+        }
+      },
+      "PizzaMaster.Shared/1.0.0": {
+        "runtime": {
+          "PizzaMaster.Shared.dll": {}
         }
       }
     }
@@ -1063,6 +1096,13 @@
       "sha512": "sha512-XlVJzJ5wPOYW+Y0J6Q/LVTEyfS4ssLXmt60T0SPP+D8abVhBTl+cgw2gDHlyKYIkcJg7btMVh383NDkMVqD/fg==",
       "path": "microsoft.aspnetcore.authentication.core/2.2.0",
       "hashPath": "microsoft.aspnetcore.authentication.core.2.2.0.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Authentication.JwtBearer/6.0.23": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-T/TfelJX4wpENzYXIZ5mo/SpqBNTNWmuDpIXMnWF0fcBKCjB+JcOmD3hNW8tdw4/05/fs3rhtvrOuVl0D+6x1Q==",
+      "path": "microsoft.aspnetcore.authentication.jwtbearer/6.0.23",
+      "hashPath": "microsoft.aspnetcore.authentication.jwtbearer.6.0.23.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Authorization/2.2.0": {
       "type": "package",
@@ -1701,22 +1741,32 @@
       "path": "system.windows.extensions/6.0.0",
       "hashPath": "system.windows.extensions.6.0.0.nupkg.sha512"
     },
+    "PizzaMaster.Application/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
     "PizzaMaster.BussinessLogic/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
-    "PizzaMaster.DatabaseAccess/1.0.0": {
+    "PizzaMaster.Data/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
-    "PizzaMaster.Models/1.0.0": {
+    "PizzaMaster.Domain/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
-    "PizzaMaster.Utilities/1.0.0": {
+    "PizzaMaster.Infrastructure/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "PizzaMaster.Shared/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

@@ -1209,14 +1209,24 @@
           "lib/netstandard1.3/System.Xml.XDocument.dll": {}
         }
       },
-      "PizzaMaster.Models/1.0.0": {
+      "PizzaMaster.Domain/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "compile": {
-          "bin/placeholder/PizzaMaster.Models.dll": {}
+          "bin/placeholder/PizzaMaster.Domain.dll": {}
         },
         "runtime": {
-          "bin/placeholder/PizzaMaster.Models.dll": {}
+          "bin/placeholder/PizzaMaster.Domain.dll": {}
+        }
+      },
+      "PizzaMaster.Shared/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/PizzaMaster.Shared.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/PizzaMaster.Shared.dll": {}
         }
       }
     }
@@ -4016,17 +4026,23 @@
         "system.xml.xdocument.nuspec"
       ]
     },
-    "PizzaMaster.Models/1.0.0": {
+    "PizzaMaster.Domain/1.0.0": {
       "type": "project",
-      "path": "../PizzaMaster.Models/PizzaMaster.Models.csproj",
-      "msbuildProject": "../PizzaMaster.Models/PizzaMaster.Models.csproj"
+      "path": "../PizzaMaster.Models/PizzaMaster.Domain.csproj",
+      "msbuildProject": "../PizzaMaster.Models/PizzaMaster.Domain.csproj"
+    },
+    "PizzaMaster.Shared/1.0.0": {
+      "type": "project",
+      "path": "../PizzaMaster.DataObjects/PizzaMaster.Shared.csproj",
+      "msbuildProject": "../PizzaMaster.DataObjects/PizzaMaster.Shared.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
       "AutoMapper.Extensions.Microsoft.DependencyInjection >= 12.0.1",
       "Microsoft.AspNetCore.Mvc.Core >= 2.2.5",
-      "PizzaMaster.Models >= 1.0.0"
+      "PizzaMaster.Domain >= 1.0.0",
+      "PizzaMaster.Shared >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -4035,9 +4051,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Projects\\.NET Core\\PizzaMaster\\PizzaMaster.Utilities\\PizzaMaster.Utilities.csproj",
-      "projectName": "PizzaMaster.Utilities",
-      "projectPath": "D:\\Projects\\.NET Core\\PizzaMaster\\PizzaMaster.Utilities\\PizzaMaster.Utilities.csproj",
+      "projectUniqueName": "D:\\Projects\\.NET Core\\PizzaMaster\\PizzaMaster.Utilities\\PizzaMaster.Infrastructure.csproj",
+      "projectName": "PizzaMaster.Infrastructure",
+      "projectPath": "D:\\Projects\\.NET Core\\PizzaMaster\\PizzaMaster.Utilities\\PizzaMaster.Infrastructure.csproj",
       "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
       "outputPath": "D:\\Projects\\.NET Core\\PizzaMaster\\PizzaMaster.Utilities\\obj\\",
       "projectStyle": "PackageReference",
@@ -4056,8 +4072,11 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "D:\\Projects\\.NET Core\\PizzaMaster\\PizzaMaster.Models\\PizzaMaster.Models.csproj": {
-              "projectPath": "D:\\Projects\\.NET Core\\PizzaMaster\\PizzaMaster.Models\\PizzaMaster.Models.csproj"
+            "D:\\Projects\\.NET Core\\PizzaMaster\\PizzaMaster.DataObjects\\PizzaMaster.Shared.csproj": {
+              "projectPath": "D:\\Projects\\.NET Core\\PizzaMaster\\PizzaMaster.DataObjects\\PizzaMaster.Shared.csproj"
+            },
+            "D:\\Projects\\.NET Core\\PizzaMaster\\PizzaMaster.Models\\PizzaMaster.Domain.csproj": {
+              "projectPath": "D:\\Projects\\.NET Core\\PizzaMaster\\PizzaMaster.Models\\PizzaMaster.Domain.csproj"
             }
           }
         }

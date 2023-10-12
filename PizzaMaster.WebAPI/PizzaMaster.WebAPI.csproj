@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.23" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.22" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.22" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.22">
@@ -19,9 +20,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\PizzaMaster.Application\PizzaMaster.Application.csproj" />
     <ProjectReference Include="..\PizzaMaster.BussinessLogic\PizzaMaster.BussinessLogic.csproj" />
-    <ProjectReference Include="..\PizzaMaster.DatabaseAccess\PizzaMaster.DatabaseAccess.csproj" />
-    <ProjectReference Include="..\PizzaMaster.Utilities\PizzaMaster.Utilities.csproj" />
+    <ProjectReference Include="..\PizzaMaster.DatabaseAccess\PizzaMaster.Data.csproj" />
+    <ProjectReference Include="..\PizzaMaster.Infrastructure\PizzaMaster.Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -209,3 +209,153 @@ System.InvalidOperationException: A second operation was started on this context
 10/04/2023 17:11:11 +02:00 Igor
 10/04/2023 17:20:01 +02:00 Igor
 10/04/2023 17:20:01 +02:00 Igor
+10/05/2023 21:08:06 +02:00 Igor
+10/05/2023 21:08:06 +02:00 Igor
+10/05/2023 21:09:01 +02:00 Igor
+10/05/2023 21:09:01 +02:00 Igor
+10/05/2023 21:09:40 +02:00 Igor
+10/05/2023 21:09:40 +02:00 Igor
+10/05/2023 21:17:06 +02:00 Igor
+10/05/2023 21:17:06 +02:00 Igor
+10/06/2023 18:48:05 +02:00 Igor
+10/06/2023 18:48:05 +02:00 Igor
+10/07/2023 15:48:04 +02:00 Igor
+10/07/2023 15:48:04 +02:00 Igor
+10/07/2023 15:48:08 +02:00 Igor
+10/07/2023 15:48:08 +02:00 Igor
+10/07/2023 16:05:01 +02:00 Incorrect number of arguments supplied for call to method 'PizzaMaster.Models.Models.RestoranModel get_Item(Int32)' (Parameter 'property')
+10/07/2023 16:05:23 +02:00 Incorrect number of arguments supplied for call to method 'PizzaMaster.Models.Models.RestoranModel get_Item(Int32)' (Parameter 'property')
+10/07/2023 16:05:51 +02:00 Incorrect number of arguments supplied for call to method 'PizzaMaster.Models.Models.RestoranModel get_Item(Int32)' (Parameter 'property')
+10/07/2023 16:07:07 +02:00 Incorrect number of arguments supplied for call to method 'PizzaMaster.Models.Models.RestoranModel get_Item(Int32)' (Parameter 'property')
+10/11/2023 20:47:14 +02:00 Neki Exception
+10/11/2023 20:47:42 +02:00 Neki Exception
+10/12/2023 19:41:44 +02:00 An error occurred while saving the entity changes. See the inner exception for details.
+10/12/2023 20:13:46 +02:00 Failed executing DbCommand ("19"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""ALTER TABLE [Users] ADD CONSTRAINT [FK_Users_Restorans_RestoranId] FOREIGN KEY ([RestoranId]) REFERENCES [Restorans] ([Id]) ON DELETE CASCADE;"
+10/12/2023 20:26:12 +02:00 Failed executing DbCommand ("7"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""ALTER TABLE [Users] ADD CONSTRAINT [FK_Users_Restorans_RestoranId] FOREIGN KEY ([RestoranId]) REFERENCES [Restorans] ([Id]) ON DELETE CASCADE;"
+10/12/2023 20:41:49 +02:00 Failed executing DbCommand ("9"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""ALTER TABLE [Users] ADD CONSTRAINT [FK_Users_Restorans_RestoranId] FOREIGN KEY ([RestoranId]) REFERENCES [Restorans] ([Id]) ON DELETE CASCADE;"
+10/12/2023 20:42:30 +02:00 Failed executing DbCommand ("7"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""ALTER TABLE [Users] ADD CONSTRAINT [FK_Users_Restorans_RestoranId] FOREIGN KEY ([RestoranId]) REFERENCES [Restorans] ([Id]) ON DELETE CASCADE;"
+10/12/2023 20:43:37 +02:00 Failed executing DbCommand ("12"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""ALTER TABLE [Users] ADD CONSTRAINT [FK_Users_Restorans_RestoranEntityId] FOREIGN KEY ([RestoranEntityId]) REFERENCES [Restorans] ([Id]) ON DELETE CASCADE;"
+10/12/2023 20:46:28 +02:00 The foreign key property '"UserEntity"."RestoranEntityId1"' was created in shadow state because a conflicting property with the simple name '"RestoranEntityId"' exists in the entity type, but is either not mapped, is already used for another relationship, or is incompatible with the associated primary key type. See https://aka.ms/efcore-relationships for information on mapping relationships in EF Core.
+10/12/2023 20:46:29 +02:00 Failed executing DbCommand ("8"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""ALTER TABLE [Users] ADD CONSTRAINT [FK_Users_Restorans_RestoranEntityId] FOREIGN KEY ([RestoranEntityId]) REFERENCES [Restorans] ([Id]) ON DELETE CASCADE;"
+10/12/2023 20:49:24 +02:00 The foreign key property '"UserEntity"."RestoranEntityId1"' was created in shadow state because a conflicting property with the simple name '"RestoranEntityId"' exists in the entity type, but is either not mapped, is already used for another relationship, or is incompatible with the associated primary key type. See https://aka.ms/efcore-relationships for information on mapping relationships in EF Core.
+10/12/2023 20:49:24 +02:00 The foreign key property '"UserEntity"."RestoranEntityId1"' was created in shadow state because a conflicting property with the simple name '"RestoranEntityId"' exists in the entity type, but is either not mapped, is already used for another relationship, or is incompatible with the associated primary key type. See https://aka.ms/efcore-relationships for information on mapping relationships in EF Core.
+10/12/2023 20:52:27 +02:00 Failed executing DbCommand ("6"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""ALTER TABLE [Users] ADD CONSTRAINT [FK_Users_Restorans_RestoranEntityId] FOREIGN KEY ([RestoranEntityId]) REFERENCES [Restorans] ([Id]) ON DELETE CASCADE;"
+10/12/2023 21:00:49 +02:00 Failed executing DbCommand ("8"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""ALTER TABLE [Users] ADD CONSTRAINT [FK_Users_Restorans_RestoranEntityId] FOREIGN KEY ([RestoranEntityId]) REFERENCES [Restorans] ([RestoranEntityId]) ON DELETE CASCADE;"
+10/12/2023 21:08:47 +02:00 Failed executing DbCommand ("6"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""ALTER TABLE [Users] ADD CONSTRAINT [FK_Users_Restorans_RestoranEntityId] FOREIGN KEY ([RestoranEntityId]) REFERENCES [Restorans] ([Id]) ON DELETE CASCADE;"
+10/12/2023 21:12:01 +02:00 Failed executing DbCommand ("6"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""ALTER TABLE [Users] ADD CONSTRAINT [FK_Users_Restorans_RestoranEntityId] FOREIGN KEY ([RestoranEntityId]) REFERENCES [Restorans] ([Id]) ON DELETE CASCADE;"
+10/12/2023 21:17:54 +02:00 Failed executing DbCommand ("9"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""ALTER TABLE [Users] ADD CONSTRAINT [FK_Users_Restorans_RestoranEntityId] FOREIGN KEY ([RestoranEntityId]) REFERENCES [Restorans] ([Id]) ON DELETE CASCADE;"
+10/12/2023 21:20:44 +02:00 Failed executing DbCommand ("9"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""CREATE TABLE [Errors] (
+    [Id] int NOT NULL IDENTITY,
+    [Naziv] nvarchar(max) NOT NULL,
+    [Opis] nvarchar(max) NULL,
+    [Detaljnije] nvarchar(max) NULL,
+    [VremeGreske] datetime2 NULL,
+    [User] nvarchar(max) NULL,
+    CONSTRAINT [PK_Errors] PRIMARY KEY ([Id])
+);"
+10/12/2023 21:22:38 +02:00 Failed executing DbCommand ("18"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'Id', N'Email', N'Name', N'Password', N'RestoranId', N'Username') AND [object_id] = OBJECT_ID(N'[Users]'))
+    SET IDENTITY_INSERT [Users] ON;
+INSERT INTO [Users] ([Id], [Email], [Name], [Password], [RestoranId], [Username])
+VALUES (-2, N'2232sd', N'Igor Stojanovic', N'123', 0, N'IGGY');
+IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'Id', N'Email', N'Name', N'Password', N'RestoranId', N'Username') AND [object_id] = OBJECT_ID(N'[Users]'))
+    SET IDENTITY_INSERT [Users] OFF;"
+10/12/2023 21:30:10 +02:00 Failed executing DbCommand ("27"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'Id', N'Email', N'Name', N'Password', N'RestoranId', N'Username') AND [object_id] = OBJECT_ID(N'[Users]'))
+    SET IDENTITY_INSERT [Users] ON;
+INSERT INTO [Users] ([Id], [Email], [Name], [Password], [RestoranId], [Username])
+VALUES (-2, N'2232sd', N'Igor Stojanovic', N'123', 0, N'IGGY');
+IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'Id', N'Email', N'Name', N'Password', N'RestoranId', N'Username') AND [object_id] = OBJECT_ID(N'[Users]'))
+    SET IDENTITY_INSERT [Users] OFF;"
+10/12/2023 21:34:14 +02:00 Failed executing DbCommand ("21"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'Id', N'Email', N'Name', N'Password', N'RestoranId', N'Username') AND [object_id] = OBJECT_ID(N'[Users]'))
+    SET IDENTITY_INSERT [Users] ON;
+INSERT INTO [Users] ([Id], [Email], [Name], [Password], [RestoranId], [Username])
+VALUES (-2, N'2232sd', N'Igor Stojanovic', N'123', 0, N'IGGY');
+IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'Id', N'Email', N'Name', N'Password', N'RestoranId', N'Username') AND [object_id] = OBJECT_ID(N'[Users]'))
+    SET IDENTITY_INSERT [Users] OFF;"
+10/12/2023 21:43:46 +02:00 Failed executing DbCommand ("5"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""ALTER TABLE [Users] ADD CONSTRAINT [FK_Users_Restorans_RestoranId] FOREIGN KEY ([RestoranId]) REFERENCES [Restorans] ([Id]) ON DELETE CASCADE;"
+10/12/2023 21:44:57 +02:00 Failed executing DbCommand ("7"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""ALTER TABLE [Users] ADD CONSTRAINT [FK_Users_Restorans_RestoranId] FOREIGN KEY ([RestoranId]) REFERENCES [Restorans] ([Id]) ON DELETE CASCADE;"
+10/12/2023 21:56:17 +02:00 Failed executing DbCommand ("61"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""DROP INDEX [IX_Users_RestoranId] ON [Users];
+DECLARE @var0 sysname;
+SELECT @var0 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[Users]') AND [c].[name] = N'RestoranId');
+IF @var0 IS NOT NULL EXEC(N'ALTER TABLE [Users] DROP CONSTRAINT [' + @var0 + '];');
+ALTER TABLE [Users] ALTER COLUMN [RestoranId] int NOT NULL;
+ALTER TABLE [Users] ADD DEFAULT 0 FOR [RestoranId];
+CREATE INDEX [IX_Users_RestoranId] ON [Users] ([RestoranId]);"
+10/12/2023 21:58:20 +02:00 Failed executing DbCommand ("51"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""DROP INDEX [IX_Users_RestoranId] ON [Users];
+DECLARE @var0 sysname;
+SELECT @var0 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[Users]') AND [c].[name] = N'RestoranId');
+IF @var0 IS NOT NULL EXEC(N'ALTER TABLE [Users] DROP CONSTRAINT [' + @var0 + '];');
+ALTER TABLE [Users] ALTER COLUMN [RestoranId] int NOT NULL;
+ALTER TABLE [Users] ADD DEFAULT 0 FOR [RestoranId];
+CREATE INDEX [IX_Users_RestoranId] ON [Users] ([RestoranId]);"
+10/12/2023 22:01:25 +02:00 Failed executing DbCommand ("53"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""DROP INDEX [IX_Users_RestoranId] ON [Users];
+DECLARE @var0 sysname;
+SELECT @var0 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[Users]') AND [c].[name] = N'RestoranId');
+IF @var0 IS NOT NULL EXEC(N'ALTER TABLE [Users] DROP CONSTRAINT [' + @var0 + '];');
+ALTER TABLE [Users] ALTER COLUMN [RestoranId] int NOT NULL;
+ALTER TABLE [Users] ADD DEFAULT 0 FOR [RestoranId];
+CREATE INDEX [IX_Users_RestoranId] ON [Users] ([RestoranId]);"
+10/12/2023 22:03:27 +02:00 Failed executing DbCommand ("47"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""DROP INDEX [IX_Users_RestoranId] ON [Users];
+DECLARE @var0 sysname;
+SELECT @var0 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[Users]') AND [c].[name] = N'RestoranId');
+IF @var0 IS NOT NULL EXEC(N'ALTER TABLE [Users] DROP CONSTRAINT [' + @var0 + '];');
+ALTER TABLE [Users] ALTER COLUMN [RestoranId] int NOT NULL;
+ALTER TABLE [Users] ADD DEFAULT 0 FOR [RestoranId];
+CREATE INDEX [IX_Users_RestoranId] ON [Users] ([RestoranId]);"
+10/12/2023 22:09:45 +02:00 Failed executing DbCommand ("46"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""DROP INDEX [IX_Users_RestoranId] ON [Users];
+DECLARE @var0 sysname;
+SELECT @var0 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[Users]') AND [c].[name] = N'RestoranId');
+IF @var0 IS NOT NULL EXEC(N'ALTER TABLE [Users] DROP CONSTRAINT [' + @var0 + '];');
+ALTER TABLE [Users] ALTER COLUMN [RestoranId] int NOT NULL;
+ALTER TABLE [Users] ADD DEFAULT 0 FOR [RestoranId];
+CREATE INDEX [IX_Users_RestoranId] ON [Users] ([RestoranId]);"
+10/12/2023 22:12:45 +02:00 Failed executing DbCommand ("32"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'Id', N'Email', N'Name', N'Password', N'RestoranId', N'Username') AND [object_id] = OBJECT_ID(N'[Users]'))
+    SET IDENTITY_INSERT [Users] ON;
+INSERT INTO [Users] ([Id], [Email], [Name], [Password], [RestoranId], [Username])
+VALUES (-2, N'2232sd', N'Igor Stojanovic', N'123', 0, N'IGGY');
+IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'Id', N'Email', N'Name', N'Password', N'RestoranId', N'Username') AND [object_id] = OBJECT_ID(N'[Users]'))
+    SET IDENTITY_INSERT [Users] OFF;"
+10/12/2023 22:17:02 +02:00 Failed executing DbCommand ("29"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'Id', N'Email', N'Name', N'Password', N'RestoranId', N'Username') AND [object_id] = OBJECT_ID(N'[Users]'))
+    SET IDENTITY_INSERT [Users] ON;
+INSERT INTO [Users] ([Id], [Email], [Name], [Password], [RestoranId], [Username])
+VALUES (-2, N'2232sd', N'Igor Stojanovic', N'123', 0, N'IGGY');
+IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'Id', N'Email', N'Name', N'Password', N'RestoranId', N'Username') AND [object_id] = OBJECT_ID(N'[Users]'))
+    SET IDENTITY_INSERT [Users] OFF;"

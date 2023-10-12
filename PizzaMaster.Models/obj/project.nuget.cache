@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Q6HxEe/KTCcRDs00SjlxfyyASrrlada96rhM8mn3qTFRLq0DN2Osgjr86w6+dWLI6HPS4+co+TXQcKGRzU8K3g==",
+  "dgSpecHash": "mgjNa9M+SLoH2oHQqbCfFnA00cJB89lEYD56mr6ZhKPWqibE/5YKIYP0KsJ8YPaMfCiJjQxoHRf5eJ51L5CrWg==",
   "success": true,
-  "projectFilePath": "D:\\Projects\\.NET Core\\PizzaMaster\\PizzaMaster.Models\\PizzaMaster.Models.csproj",
+  "projectFilePath": "D:\\Projects\\.NET Core\\PizzaMaster\\PizzaMaster.Models\\PizzaMaster.Domain.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
