@@ -3,6 +3,7 @@ using PizzaMaster.Application;
 using PizzaMaster.Application.Repositories;
 using PizzaMaster.Data.EF;
 using PizzaMaster.DatabaseAccess.UnitOfWork;
+using PizzaMaster.Domain.Entities;
 
 namespace PizzaMaster.DatabaseAccess.UnitOfWork
 {

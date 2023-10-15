@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "sXWpEnJ2vpQgoAKy6xAkq7hIQBAo0mdjV3S+1BH4Omp4bCRGOuaTN5Yt87HYxKDDjYK9NX5+r6+m1bj0qXcW8g==",
+  "dgSpecHash": "FY7Q+dzX0CRKWSE4RsiwBAwdTNNnCRAesbXNF3z9U5vIZcTxQQpSVMLlYI5wtGuK2F2aYYhMYqVW1h4v/b+9Jg==",
   "success": true,
   "projectFilePath": "D:\\Projects\\.NET Core\\PizzaMaster\\PizzaMaster.WebAPI\\PizzaMaster.WebAPI.csproj",
   "expectedPackageFiles": [
@@ -36,6 +36,7 @@
     "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.entityframeworkcore.design\\6.0.22\\microsoft.entityframeworkcore.design.6.0.22.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\6.0.22\\microsoft.entityframeworkcore.relational.6.0.22.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.entityframeworkcore.sqlserver\\6.0.22\\microsoft.entityframeworkcore.sqlserver.6.0.22.nupkg.sha512",
+    "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.entityframeworkcore.sqlserver.nettopologysuite\\6.0.22\\microsoft.entityframeworkcore.sqlserver.nettopologysuite.6.0.22.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.entityframeworkcore.tools\\6.0.22\\microsoft.entityframeworkcore.tools.6.0.22.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\6.0.0\\microsoft.extensions.caching.abstractions.6.0.0.nupkg.sha512",
@@ -66,6 +67,8 @@
     "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.sqlserver.server\\1.0.0\\microsoft.sqlserver.server.1.0.0.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
+    "C:\\Users\\Lenovo\\.nuget\\packages\\nettopologysuite\\2.3.0\\nettopologysuite.2.3.0.nupkg.sha512",
+    "C:\\Users\\Lenovo\\.nuget\\packages\\nettopologysuite.io.sqlserverbytes\\2.0.0\\nettopologysuite.io.sqlserverbytes.2.0.0.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\serilog\\2.12.0\\serilog.2.12.0.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\serilog.aspnetcore\\7.0.0\\serilog.aspnetcore.7.0.0.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\serilog.extensions.hosting\\7.0.0\\serilog.extensions.hosting.7.0.0.nupkg.sha512",

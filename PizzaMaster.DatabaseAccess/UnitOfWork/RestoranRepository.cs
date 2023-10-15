@@ -21,13 +21,13 @@ namespace PizzaMaster.DatabaseAccess.UnitOfWork
             return Task.FromResult(true);
         }
 
-        public List<Restoran> GetAllRestorans()
-        {
+        //public List<Restoran> GetAllRestorans()
+        //{
 
-            var restorans = this._db.Restorans.ToList();
+        //    var restorans = this._db.Restorans.ToList();
 
-            return restorans;
-        }
+        //    return restorans;
+        //}
 
 
     }

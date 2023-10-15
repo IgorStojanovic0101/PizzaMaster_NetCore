@@ -22,7 +22,7 @@ namespace PizzaMaster.Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("PizzaMaster.Domain.Entities.ErrorEntity", b =>
+            modelBuilder.Entity("PizzaMaster.Domain.Entities.Error", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -48,7 +48,55 @@ namespace PizzaMaster.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Errors", (string)null);
+                    b.ToTable("Errors");
+                });
+
+            modelBuilder.Entity("PizzaMaster.Domain.Entities.PasteType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PasteTypes");
+                });
+
+            modelBuilder.Entity("PizzaMaster.Domain.Entities.PizzaType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(10,2)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PizzaTypes");
                 });
 
             modelBuilder.Entity("PizzaMaster.Domain.Entities.Restoran", b =>
@@ -66,7 +114,7 @@ namespace PizzaMaster.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Restorans", (string)null);
+                    b.ToTable("Restorans");
                 });
 
             modelBuilder.Entity("PizzaMaster.Domain.Entities.User", b =>
@@ -99,9 +147,9 @@ namespace PizzaMaster.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("RestoranId");
+                    b.HasIndex(new[] { "RestoranId" }, "IX_Users_RestoranId");
 
-                    b.ToTable("Users", (string)null);
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("PizzaMaster.Domain.Entities.User", b =>

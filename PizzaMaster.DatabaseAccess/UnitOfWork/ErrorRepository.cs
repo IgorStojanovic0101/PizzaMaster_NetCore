@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace PizzaMaster.DatabaseAccess.UnitOfWork
 {
-    public class ErrorRepository : Repository<ErrorEntity>, IErrorRepository
+    public class ErrorRepository : Repository<Error>, IErrorRepository
     {
 
         public ErrorRepository(ApplicationDbContext db) : base(db)

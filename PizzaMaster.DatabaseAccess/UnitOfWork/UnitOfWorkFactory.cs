@@ -2,19 +2,17 @@
 using Microsoft.Extensions.Configuration;
 using PizzaMaster.Application;
 using PizzaMaster.Data.EF;
+using PizzaMaster.Domain.Entities;
 
 namespace PizzaMaster.DatabaseAccess.UnitOfWork
 {
     public class UnitOfWorkFactory : IUnitOfWorkFactory
     {
-        private readonly string _connectionString;
+        private readonly IConfiguration _configuration;
 
+        public UnitOfWorkFactory(IConfiguration configuration) => _configuration = configuration;
 
-
-        public UnitOfWorkFactory(string connectionString) => _connectionString = connectionString;
-
-
-        public IUnitOfWork Create() => new UnitOfWork(new ApplicationDbContext(new DbContextOptionsBuilder<ApplicationDbContext>().UseSqlServer(_connectionString).Options));
+        public IUnitOfWork Create() => new UnitOfWork(new ApplicationDbContext(new DbContextOptionsBuilder<ApplicationDbContext>().UseSqlServer(_configuration.GetConnectionString("DefaultConnection")).Options));
         
 
     }

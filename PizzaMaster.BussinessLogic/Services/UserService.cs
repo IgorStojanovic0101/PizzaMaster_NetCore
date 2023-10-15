@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using PizzaMaster.Application;
 using PizzaMaster.Application.Services;
+using PizzaMaster.Data;
 using PizzaMaster.Domain.Entities;
 using PizzaMaster.Shared.DTOs.User;
 using System;

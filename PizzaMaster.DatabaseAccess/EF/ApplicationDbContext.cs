@@ -1,45 +1,72 @@
-﻿using Microsoft.EntityFrameworkCore;
-using PizzaMaster.Data.Configurations;
-using PizzaMaster.Data.Extensions;
-using PizzaMaster.Domain.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
+using PizzaMaster.Domain.Entities;
 
 namespace PizzaMaster.Data.EF
 {
-    public class ApplicationDbContext : DbContext
+    public partial class ApplicationDbContext : DbContext
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+        public ApplicationDbContext()
         {
+        }
+
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+            : base(options)
+        {
+
+        }
+
+        public virtual DbSet<Error> Errors { get; set; } = null!;
+        public virtual DbSet<PasteType> PasteTypes { get; set; } = null!;
+        public virtual DbSet<PizzaType> PizzaTypes { get; set; } = null!;
+        public virtual DbSet<Restoran> Restorans { get; set; } = null!;
+        public virtual DbSet<User> Users { get; set; } = null!;
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseSqlServer("Name=ConnectionStrings:DefaultConnection", x => x.UseNetTopologySuite());
+            }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //Configure using Fluent API
-            //modelBuilder.ApplyConfiguration(new UserConfiguration());
+            modelBuilder.Entity<PasteType>(entity =>
+            {
+                entity.Property(e => e.Price).HasColumnType("decimal(18, 2)");
+            });
 
-            modelBuilder.ApplyConfiguration(new ErrorConfiguration());
-            modelBuilder.ApplyConfiguration(new RestoranConfiguration());
-            modelBuilder.ApplyConfiguration(new UserConfiguration());
+            modelBuilder.Entity<PizzaType>(entity =>
+            {
+                entity.Property(e => e.Description).HasMaxLength(255);
 
-            //modelBuilder.Entity<User>()
-            //    .HasOne(c => c.Restoran)
-            //    .WithMany(u => u.Users)
-            //    .HasForeignKey(c => c.RestoranId)
-            //    .IsRequired();
+                entity.Property(e => e.Name).HasMaxLength(100);
 
-            //Data seeding
-            //modelBuilder.Seed();
-            //base.OnModelCreating(modelBuilder);
+                entity.Property(e => e.Price).HasColumnType("decimal(10, 2)");
+            });
+
+            modelBuilder.Entity<Restoran>(entity =>
+            {
+                entity.Property(e => e.RestoranIme).HasMaxLength(200);
+            });    
+
+            modelBuilder.Entity<User>(entity =>
+            {
+                entity.HasIndex(e => e.RestoranId, "IX_Users_RestoranId");
+
+                entity.Property(e => e.Username).HasMaxLength(50);
+
+                entity.HasOne(d => d.Restoran)
+                    .WithMany(p => p.Users)
+                    .HasForeignKey(d => d.RestoranId);
+            });
+
+            OnModelCreatingPartial(modelBuilder);
         }
-        public DbSet<Restoran> Restorans { get; set; }
-        public DbSet<ErrorEntity> Errors { get; set; }
-        public DbSet<User> Users { get; set; }
 
-
-
+        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
 }

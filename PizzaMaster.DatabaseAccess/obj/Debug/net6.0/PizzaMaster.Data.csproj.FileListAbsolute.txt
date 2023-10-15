@@ -19,3 +19,4 @@ D:\Projects\.NET Core\PizzaMaster\PizzaMaster.DatabaseAccess\obj\Debug\net6.0\Pi
 D:\Projects\.NET Core\PizzaMaster\PizzaMaster.DatabaseAccess\obj\Debug\net6.0\ref\PizzaMaster.Data.dll
 D:\Projects\.NET Core\PizzaMaster\PizzaMaster.DatabaseAccess\bin\Debug\net6.0\PizzaMaster.Shared.dll
 D:\Projects\.NET Core\PizzaMaster\PizzaMaster.DatabaseAccess\bin\Debug\net6.0\PizzaMaster.Shared.pdb
+D:\Projects\.NET Core\PizzaMaster\PizzaMaster.DatabaseAccess\obj\Debug\net6.0\EFCoreSqlServerNetTopologySuite.cs

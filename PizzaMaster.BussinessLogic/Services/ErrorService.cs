@@ -22,7 +22,7 @@ namespace PizzaMaster.Application.Services
 
         public void AddErrorRecord(string message, Exception exception)
         {
-            var entity = new ErrorEntity { Naziv = message, Opis = exception.Message, Detaljnije = exception.InnerException?.Message, VremeGreske = DateTime.Now, User = "Igor" };
+            var entity = new Error { Naziv = message, Opis = exception.Message, Detaljnije = exception.InnerException?.Message, VremeGreske = DateTime.Now, User = "Igor" };
             _unitOfWork.ErrorRepository.Add(entity);
             _unitOfWork.SaveChanges();
         }

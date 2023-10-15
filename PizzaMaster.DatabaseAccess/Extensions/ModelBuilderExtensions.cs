@@ -12,9 +12,7 @@ namespace PizzaMaster.Data.Extensions
         public static void Seed(this ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>().HasData(
-               new User()  { Id = -2, Name =  "Igor Stojanovic", Email = "2232sd", Username = "IGGY", Password = "123" }
-               
-               );
+               new User()  { Id = 1, Name =  "Igor", Email = "2232sd",RestoranId = 1, Username = "igor", Password = "123" } );
           
         }
     }

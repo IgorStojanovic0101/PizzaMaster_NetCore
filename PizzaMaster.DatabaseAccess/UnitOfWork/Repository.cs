@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PizzaMaster.Application.Repositories;
 using PizzaMaster.Data.EF;
+using PizzaMaster.Domain.Entities;
 using System.Linq.Expressions;
 
 namespace PizzaMaster.DatabaseAccess.UnitOfWork
@@ -15,12 +16,12 @@ namespace PizzaMaster.DatabaseAccess.UnitOfWork
             this._db = db;
             this._dbSet = _db.Set<T>();
         }
-        public async Task<IEnumerable<T>> FindAsync(Expression<Func<T, bool>> expression)
-        {
-            return await _dbSet.Where(expression).ToListAsync();
-        }
+        public  IEnumerable<T> Find(Expression<Func<T, bool>> expression) => _dbSet.Where(expression).ToList();
+        
 
-        public async Task<T> SingleOrDefaultAsync(Expression<Func<T, bool>> expression) => await _dbSet.SingleOrDefaultAsync(expression);
+        public  T SingleOrDefault(Expression<Func<T, bool>> expression) =>  _dbSet.SingleOrDefault(expression);
+
+        public List<T> GetAll() => _dbSet.ToList();
 
         public bool Any(Expression<Func<T, bool>> expression) =>  _dbSet.Any(expression);
 

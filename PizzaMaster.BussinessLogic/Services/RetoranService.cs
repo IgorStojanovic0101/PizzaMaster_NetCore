@@ -4,10 +4,11 @@ using PizzaMaster.Application;
 using PizzaMaster.Domain.Entities;
 using PizzaMaster.Shared.DTOs.User;
 using PizzaMaster.Shared.DTOs;
+using PizzaMaster.Application.Services;
 
 namespace PizzaMaster.BussinessLogic.Services
 {
-    public class RetoranService
+    public class RetoranService : IRestoranService
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
@@ -20,7 +21,7 @@ namespace PizzaMaster.BussinessLogic.Services
             _mapper = mapper;
         }
 
-        public List<string> ValidationErrors(int id)
+        public List<string> ValidationErrors()
         {
             var errorList = new List<string>();
 
@@ -33,7 +34,7 @@ namespace PizzaMaster.BussinessLogic.Services
         {
 
 
-            var models = _unitOfWork.RestoranRepository.GetAllRestorans();
+            var models = _unitOfWork.RestoranRepository.GetAll();
 
             var el = models[0];
 
@@ -47,7 +48,7 @@ namespace PizzaMaster.BussinessLogic.Services
         {
 
 
-            var models = _unitOfWork.RestoranRepository.GetAllRestorans();
+            var models = _unitOfWork.RestoranRepository.GetAll();
 
             var dto = _mapper.Map<List<RestoranDTO>>(models);
 
