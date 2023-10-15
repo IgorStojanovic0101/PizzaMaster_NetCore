@@ -110,3 +110,6 @@ D:\Projects\.NET Core\PizzaMaster\PizzaMaster.WebAPI\obj\Debug\net6.0\PizzaMaste
 D:\Projects\.NET Core\PizzaMaster\PizzaMaster.WebAPI\obj\Debug\net6.0\PizzaMaster.WebAPI.genruntimeconfig.cache
 D:\Projects\.NET Core\PizzaMaster\PizzaMaster.WebAPI\obj\Debug\net6.0\ref\PizzaMaster.WebAPI.dll
 D:\Projects\.NET Core\PizzaMaster\PizzaMaster.WebAPI\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\Projects\.NET Core\PizzaMaster\PizzaMaster.WebAPI\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.SqlServer.NetTopologySuite.dll
+D:\Projects\.NET Core\PizzaMaster\PizzaMaster.WebAPI\bin\Debug\net6.0\NetTopologySuite.dll
+D:\Projects\.NET Core\PizzaMaster\PizzaMaster.WebAPI\bin\Debug\net6.0\NetTopologySuite.IO.SqlServerBytes.dll

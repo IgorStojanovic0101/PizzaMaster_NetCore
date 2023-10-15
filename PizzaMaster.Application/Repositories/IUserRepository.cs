@@ -1,7 +1,7 @@
 ﻿
 
-using PizzaMaster.Domain;
 using PizzaMaster.Domain.Entities;
+using PizzaMaster.Domain;
 
 namespace PizzaMaster.Application.Repositories
 {

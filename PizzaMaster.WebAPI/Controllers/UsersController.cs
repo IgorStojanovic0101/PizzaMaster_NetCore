@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using PizzaMaster.Application.Services;
 using PizzaMaster.BussinessLogic.Services;
-using PizzaMaster.DataObjects.Results;
 using PizzaMaster.Shared.DTOs.User;
+using PizzaMaster.Shared.Results;
 
 namespace PizzaMaster.WebAPI.Controllers
 {

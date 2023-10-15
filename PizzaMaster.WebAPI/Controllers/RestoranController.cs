@@ -2,8 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using PizzaMaster.BussinessLogic.Services;
 using PizzaMaster.Shared.DTOs.User;
-using PizzaMaster.DataObjects.Results;
 using PizzaMaster.Shared.DTOs;
+using PizzaMaster.Shared.Results;
 
 namespace PizzaMaster.WebAPI.Controllers
 {
@@ -22,7 +22,7 @@ namespace PizzaMaster.WebAPI.Controllers
 
 
             //Validations
-            response.Errors = _service.ValidationErrors(id);
+            response.Errors = _service.ValidationErrors();
 
 
             if (response.Errors.Count > 0)

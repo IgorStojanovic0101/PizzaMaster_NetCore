@@ -9,6 +9,5 @@ namespace PizzaMaster.Application.Repositories
     {
         Task<bool> UpdateRestoran(string email);
 
-        List<Restoran> GetAllRestorans();
     }
 }

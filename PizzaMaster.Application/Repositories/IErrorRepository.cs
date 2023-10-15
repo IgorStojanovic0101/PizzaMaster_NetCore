@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PizzaMaster.Application.Repositories
 {
-    public interface IErrorRepository : IRepository<ErrorEntity>
+    public interface IErrorRepository : IRepository<Error>
     {
 
     }

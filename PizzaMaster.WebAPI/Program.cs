@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using PizzaMaster.Application;
-using PizzaMaster.Data.EF;
 using PizzaMaster.Data.SQLConnection;
 using PizzaMaster.DatabaseAccess.UnitOfWork;
 using PizzaMaster.Infrastructure.System;
@@ -14,6 +13,8 @@ using PizzaMaster.Application.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using PizzaMaster.Domain.Entities;
+using PizzaMaster.Data.EF;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -88,12 +89,18 @@ builder.Services.AddAuthentication(opt =>
 
 
 builder.Services.AddSwaggerGen();
+var config = new ConfigurationBuilder()
+    .SetBasePath(Directory.GetCurrentDirectory())
+    .AddJsonFile("appsettings.json")
+    .Build();
 
-builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-builder.Services.AddSingleton<IUnitOfWorkFactory>(new UnitOfWorkFactory(builder.Configuration.GetConnectionString("DefaultConnection")));
-builder.Services.AddSingleton<ISqlConnectionFactory>(new SqlConnectionFactory(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddSingleton<IConfiguration>(config);
 
-builder.Services.AddScoped<RetoranService>();
+builder.Services.AddDbContext<ApplicationDbContext>();
+builder.Services.AddSingleton<IUnitOfWorkFactory, UnitOfWorkFactory>();
+builder.Services.AddSingleton<ISqlConnectionFactory, SqlConnectionFactory>();
+
+builder.Services.AddScoped<IRestoranService,RetoranService>();
 builder.Services.AddScoped<IUserService,UserService>();
 builder.Services.AddScoped<IErrorService,ErrorService>();
 
