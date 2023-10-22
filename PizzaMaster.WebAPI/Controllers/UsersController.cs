@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using PizzaMaster.Application.Services;
 using PizzaMaster.BussinessLogic.Services;
@@ -6,7 +7,7 @@ using PizzaMaster.Shared.Results;
 
 namespace PizzaMaster.WebAPI.Controllers
 {
-
+    [EnableCors]
     public class UsersController : ControllerBase
     {
   
@@ -18,9 +19,9 @@ namespace PizzaMaster.WebAPI.Controllers
             _service = service;
         }
         [HttpGet]
-        public ActionResult<ServiceResponse<List<UserDTO>>> GetAllUsers()
+        public ActionResult<ServiceResponse<List<UserRegisterResponseDTO>>> GetAllUsers()
         {
-            ServiceResponse<List<UserDTO>> response = new(); 
+            ServiceResponse<List<UserRegisterResponseDTO>> response = new(); 
 
             response.Payload = _service.GetAllUsers();
 
@@ -29,7 +30,7 @@ namespace PizzaMaster.WebAPI.Controllers
         }
 
         [HttpPost]
-        public ActionResult<ServiceResponse<UserLoginResponseDTO>> Login(UserLoginDTO dto)
+        public ActionResult<ServiceResponse<UserLoginResponseDTO>> Login([FromBody] UserLoginRequestDTO dto)
         {
             ServiceResponse<UserLoginResponseDTO> response = new();
 
@@ -50,7 +51,7 @@ namespace PizzaMaster.WebAPI.Controllers
         }
 
         [HttpPost]
-        public ActionResult<ServiceResponse<UserLoginResponseDTO>> Register(UserCreationDTO dto)
+        public ActionResult<ServiceResponse<UserLoginResponseDTO>> Register([FromBody] UserRegisterRequestDTO dto)
         {
             ServiceResponse<UserLoginResponseDTO> response = new();
 

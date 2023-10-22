@@ -4,15 +4,16 @@ using PizzaMaster.BussinessLogic.Services;
 using PizzaMaster.Shared.DTOs.User;
 using PizzaMaster.Shared.DTOs;
 using PizzaMaster.Shared.Results;
+using PizzaMaster.Application.Services;
 
 namespace PizzaMaster.WebAPI.Controllers
 {
-    [Authorize]
+   // [Authorize]
     public class RestoranController : ControllerBase
     {
-        private readonly RetoranService _service;
+        private readonly IRestoranService _service;
 
-        public RestoranController(RetoranService service) => _service = service;
+        public RestoranController(IRestoranService service) => _service = service;
   
 
         [HttpPost]
@@ -37,7 +38,7 @@ namespace PizzaMaster.WebAPI.Controllers
 
         }
 
-        [HttpPost]
+        [HttpGet]
         public ActionResult<ServiceResponse<List<RestoranDTO>>> ListaRestorana()
         {
             ServiceResponse<List<RestoranDTO>> response = new();

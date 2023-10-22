@@ -49,7 +49,7 @@ namespace PizzaMaster.BussinessLogic.Services
         }
 
 
-        public UserDTO ReturnUser()
+        public UserRegisterResponseDTO ReturnUser()
         {
 
 
@@ -57,59 +57,60 @@ namespace PizzaMaster.BussinessLogic.Services
 
             var el = models[0];
 
-            var dto = _mapper.Map<UserDTO>(el);
+            var dto = _mapper.Map<UserRegisterResponseDTO>(el);
 
             return dto;
         }
 
     
 
-        public UserLoginResponseDTO Login(UserLoginDTO dto)
+        public UserLoginResponseDTO Login(UserLoginRequestDTO dto)
         {
             UserLoginResponseDTO response = new();
 
-            response.UserName = dto.UserName;
-            response.Token = GenerateToken(dto.UserName);
-
-            return response;
-        }
-
-        public UserLoginResponseDTO Register(UserCreationDTO dto)
-        {
-            UserLoginResponseDTO response = new();
-
-            var model = _mapper.Map<User>(dto);
-
-            _unitOfWork.UserRepository.Add(model);
-            _unitOfWork.SaveChanges();
-
-            response.UserName = dto.Username;
+            response.Username = dto.Username;
             response.Token = GenerateToken(dto.Username);
 
             return response;
         }
 
-        public List<UserDTO> GetAllUsers()
+        public UserLoginResponseDTO Register(UserRegisterRequestDTO dto)
+        {
+            UserLoginResponseDTO response = new();
+
+            var model = _mapper.Map<User>(dto);
+            model.RestoranId = 1;
+
+            _unitOfWork.UserRepository.Add(model);
+            _unitOfWork.SaveChanges();
+
+            response.Username = dto.Username;
+            response.Token = GenerateToken(dto.Username);
+
+            return response;
+        }
+
+        public List<UserRegisterResponseDTO> GetAllUsers()
         {
             var entities = _unitOfWork.UserRepository.GetAllUsers();
 
 
-            var dtos = _mapper.Map<List<UserDTO>>(entities);
+            var dtos = _mapper.Map<List<UserRegisterResponseDTO>>(entities);
 
             return dtos;
         }
 
-        public List<string> LoginValidationErrors(UserLoginDTO dto)
+        public List<string> LoginValidationErrors(UserLoginRequestDTO dto)
         {
             List<string> errors = new();
-            if (!_unitOfWork.UserRepository.Any(x => x.Username.Equals(dto.UserName) && x.Password.Equals(dto.Password)))
+            if (!_unitOfWork.UserRepository.Any(x => x.Username.Equals(dto.Username) && x.Password.Equals(dto.Password)))
                 errors.Add("Ne postoji ovaj user");
                 
              return errors;
 
         }
 
-        public List<string> RegisterValidationErrors(UserCreationDTO dto)
+        public List<string> RegisterValidationErrors(UserRegisterRequestDTO dto)
         {
             List<string> errors = new();
             if (_unitOfWork.UserRepository.Any(x => x.Username.Equals(dto.Username)))

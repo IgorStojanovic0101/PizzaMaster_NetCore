@@ -9,7 +9,7 @@ namespace PizzaMaster.Shared.DTOs.User
     public class UserLoginResponseDTO
     {
     
-        public string UserName { get; set; }
+        public string Username { get; set; }
         public string Token { get; set; }
 
 

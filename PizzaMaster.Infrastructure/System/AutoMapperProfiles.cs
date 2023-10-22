@@ -15,10 +15,10 @@ namespace PizzaMaster.Infrastructure.System
         public AutoMapperProfiles() { 
 
             CreateMap<RestoranDTO,Restoran>().ReverseMap();
-            CreateMap<UserDTO, User>().ReverseMap();
+            CreateMap<UserRegisterResponseDTO, User>().ReverseMap();
 
             CreateMap<RestoranCreationDTO, Restoran>();
-            CreateMap<UserCreationDTO, User>();
+            CreateMap<UserRegisterRequestDTO, User>();
 
 
         }

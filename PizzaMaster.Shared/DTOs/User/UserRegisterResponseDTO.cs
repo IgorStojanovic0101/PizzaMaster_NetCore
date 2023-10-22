@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PizzaMaster.Shared.DTOs.User
 {
-    public class UserDTO
+    public class UserRegisterResponseDTO
     {
         public int Id { get; set; }
         public string Name { get; set; }

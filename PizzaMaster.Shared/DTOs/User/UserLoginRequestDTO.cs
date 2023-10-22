@@ -6,13 +6,9 @@ using System.Threading.Tasks;
 
 namespace PizzaMaster.Shared.DTOs.User
 {
-    public class UserCreationDTO
+    public class UserLoginRequestDTO
     {
-        public string Name { get; set; }
-        public string Email { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
-
-
     }
 }

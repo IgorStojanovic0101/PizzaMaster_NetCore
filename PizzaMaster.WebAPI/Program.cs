@@ -84,7 +84,8 @@ builder.Services.AddAuthentication(opt =>
         IssuerSigningKey = new SymmetricSecurityKey(signingKeyBytes)
     };
 });
-        
+
+builder.Services.AddCors();
 
 
 
@@ -131,13 +132,27 @@ if (app.Environment.IsDevelopment())
     });
 }
 
+
+app.UseSwagger();
+app.UseSwaggerUI(c =>
+{
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Swagger Pizza Master Solution v1");
+});
+
 app.UseHttpsRedirection();
 
 
+app.UseRouting();
 
+app.UseCors(options =>
+{
+    options.AllowAnyOrigin();
+    options.AllowAnyMethod();
+    options.AllowAnyHeader();
+});
 
 app.UseAuthentication();
-app.UseRouting();
+
 app.UseAuthorization();
 
 app.UseMiddleware<GlobalExceptionHandlingMiddleware>();
