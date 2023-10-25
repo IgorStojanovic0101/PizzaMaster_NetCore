@@ -14,6 +14,10 @@ namespace PizzaMaster.Application.Services
 
          List<RestoranDTO> VratiRestorane();
 
+        RestoranDTO AddRestoran(RestoranDTO request);
+
+        RestoranDTO UpdateRestoran(RestoranDTO request);
+
 
     }
 }

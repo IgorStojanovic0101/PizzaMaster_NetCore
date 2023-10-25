@@ -5,6 +5,7 @@ using PizzaMaster.Domain.Entities;
 using PizzaMaster.Shared.DTOs.User;
 using PizzaMaster.Shared.DTOs;
 using PizzaMaster.Application.Services;
+using PizzaMaster.Infrastructure.System;
 
 namespace PizzaMaster.BussinessLogic.Services
 {
@@ -34,11 +35,11 @@ namespace PizzaMaster.BussinessLogic.Services
         {
 
 
-            var models = _unitOfWork.RestoranRepository.GetAll();
+            var models = _unitOfWork.RestoranRepository.SingleOrDefault(x=>x.RestoranIme.Equals("Vinyl"));
 
-            var el = models[0];
+           
 
-            var dto = _mapper.Map<RestoranDTO>(el);
+            var dto = _mapper.Map<RestoranDTO>(models);
             
 
             return dto;
@@ -48,11 +49,36 @@ namespace PizzaMaster.BussinessLogic.Services
         {
 
 
-            var models = _unitOfWork.RestoranRepository.GetAll();
+            var modelsWithUsers = _unitOfWork.RestoranRepository.GetAll().ToList();
 
-            var dto = _mapper.Map<List<RestoranDTO>>(models);
+            var dto = _mapper.Map<List<RestoranDTO>>(modelsWithUsers);
 
             return dto;
+        }
+
+        public RestoranDTO AddRestoran(RestoranDTO restoran)
+        {
+            var entity = _mapper.Map<Restoran>(restoran);
+
+            _unitOfWork.RestoranRepository.Add(entity);
+
+            _unitOfWork.SaveChanges();
+            return restoran;
+
+
+
+        }
+        public RestoranDTO UpdateRestoran(RestoranDTO restoran)
+        {
+            var entity = _mapper.Map<Restoran>(restoran);
+
+            _unitOfWork.RestoranRepository.Update(entity);
+
+            _unitOfWork.SaveChanges();
+            return restoran;
+
+
+
         }
 
     }

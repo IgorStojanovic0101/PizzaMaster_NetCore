@@ -8,10 +8,8 @@ namespace PizzaMaster.DatabaseAccess.UnitOfWork
     public class RestoranRepository : Repository<Restoran> , IRestoranRepository
     {
         private ApplicationDbContext _db;
-        public RestoranRepository(ApplicationDbContext db) : base(db)
-        {
-            this._db = db;
-        }
+        public RestoranRepository(ApplicationDbContext db) : base(db) => this._db = db;
+       
 
         public Task<bool> UpdateRestoran(string email)
         {
@@ -20,6 +18,8 @@ namespace PizzaMaster.DatabaseAccess.UnitOfWork
 
             return Task.FromResult(true);
         }
+
+
 
         //public List<Restoran> GetAllRestorans()
         //{

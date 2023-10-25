@@ -51,6 +51,7 @@ namespace PizzaMaster.Data.EF
             modelBuilder.Entity<Restoran>(entity =>
             {
                 entity.Property(e => e.RestoranIme).HasMaxLength(200);
+                entity.Property(e => e.DateFrom).IsRequired();
             });    
 
             modelBuilder.Entity<User>(entity =>

@@ -6,6 +6,7 @@ using PizzaMaster.Application;
 using PizzaMaster.Application.Services;
 using PizzaMaster.Data;
 using PizzaMaster.Domain.Entities;
+using PizzaMaster.Infrastructure.System;
 using PizzaMaster.Shared.DTOs.User;
 using System;
 using System.Collections.Generic;
@@ -92,7 +93,7 @@ namespace PizzaMaster.BussinessLogic.Services
 
         public List<UserRegisterResponseDTO> GetAllUsers()
         {
-            var entities = _unitOfWork.UserRepository.GetAllUsers();
+            var entities = _unitOfWork.UserRepository.GetAll(null,RelatedEntities.User);
 
 
             var dtos = _mapper.Map<List<UserRegisterResponseDTO>>(entities);

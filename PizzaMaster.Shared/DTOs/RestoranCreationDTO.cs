@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace PizzaMaster.Shared.DTOs
 {
-    public class RestoranDTO
+   
+    public class RestoranCreationDTO
     {
         public string RestoranIme { get; set; }
     }

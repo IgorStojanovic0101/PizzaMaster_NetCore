@@ -16,9 +16,13 @@ namespace PizzaMaster.Infrastructure.System
 
             CreateMap<RestoranDTO,Restoran>().ReverseMap();
             CreateMap<UserRegisterResponseDTO, User>().ReverseMap();
+            CreateMap<UserDTO, User>().ReverseMap();
+
 
             CreateMap<RestoranCreationDTO, Restoran>();
             CreateMap<UserRegisterRequestDTO, User>();
+
+
 
 
         }

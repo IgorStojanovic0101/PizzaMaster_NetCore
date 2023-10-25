@@ -41,7 +41,7 @@ namespace PizzaMaster.WebAPI.Controllers
         [HttpGet]
         public ActionResult<ServiceResponse<List<RestoranDTO>>> ListaRestorana()
         {
-            ServiceResponse<List<RestoranDTO>> response = new();
+           ServiceResponse<List<RestoranDTO>> response = new();
 
 
             if (response.Errors.Count > 0)
@@ -51,6 +51,33 @@ namespace PizzaMaster.WebAPI.Controllers
             }
 
             response.Payload = _service.VratiRestorane();
+
+            return Ok(response);
+
+        }
+
+
+        [HttpPost]
+        public ActionResult<ServiceResponse<RestoranDTO>> AddRestoran(RestoranDTO request)
+        {
+            ServiceResponse<RestoranDTO> response = new();
+
+            request.DateFrom = DateTime.Now;
+
+            response.Payload = _service.AddRestoran(request);
+
+            return Ok(response);
+
+        }
+
+        [HttpPost]
+        public ActionResult<ServiceResponse<RestoranDTO>> UpdateRestoran(RestoranDTO request)
+        {
+            ServiceResponse<RestoranDTO> response = new();
+
+            request.DateTo = DateTime.Now;
+
+            response.Payload = _service.UpdateRestoran(request);
 
             return Ok(response);
 
