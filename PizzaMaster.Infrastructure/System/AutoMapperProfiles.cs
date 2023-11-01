@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using PizzaMaster.Domain.Entities;
 using PizzaMaster.Shared.DTOs;
+using PizzaMaster.Shared.DTOs.Home.HomeDescription;
 using PizzaMaster.Shared.DTOs.User;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,7 @@ namespace PizzaMaster.Infrastructure.System
             CreateMap<RestoranCreationDTO, Restoran>();
             CreateMap<UserRegisterRequestDTO, User>();
 
+            CreateMap<HomeDesc, HomeDescription_ResponseDTO>().ReverseMap();
 
 
 

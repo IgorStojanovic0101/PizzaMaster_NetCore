@@ -23,6 +23,10 @@ namespace PizzaMaster.Data.EF
         public virtual DbSet<PizzaType> PizzaTypes { get; set; } = null!;
         public virtual DbSet<Restoran> Restorans { get; set; } = null!;
         public virtual DbSet<User> Users { get; set; } = null!;
+       
+        public virtual DbSet<Image> Images { get; set; } = null!;
+        public virtual DbSet<HomeDesc> HomeDescs { get; set; } = null!;
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -56,14 +60,43 @@ namespace PizzaMaster.Data.EF
 
             modelBuilder.Entity<User>(entity =>
             {
-                entity.HasIndex(e => e.RestoranId, "IX_Users_RestoranId");
+                entity.HasIndex(e => e.RestoranId, "IX_Users_RestoranId");                
+                //entity.HasIndex(h => h.ImageId, "IX_Users_ImageId");  // Index on ImageId
+
 
                 entity.Property(e => e.Username).HasMaxLength(50);
 
                 entity.HasOne(d => d.Restoran)
                     .WithMany(p => p.Users)
                     .HasForeignKey(d => d.RestoranId);
+
+                entity.HasOne(hd => hd.Image)
+                   .WithOne(i => i.User)
+                   .HasForeignKey<User>(hd => hd.ImageId);
+
             });
+
+            modelBuilder.Entity<HomeDesc>(entity =>
+            {
+                entity.HasOne(hd => hd.Image)         
+                .WithOne(i => i.HomeDesc)       
+                .HasForeignKey<HomeDesc>(hd => hd.ImageId); 
+
+                entity.Property(hd => hd.Text)
+                .HasMaxLength(250);
+            });
+           
+
+                
+
+            modelBuilder.Entity<Image>()
+                .Property(i => i.Url)
+                .IsRequired()
+                .HasMaxLength(250);
+
+
+
+
 
             OnModelCreatingPartial(modelBuilder);
         }

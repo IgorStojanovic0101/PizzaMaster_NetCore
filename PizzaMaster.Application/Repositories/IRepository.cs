@@ -6,7 +6,7 @@ namespace PizzaMaster.Application.Repositories
     {
         IEnumerable<T> Find(Expression<Func<T, bool>> expression, string[]? includes = null);
         T SingleOrDefault(Expression<Func<T, bool>> expression, string[]? includes = null);
-        List<T> GetAll(Expression<Func<T, bool>>? expression = null, string[]? includes = null);
+        List<T> GetAll(string[]? includes = null);
         bool Any(Expression<Func<T, bool>> expression);
 
         void Add(T entity);

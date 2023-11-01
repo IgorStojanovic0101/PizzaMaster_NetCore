@@ -30,7 +30,7 @@ namespace PizzaMaster.WebAPI.Controllers
         }
 
         [HttpPost]
-        public ActionResult<ServiceResponse<UserLoginResponseDTO>> Login([FromBody] UserLoginRequestDTO dto)
+        public ActionResult<ServiceResponse<UserLoginResponseDTO>> Login([FromForm] UserLoginRequestDTO dto)
         {
             ServiceResponse<UserLoginResponseDTO> response = new();
 
@@ -51,7 +51,7 @@ namespace PizzaMaster.WebAPI.Controllers
         }
 
         [HttpPost]
-        public ActionResult<ServiceResponse<UserLoginResponseDTO>> Register([FromBody] UserRegisterRequestDTO dto)
+        public ActionResult<ServiceResponse<UserLoginResponseDTO>> Register([FromForm] UserRegisterRequestDTO dto)
         {
             ServiceResponse<UserLoginResponseDTO> response = new();
 

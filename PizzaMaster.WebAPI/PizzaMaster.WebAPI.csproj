@@ -27,6 +27,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Files\images\admin\" />
+    <Folder Include="Files\images\user\" />
     <Folder Include="Logs\" />
   </ItemGroup>
 

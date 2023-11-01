@@ -27,7 +27,7 @@ builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Swagger Pizza Master Solution", Version = "v1" });
+    c.SwaggerDoc("v3", new OpenApiInfo { Title = "Swagger Pizza Master Solution", Version = "v3" });
 
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
@@ -104,7 +104,8 @@ builder.Services.AddSingleton<ISqlConnectionFactory, SqlConnectionFactory>();
 builder.Services.AddScoped<IRestoranService,RetoranService>();
 builder.Services.AddScoped<IUserService,UserService>();
 builder.Services.AddScoped<IErrorService,ErrorService>();
-
+builder.Services.AddScoped<IAdminService, AdminService>();
+builder.Services.AddScoped<IHomeService,HomeService>();
 
 
 builder.Services.AddMvc(options => options.Conventions.Add(new RouteConvention()));
@@ -122,21 +123,21 @@ var logger = new LoggerConfiguration()
 builder.Logging.AddSerilog(logger);
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI(c =>
-    {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Swagger Pizza Master Solution v1");
-    });
-}
+//// Configure the HTTP request pipeline.
+//if (app.Environment.IsDevelopment())
+//{
+//    app.UseSwagger();
+//    app.UseSwaggerUI(c =>
+//    {
+//        c.SwaggerEndpoint("/swagger/v2/swagger.json", "Swagger Pizza Master Solution v2");
+//    });
+//}
 
 
 app.UseSwagger();
 app.UseSwaggerUI(c =>
 {
-    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Swagger Pizza Master Solution v1");
+    c.SwaggerEndpoint("/swagger/v3/swagger.json", "Swagger Pizza Master Solution v3");
 });
 
 app.UseHttpsRedirection();

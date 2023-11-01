@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PizzaMaster.Data.EF;
 
@@ -11,9 +12,10 @@ using PizzaMaster.Data.EF;
 namespace PizzaMaster.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231031212315_addingRelationBeetweenColumns")]
+    partial class addingRelationBeetweenColumns
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -177,9 +179,6 @@ namespace PizzaMaster.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ImageId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -197,10 +196,6 @@ namespace PizzaMaster.Data.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ImageId")
-                        .IsUnique()
-                        .HasFilter("[ImageId] IS NOT NULL");
 
                     b.HasIndex(new[] { "RestoranId" }, "IX_Users_RestoranId");
 
@@ -220,17 +215,11 @@ namespace PizzaMaster.Data.Migrations
 
             modelBuilder.Entity("PizzaMaster.Domain.Entities.User", b =>
                 {
-                    b.HasOne("PizzaMaster.Domain.Entities.Image", "Image")
-                        .WithOne("User")
-                        .HasForeignKey("PizzaMaster.Domain.Entities.User", "ImageId");
-
                     b.HasOne("PizzaMaster.Domain.Entities.Restoran", "Restoran")
                         .WithMany("Users")
                         .HasForeignKey("RestoranId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Image");
 
                     b.Navigation("Restoran");
                 });
@@ -239,8 +228,6 @@ namespace PizzaMaster.Data.Migrations
                 {
                     b.Navigation("HomeDesc")
                         .IsRequired();
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("PizzaMaster.Domain.Entities.Restoran", b =>

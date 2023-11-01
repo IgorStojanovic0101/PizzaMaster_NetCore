@@ -17,7 +17,7 @@ namespace PizzaMaster.WebAPI.Controllers
   
 
         [HttpPost]
-        public ActionResult<ServiceResponse<RestoranDTO>> TestDTO(int id)
+        public ActionResult<ServiceResponse<RestoranDTO>> TestDTO([FromForm] int id)
         {
             ServiceResponse<RestoranDTO> response = new();
 

@@ -1,5 +1,8 @@
 ﻿using AutoMapper;
+using Azure.Core;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using PizzaMaster.Application;
@@ -24,14 +27,16 @@ namespace PizzaMaster.BussinessLogic.Services
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
         private readonly IConfiguration _config;
+        private readonly IWebHostEnvironment _hostEnvironment;
 
 
-        public UserService(ILogger<UserService> logger, IUnitOfWorkFactory unitOfWorkFactory, IMapper mapper, IConfiguration config)
+        public UserService(ILogger<UserService> logger, IUnitOfWorkFactory unitOfWorkFactory, IMapper mapper, IConfiguration config, IWebHostEnvironment webHostEnvironment)
         {
 
             _unitOfWork = unitOfWorkFactory.Create();
             _mapper = mapper;
             _config = config;
+            this._hostEnvironment = webHostEnvironment;
         }
 
         public List<string> ValidationErrors()
@@ -78,9 +83,40 @@ namespace PizzaMaster.BussinessLogic.Services
         public UserLoginResponseDTO Register(UserRegisterRequestDTO dto)
         {
             UserLoginResponseDTO response = new();
+            var url = string.Empty;
+
+            string wwwRootPath = _hostEnvironment.ContentRootPath;
+            if (dto.File != null)
+            {
+                string filename = Guid.NewGuid().ToString();
+                var uploads = Path.Combine(wwwRootPath, @"Files\images\user");
+                var extension = Path.GetExtension(dto.File.FileName);
+
+                if (string.IsNullOrEmpty(url))
+                {
+                    var oldImagePath = Path.Combine(wwwRootPath, url.TrimStart('\\'));
+                    if (System.IO.File.Exists(oldImagePath))
+                    {
+                        System.IO.File.Delete(oldImagePath);
+                    }
+                }
+
+                using (var fileStreams = new FileStream(Path.Combine(uploads, filename + extension), FileMode.Create))
+                {
+                    dto.File.CopyTo(fileStreams);
+                }
+                url = @"Files\images\user\" + filename + extension;
+            }
+            var image = new Domain.Entities.Image() { Url = url };
+
+            _unitOfWork.ImageRepository.Add(image);
+
+            _unitOfWork.SaveChanges();
+
 
             var model = _mapper.Map<User>(dto);
             model.RestoranId = 1;
+            model.ImageId = image.Id;
 
             _unitOfWork.UserRepository.Add(model);
             _unitOfWork.SaveChanges();
@@ -93,7 +129,7 @@ namespace PizzaMaster.BussinessLogic.Services
 
         public List<UserRegisterResponseDTO> GetAllUsers()
         {
-            var entities = _unitOfWork.UserRepository.GetAll(null,RelatedEntities.User);
+            var entities = _unitOfWork.UserRepository.GetAll(IncludeEnities.User.All);
 
 
             var dtos = _mapper.Map<List<UserRegisterResponseDTO>>(entities);

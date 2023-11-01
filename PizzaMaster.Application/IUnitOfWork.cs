@@ -12,6 +12,9 @@ namespace PizzaMaster.Application
 
         IUserRepository UserRepository { get; }
 
+        IHomeDescRepository HomeDescRepository { get; }
+
+        IImageRepository ImageRepository { get; }
 
         void SaveChanges();
     }

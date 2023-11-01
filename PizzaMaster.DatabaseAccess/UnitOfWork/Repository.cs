@@ -63,10 +63,10 @@ namespace PizzaMaster.DatabaseAccess.UnitOfWork
         }
 
         //custom expression moze biti null, ako zelim da mi GetAll vrati sve..
-        public List<T> GetAll(Expression<Func<T, bool>>? expression = null,string[]? includes = null)
+        public List<T> GetAll(string[]? includes = null)
         {
 
-            var updatedExpression = UpdatedExpressions(expression,true);
+            var updatedExpression = UpdatedExpressions(null,true);
 
             var query = updatedExpression != null ? _dbSet.Where(updatedExpression).AsQueryable() : _dbSet.AsQueryable();
 
