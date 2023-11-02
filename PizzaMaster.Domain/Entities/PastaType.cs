@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace PizzaMaster.Domain.Entities
 {
-    public partial class PasteType
+    public partial class PastaType
     {
         public int Id { get; set; }
         public string Name { get; set; } = null!;

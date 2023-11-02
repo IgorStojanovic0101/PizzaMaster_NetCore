@@ -23,6 +23,9 @@ namespace PizzaMaster.DatabaseAccess.UnitOfWork
 
         public IImageRepository ImageRepository { get; private set; }
 
+        public IPizzaTypeRepository PizzaTypeRepository { get; private set; }
+
+        public IPastaTypeRepository PastaTypeRepository { get; private set; }
 
         public UnitOfWork(ApplicationDbContext databaseContext)
         {
@@ -33,6 +36,9 @@ namespace PizzaMaster.DatabaseAccess.UnitOfWork
             UserRepository = new UserRepository(_applicationDbContext);
             HomeDescRepository = new HomeDescRepository(_applicationDbContext);
             ImageRepository = new ImageRepository(_applicationDbContext);
+            PizzaTypeRepository = new PizzaTypeRepository(_applicationDbContext);
+            PastaTypeRepository = new PastaTypeRepository(_applicationDbContext);
+
         }
         public void SaveChanges()
         {

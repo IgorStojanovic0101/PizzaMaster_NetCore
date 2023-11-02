@@ -10,6 +10,8 @@ using PizzaMaster.Application.Services;
 using PizzaMaster.Data;
 using PizzaMaster.Domain.Entities;
 using PizzaMaster.Infrastructure.System;
+using PizzaMaster.Infrastructure.Utilities;
+using PizzaMaster.Shared.DTOs.Home.HomeDescription;
 using PizzaMaster.Shared.DTOs.User;
 using System;
 using System.Collections.Generic;
@@ -27,16 +29,17 @@ namespace PizzaMaster.BussinessLogic.Services
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
         private readonly IConfiguration _config;
-        private readonly IWebHostEnvironment _hostEnvironment;
+        private readonly FileService _fileUploadService;
 
-
-        public UserService(ILogger<UserService> logger, IUnitOfWorkFactory unitOfWorkFactory, IMapper mapper, IConfiguration config, IWebHostEnvironment webHostEnvironment)
+        public UserService(ILogger<UserService> logger, IUnitOfWorkFactory unitOfWorkFactory, IMapper mapper, IConfiguration config, FileService fileUploadService)
         {
 
             _unitOfWork = unitOfWorkFactory.Create();
             _mapper = mapper;
             _config = config;
-            this._hostEnvironment = webHostEnvironment;
+            _fileUploadService = fileUploadService;
+
+
         }
 
         public List<string> ValidationErrors()
@@ -55,21 +58,8 @@ namespace PizzaMaster.BussinessLogic.Services
         }
 
 
-        public UserRegisterResponseDTO ReturnUser()
-        {
-
-
-            var models = _unitOfWork.UserRepository.GetAllUsers();
-
-            var el = models[0];
-
-            var dto = _mapper.Map<UserRegisterResponseDTO>(el);
-
-            return dto;
-        }
-
-    
-
+      
+   
         public UserLoginResponseDTO Login(UserLoginRequestDTO dto)
         {
             UserLoginResponseDTO response = new();
@@ -83,31 +73,11 @@ namespace PizzaMaster.BussinessLogic.Services
         public UserLoginResponseDTO Register(UserRegisterRequestDTO dto)
         {
             UserLoginResponseDTO response = new();
-            var url = string.Empty;
 
-            string wwwRootPath = _hostEnvironment.ContentRootPath;
-            if (dto.File != null)
-            {
-                string filename = Guid.NewGuid().ToString();
-                var uploads = Path.Combine(wwwRootPath, @"Files\images\user");
-                var extension = Path.GetExtension(dto.File.FileName);
+            var url = _fileUploadService.UploadFile(dto.File, @"Files\images\user\");
 
-                if (string.IsNullOrEmpty(url))
-                {
-                    var oldImagePath = Path.Combine(wwwRootPath, url.TrimStart('\\'));
-                    if (System.IO.File.Exists(oldImagePath))
-                    {
-                        System.IO.File.Delete(oldImagePath);
-                    }
-                }
-
-                using (var fileStreams = new FileStream(Path.Combine(uploads, filename + extension), FileMode.Create))
-                {
-                    dto.File.CopyTo(fileStreams);
-                }
-                url = @"Files\images\user\" + filename + extension;
-            }
-            var image = new Domain.Entities.Image() { Url = url };
+          
+            var image = new Image() { Url = url };
 
             _unitOfWork.ImageRepository.Add(image);
 
@@ -127,15 +97,49 @@ namespace PizzaMaster.BussinessLogic.Services
             return response;
         }
 
-        public List<UserRegisterResponseDTO> GetAllUsers()
+        public List<User_ResponseDTO> GetAllUsers()
         {
             var entities = _unitOfWork.UserRepository.GetAll(IncludeEnities.User.All);
 
+            var dtos = new List<User_ResponseDTO>();
 
-            var dtos = _mapper.Map<List<UserRegisterResponseDTO>>(entities);
+            foreach (var entity in entities)
+            {
+                var dto = _mapper.Map<User_ResponseDTO>(entity);
+
+                // Read the image from the path
+                dto.imageContent = _fileUploadService.ConvertImageToBase64(entity.Image);
+
+                dtos.Add(dto);
+            }
 
             return dtos;
         }
+
+        public List<User_ResponseDTO> GetTopUsers()
+        {
+            var entities = _unitOfWork.UserRepository.Find(x=>x.ImageId != null,IncludeEnities.User.All);
+
+            var dtos = new List<User_ResponseDTO>();
+
+            foreach (var entity in entities)
+            {
+                var dto = _mapper.Map<User_ResponseDTO>(entity);
+
+                // Read the image from the path
+                dto.imageContent = _fileUploadService.ConvertImageToBase64(entity.Image);
+
+                dtos.Add(dto);
+
+                if (dtos.Count >= 4)
+                {
+                    break; 
+                }
+            }
+
+            return dtos;
+        }
+
 
         public List<string> LoginValidationErrors(UserLoginRequestDTO dto)
         {

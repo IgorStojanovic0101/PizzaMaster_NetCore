@@ -15,7 +15,7 @@ namespace PizzaMaster.Shared.DTOs
         public DateTime DateFrom { get; set; }
         public DateTime? DateTo { get; set; }
 
-        public List<UserDTO> Users { get; set; }
+        public List<User_ResponseDTO> Users { get; set; }
 
     }
 }

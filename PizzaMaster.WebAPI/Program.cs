@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using PizzaMaster.Domain.Entities;
 using PizzaMaster.Data.EF;
+using PizzaMaster.Infrastructure.Utilities;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -112,6 +113,7 @@ builder.Services.AddMvc(options => options.Conventions.Add(new RouteConvention()
 
 builder.Services.AddTransient<GlobalExceptionHandlingMiddleware>();
 builder.Services.AddAutoMapper(typeof(AutoMapperProfiles));
+builder.Services.AddTransient<FileService>();
 
 
 var logger = new LoggerConfiguration()

@@ -19,7 +19,7 @@ namespace PizzaMaster.Data.EF
         }
 
         public virtual DbSet<Error> Errors { get; set; } = null!;
-        public virtual DbSet<PasteType> PasteTypes { get; set; } = null!;
+        public virtual DbSet<PastaType> PasteTypes { get; set; } = null!;
         public virtual DbSet<PizzaType> PizzaTypes { get; set; } = null!;
         public virtual DbSet<Restoran> Restorans { get; set; } = null!;
         public virtual DbSet<User> Users { get; set; } = null!;
@@ -38,7 +38,7 @@ namespace PizzaMaster.Data.EF
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<PasteType>(entity =>
+            modelBuilder.Entity<PastaType>(entity =>
             {
                 entity.Property(e => e.Price).HasColumnType("decimal(18, 2)");
             });
@@ -60,10 +60,7 @@ namespace PizzaMaster.Data.EF
 
             modelBuilder.Entity<User>(entity =>
             {
-                entity.HasIndex(e => e.RestoranId, "IX_Users_RestoranId");                
-                //entity.HasIndex(h => h.ImageId, "IX_Users_ImageId");  // Index on ImageId
-
-
+            
                 entity.Property(e => e.Username).HasMaxLength(50);
 
                 entity.HasOne(d => d.Restoran)

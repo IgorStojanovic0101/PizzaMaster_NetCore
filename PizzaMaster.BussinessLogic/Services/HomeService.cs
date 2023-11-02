@@ -2,6 +2,7 @@
 using PizzaMaster.Application;
 using PizzaMaster.Application.Services;
 using PizzaMaster.Infrastructure.System;
+using PizzaMaster.Infrastructure.Utilities;
 using PizzaMaster.Shared.DTOs.Home.HomeDescription;
 using System;
 using System.Collections.Generic;
@@ -15,10 +16,12 @@ namespace PizzaMaster.BussinessLogic.Services
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-        public HomeService(IUnitOfWorkFactory unitOfWorkFactory, IMapper mapper)
+        private readonly FileService _fileUploadService;
+        public HomeService(IUnitOfWorkFactory unitOfWorkFactory, IMapper mapper, FileService fileUploadService)
         {
             this._unitOfWork = unitOfWorkFactory.Create();
             this._mapper = mapper;
+            this._fileUploadService = fileUploadService;
         }
 
         public List<HomeDescription_ResponseDTO> GetHomeDescription()
@@ -30,19 +33,9 @@ namespace PizzaMaster.BussinessLogic.Services
             foreach (var entity in entities)
             {
                 var dto = _mapper.Map<HomeDescription_ResponseDTO>(entity);
-                string extension = GetFileExtensionFromUrl(entity.Image.Url);
 
                 // Read the image from the path
-                if (!string.IsNullOrEmpty(entity.Image?.Url))
-                {
-                    byte[] imageBytes = File.ReadAllBytes(entity.Image.Url);
-
-                    // Convert the byte array to a base64 string
-                    string base64Image = Convert.ToBase64String(imageBytes);
-
-                    // Assign the base64 string to your DTO
-                    dto.imageContent = $"data:image/{extension};base64,{base64Image}";
-                }
+                dto.imageContent = _fileUploadService.ConvertImageToBase64(entity.Image);
 
                 dtos.Add(dto);
             }
@@ -51,21 +44,7 @@ namespace PizzaMaster.BussinessLogic.Services
 
         }
 
-        public static string GetFileExtensionFromUrl(string url)
-        {
-            
-                // Use Path.GetExtension to get the file extension from the URL
-            string extension = Path.GetExtension(url);
-
-            if (!string.IsNullOrEmpty(extension))
-            {
-                // Remove the leading dot (.) from the extension
-                return extension.Substring(1);
-            }
-            
-
-            return string.Empty; // Return an empty string if no extension is found
-        }
+        
 
     }
 }

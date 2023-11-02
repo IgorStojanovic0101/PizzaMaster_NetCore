@@ -48,7 +48,7 @@ namespace PizzaMaster.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Errors");
+                    b.ToTable("Errors", (string)null);
                 });
 
             modelBuilder.Entity("PizzaMaster.Domain.Entities.HomeDesc", b =>
@@ -72,7 +72,7 @@ namespace PizzaMaster.Data.Migrations
                     b.HasIndex("ImageId")
                         .IsUnique();
 
-                    b.ToTable("HomeDescs");
+                    b.ToTable("HomeDescs", (string)null);
                 });
 
             modelBuilder.Entity("PizzaMaster.Domain.Entities.Image", b =>
@@ -90,7 +90,7 @@ namespace PizzaMaster.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Images");
+                    b.ToTable("Images", (string)null);
                 });
 
             modelBuilder.Entity("PizzaMaster.Domain.Entities.PasteType", b =>
@@ -113,7 +113,7 @@ namespace PizzaMaster.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("PasteTypes");
+                    b.ToTable("PasteTypes", (string)null);
                 });
 
             modelBuilder.Entity("PizzaMaster.Domain.Entities.PizzaType", b =>
@@ -138,7 +138,7 @@ namespace PizzaMaster.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("PizzaTypes");
+                    b.ToTable("PizzaTypes", (string)null);
                 });
 
             modelBuilder.Entity("PizzaMaster.Domain.Entities.Restoran", b =>
@@ -162,7 +162,7 @@ namespace PizzaMaster.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Restorans");
+                    b.ToTable("Restorans", (string)null);
                 });
 
             modelBuilder.Entity("PizzaMaster.Domain.Entities.User", b =>
@@ -188,7 +188,7 @@ namespace PizzaMaster.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("RestoranId")
+                    b.Property<int?>("RestoranId")
                         .HasColumnType("int");
 
                     b.Property<string>("Username")
@@ -202,9 +202,9 @@ namespace PizzaMaster.Data.Migrations
                         .IsUnique()
                         .HasFilter("[ImageId] IS NOT NULL");
 
-                    b.HasIndex(new[] { "RestoranId" }, "IX_Users_RestoranId");
+                    b.HasIndex("RestoranId");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("PizzaMaster.Domain.Entities.HomeDesc", b =>
@@ -226,9 +226,7 @@ namespace PizzaMaster.Data.Migrations
 
                     b.HasOne("PizzaMaster.Domain.Entities.Restoran", "Restoran")
                         .WithMany("Users")
-                        .HasForeignKey("RestoranId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("RestoranId");
 
                     b.Navigation("Image");
 

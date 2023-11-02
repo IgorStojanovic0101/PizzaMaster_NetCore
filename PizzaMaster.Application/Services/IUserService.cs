@@ -9,7 +9,9 @@ namespace PizzaMaster.Application.Services
 {
     public interface IUserService
     {
-        List<UserRegisterResponseDTO> GetAllUsers();
+        List<User_ResponseDTO> GetAllUsers();
+
+        List<User_ResponseDTO> GetTopUsers();
         UserLoginResponseDTO Login(UserLoginRequestDTO creationDto);
 
         List<string> LoginValidationErrors(UserLoginRequestDTO creationDto);

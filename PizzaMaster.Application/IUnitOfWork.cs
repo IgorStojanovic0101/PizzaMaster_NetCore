@@ -16,6 +16,10 @@ namespace PizzaMaster.Application
 
         IImageRepository ImageRepository { get; }
 
+        IPizzaTypeRepository PizzaTypeRepository { get; }
+
+        IPastaTypeRepository PastaTypeRepository { get; }
+
         void SaveChanges();
     }
 }

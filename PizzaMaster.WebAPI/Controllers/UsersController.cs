@@ -18,17 +18,27 @@ namespace PizzaMaster.WebAPI.Controllers
         {
             _service = service;
         }
+
         [HttpGet]
-        public ActionResult<ServiceResponse<List<UserRegisterResponseDTO>>> GetAllUsers()
+        public ActionResult<ServiceResponse<List<User_ResponseDTO>>> GetAllUsers()
         {
-            ServiceResponse<List<UserRegisterResponseDTO>> response = new(); 
+            ServiceResponse<List<User_ResponseDTO>> response = new(); 
 
             response.Payload = _service.GetAllUsers();
 
             return Ok(response);
 
         }
+        [HttpGet]
+        public ActionResult<ServiceResponse<List<User_ResponseDTO>>> GetTopUsers()
+        {
+            ServiceResponse<List<User_ResponseDTO>> response = new();
 
+            response.Payload = _service.GetTopUsers();
+
+            return Ok(response);
+
+        }
         [HttpPost]
         public ActionResult<ServiceResponse<UserLoginResponseDTO>> Login([FromForm] UserLoginRequestDTO dto)
         {

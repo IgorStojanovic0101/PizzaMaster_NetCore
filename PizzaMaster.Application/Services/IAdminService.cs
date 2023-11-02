@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PizzaMaster.Shared.DTOs.Admin;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,6 @@ namespace PizzaMaster.Application.Services
 {
     public interface IAdminService
     {
-        void AddAdminData(string text, string url);
+        void AddAdminData(Admin_RequestDTO dto);
     }
 }
