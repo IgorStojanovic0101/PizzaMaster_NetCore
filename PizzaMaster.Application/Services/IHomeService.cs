@@ -13,6 +13,8 @@ namespace PizzaMaster.Application.Services
       
         List<HomeDescription_ResponseDTO> GetHomeDescription();
 
-       
+        string? getVideo();
+
+
     }
 }

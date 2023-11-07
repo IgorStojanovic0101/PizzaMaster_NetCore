@@ -41,6 +41,10 @@ namespace PizzaMaster.Data.EF
             modelBuilder.Entity<PastaType>(entity =>
             {
                 entity.Property(e => e.Price).HasColumnType("decimal(18, 2)");
+
+                entity.HasOne(hd => hd.Image)
+                    .WithOne(i => i.PastaType)
+                    .HasForeignKey<PastaType>(hd => hd.ImageId);
             });
 
             modelBuilder.Entity<PizzaType>(entity =>
@@ -50,6 +54,10 @@ namespace PizzaMaster.Data.EF
                 entity.Property(e => e.Name).HasMaxLength(100);
 
                 entity.Property(e => e.Price).HasColumnType("decimal(10, 2)");
+
+                entity.HasOne(hd => hd.Image)
+                  .WithOne(i => i.PizzaType)
+                  .HasForeignKey<PizzaType>(hd => hd.ImageId);
             });
 
             modelBuilder.Entity<Restoran>(entity =>

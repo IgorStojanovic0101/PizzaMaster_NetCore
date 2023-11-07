@@ -46,7 +46,7 @@ namespace PizzaMaster.Infrastructure.Utilities
                     file.CopyTo(fileStream);
                 }
 
-                return folderPath + filename + extension;
+                return folderPath+"\\" + filename + extension;
             }
             else
             {
@@ -73,6 +73,24 @@ namespace PizzaMaster.Infrastructure.Utilities
             // Create and return the base64 image URL
             return $"data:image/{extension};base64,{base64Image}";
         }
+
+        public string? ConverVideoToBase64(string url)
+        {
+            
+
+            string extension = GetFileExtensionFromUrl(url);
+
+            byte[] videoBytes = File.ReadAllBytes(url);
+
+            // Convert the byte array to a base64 string
+            string base64Video = Convert.ToBase64String(videoBytes);
+
+            // Create and return the base64 image URL
+            return $"data:video/{extension};base64,{base64Video}";
+        }
+
+
+
 
         public static string GetFileExtensionFromUrl(string url)
         {

@@ -99,7 +99,7 @@ namespace PizzaMaster.BussinessLogic.Services
 
         public List<User_ResponseDTO> GetAllUsers()
         {
-            var entities = _unitOfWork.UserRepository.GetAll(IncludeEnities.User.All);
+            var entities = _unitOfWork.UserRepository.GetAll(IncludeEnities<User>.All);
 
             var dtos = new List<User_ResponseDTO>();
 
@@ -118,7 +118,7 @@ namespace PizzaMaster.BussinessLogic.Services
 
         public List<User_ResponseDTO> GetTopUsers()
         {
-            var entities = _unitOfWork.UserRepository.Find(x=>x.ImageId != null,IncludeEnities.User.All);
+            var entities = _unitOfWork.UserRepository.Find(x=>x.ImageId != null,IncludeEnities<User>.All);
 
             var dtos = new List<User_ResponseDTO>();
 

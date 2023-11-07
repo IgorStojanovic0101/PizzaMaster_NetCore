@@ -30,5 +30,20 @@ namespace PizzaMaster.WebAPI.Controllers
 
 
         }
+
+        [HttpPost]
+        public ActionResult<ServiceResponse<Admin_ResponseDTO>> AddVideo([FromForm] Admin_RequestDTO request)
+        {
+            ServiceResponse<Admin_ResponseDTO> response = new();
+            if (request.ImageFile == null)
+            {
+                return BadRequest("No image provided");
+            }
+            _adminService.AddVideo(request);
+
+            return response;
+
+
+        }
     }
 }

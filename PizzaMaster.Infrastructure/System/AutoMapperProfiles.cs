@@ -2,6 +2,7 @@
 using PizzaMaster.Domain.Entities;
 using PizzaMaster.Shared.DTOs;
 using PizzaMaster.Shared.DTOs.Home.HomeDescription;
+using PizzaMaster.Shared.DTOs.Proizvod;
 using PizzaMaster.Shared.DTOs.User;
 using System;
 using System.Collections.Generic;
@@ -26,6 +27,8 @@ namespace PizzaMaster.Infrastructure.System
 
             CreateMap<HomeDesc, HomeDescription_ResponseDTO>().ReverseMap();
 
+            CreateMap<PizzaType, PizzaType_ResponseDTO>().ReverseMap();
+            CreateMap<PastaType, PastaType_ResponseDTO>().ReverseMap();
 
 
         }

@@ -16,6 +16,7 @@ using Microsoft.IdentityModel.Tokens;
 using PizzaMaster.Domain.Entities;
 using PizzaMaster.Data.EF;
 using PizzaMaster.Infrastructure.Utilities;
+using Microsoft.AspNetCore.Http.Features;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -96,6 +97,11 @@ var config = new ConfigurationBuilder()
     .AddJsonFile("appsettings.json")
     .Build();
 
+builder.Services.Configure<FormOptions>(options =>
+{
+    options.MultipartBodyLengthLimit = 100 * 1024 * 1024; // 50 MB
+});
+
 builder.Services.AddSingleton<IConfiguration>(config);
 
 builder.Services.AddDbContext<ApplicationDbContext>();
@@ -107,6 +113,7 @@ builder.Services.AddScoped<IUserService,UserService>();
 builder.Services.AddScoped<IErrorService,ErrorService>();
 builder.Services.AddScoped<IAdminService, AdminService>();
 builder.Services.AddScoped<IHomeService,HomeService>();
+builder.Services.AddScoped<IProizvodiService, ProizvodiService>();
 
 
 builder.Services.AddMvc(options => options.Conventions.Add(new RouteConvention()));

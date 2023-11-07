@@ -8,24 +8,13 @@ using System.Threading.Tasks;
 
 namespace PizzaMaster.Infrastructure.System
 {
-    public static class IncludeEnities
+    public static class IncludeEnities<T> where T : class
     {
-        public static class Restoran
-        {
-            public static string[] All => PropertyHelper.GetVirtualPublicPropertyNames<Domain.Entities.Restoran>();
-        }
+       
+        public static string[] All => PropertyHelper.GetVirtualPublicPropertyNames<T>();
+        
 
-        public static class User
-        {
-            public static string[] All => PropertyHelper.GetVirtualPublicPropertyNames<Domain.Entities.User>();
-
-        }
-
-        public static class HomeDescription
-        {
-            public static string[] All => PropertyHelper.GetVirtualPublicPropertyNames<Domain.Entities.HomeDesc>();
-
-        }
+       
     }
     public static class PropertyHelper
     {

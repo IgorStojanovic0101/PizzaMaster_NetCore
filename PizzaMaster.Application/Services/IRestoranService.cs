@@ -10,9 +10,9 @@ namespace PizzaMaster.Application.Services
     public interface IRestoranService
     {
         List<string> ValidationErrors();
-         RestoranDTO ReturnResult();
+        RestoranDTO ReturnResult();
 
-         List<RestoranDTO> VratiRestorane();
+        List<RestoranDTO> VratiRestorane();
 
         RestoranDTO AddRestoran(RestoranDTO request);
 

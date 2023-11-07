@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using PizzaMaster.Application;
 using PizzaMaster.Application.Services;
+using PizzaMaster.Domain.Entities;
 using PizzaMaster.Infrastructure.System;
 using PizzaMaster.Infrastructure.Utilities;
 using PizzaMaster.Shared.DTOs.Home.HomeDescription;
@@ -26,7 +27,7 @@ namespace PizzaMaster.BussinessLogic.Services
 
         public List<HomeDescription_ResponseDTO> GetHomeDescription()
         {
-            var entities = _unitOfWork.HomeDescRepository.GetAll(IncludeEnities.HomeDescription.All);
+            var entities = _unitOfWork.HomeDescRepository.GetAll(IncludeEnities<HomeDesc>.All);
 
             var dtos = new List<HomeDescription_ResponseDTO>();
 
@@ -44,7 +45,13 @@ namespace PizzaMaster.BussinessLogic.Services
 
         }
 
-        
+        public string? getVideo()
+        {
+            return _fileUploadService.ConverVideoToBase64(@"Files\videos\49d2739d-5bdf-4201-9c4b-7bd96666b58e.mp4");
+
+        }
+
+
 
     }
 }

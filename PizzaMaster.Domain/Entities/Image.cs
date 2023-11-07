@@ -16,6 +16,11 @@ namespace PizzaMaster.Domain.Entities
 
         public virtual User? User { get; set; }
 
+        public virtual PastaType? PastaType { get; set; }
+
+        public virtual PizzaType? PizzaType { get; set; }
+
+
 
     }
 }

@@ -10,5 +10,7 @@ namespace PizzaMaster.Application.Services
     public interface IAdminService
     {
         void AddAdminData(Admin_RequestDTO dto);
+
+        void AddVideo(Admin_RequestDTO dto);
     }
 }

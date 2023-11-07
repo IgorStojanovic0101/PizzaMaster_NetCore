@@ -29,6 +29,7 @@
   <ItemGroup>
     <Folder Include="Files\images\admin\" />
     <Folder Include="Files\images\user\" />
+    <Folder Include="Files\videos\" />
     <Folder Include="Logs\" />
   </ItemGroup>
 

@@ -48,7 +48,7 @@ namespace PizzaMaster.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Errors", (string)null);
+                    b.ToTable("Errors");
                 });
 
             modelBuilder.Entity("PizzaMaster.Domain.Entities.HomeDesc", b =>
@@ -72,7 +72,7 @@ namespace PizzaMaster.Data.Migrations
                     b.HasIndex("ImageId")
                         .IsUnique();
 
-                    b.ToTable("HomeDescs", (string)null);
+                    b.ToTable("HomeDescs");
                 });
 
             modelBuilder.Entity("PizzaMaster.Domain.Entities.Image", b =>
@@ -90,10 +90,10 @@ namespace PizzaMaster.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Images", (string)null);
+                    b.ToTable("Images");
                 });
 
-            modelBuilder.Entity("PizzaMaster.Domain.Entities.PasteType", b =>
+            modelBuilder.Entity("PizzaMaster.Domain.Entities.PastaType", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -104,6 +104,9 @@ namespace PizzaMaster.Data.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("ImageId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -113,7 +116,11 @@ namespace PizzaMaster.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("PasteTypes", (string)null);
+                    b.HasIndex("ImageId")
+                        .IsUnique()
+                        .HasFilter("[ImageId] IS NOT NULL");
+
+                    b.ToTable("PasteTypes");
                 });
 
             modelBuilder.Entity("PizzaMaster.Domain.Entities.PizzaType", b =>
@@ -128,6 +135,9 @@ namespace PizzaMaster.Data.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
+                    b.Property<int?>("ImageId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -138,7 +148,11 @@ namespace PizzaMaster.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("PizzaTypes", (string)null);
+                    b.HasIndex("ImageId")
+                        .IsUnique()
+                        .HasFilter("[ImageId] IS NOT NULL");
+
+                    b.ToTable("PizzaTypes");
                 });
 
             modelBuilder.Entity("PizzaMaster.Domain.Entities.Restoran", b =>
@@ -162,7 +176,7 @@ namespace PizzaMaster.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Restorans", (string)null);
+                    b.ToTable("Restorans");
                 });
 
             modelBuilder.Entity("PizzaMaster.Domain.Entities.User", b =>
@@ -204,7 +218,7 @@ namespace PizzaMaster.Data.Migrations
 
                     b.HasIndex("RestoranId");
 
-                    b.ToTable("Users", (string)null);
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("PizzaMaster.Domain.Entities.HomeDesc", b =>
@@ -214,6 +228,24 @@ namespace PizzaMaster.Data.Migrations
                         .HasForeignKey("PizzaMaster.Domain.Entities.HomeDesc", "ImageId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Image");
+                });
+
+            modelBuilder.Entity("PizzaMaster.Domain.Entities.PastaType", b =>
+                {
+                    b.HasOne("PizzaMaster.Domain.Entities.Image", "Image")
+                        .WithOne("PastaType")
+                        .HasForeignKey("PizzaMaster.Domain.Entities.PastaType", "ImageId");
+
+                    b.Navigation("Image");
+                });
+
+            modelBuilder.Entity("PizzaMaster.Domain.Entities.PizzaType", b =>
+                {
+                    b.HasOne("PizzaMaster.Domain.Entities.Image", "Image")
+                        .WithOne("PizzaType")
+                        .HasForeignKey("PizzaMaster.Domain.Entities.PizzaType", "ImageId");
 
                     b.Navigation("Image");
                 });
@@ -237,6 +269,10 @@ namespace PizzaMaster.Data.Migrations
                 {
                     b.Navigation("HomeDesc")
                         .IsRequired();
+
+                    b.Navigation("PastaType");
+
+                    b.Navigation("PizzaType");
 
                     b.Navigation("User");
                 });

@@ -38,5 +38,11 @@ namespace PizzaMaster.BussinessLogic.Services
             _unitOfWork.SaveChanges();
 
         }
+
+        public void AddVideo(Admin_RequestDTO dto)
+        {
+            string url = _fileUploadService.UploadFile(dto.ImageFile, @"Files\videos");
+
+        }
     }
 }

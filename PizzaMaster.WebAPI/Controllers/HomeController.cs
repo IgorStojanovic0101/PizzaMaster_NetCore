@@ -23,7 +23,16 @@ namespace PizzaMaster.WebAPI.Controllers
 
             return response;
 
+        }
 
+        [HttpGet]
+        public ActionResult<ServiceResponse<string>> GetVideo()
+        {
+            ServiceResponse<string> response = new();
+
+            response.Payload = this._service.getVideo()!;
+
+            return response;
         }
     }
 }
