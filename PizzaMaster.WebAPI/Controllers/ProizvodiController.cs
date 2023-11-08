@@ -14,7 +14,12 @@ namespace PizzaMaster.WebAPI.Controllers
 
         private readonly IProizvodiService _service;
 
-        public ProizvodiController(IProizvodiService service) => _service = service;
+        public ProizvodiController(IProizvodiService service) { 
+            
+            _service = service;
+
+
+        }
 
         [HttpGet]
         public ActionResult<ServiceResponse<List<PizzaType_ResponseDTO>>> GetPizzaTypes()
@@ -35,6 +40,18 @@ namespace PizzaMaster.WebAPI.Controllers
 
 
             response.Payload = _service.GetPastaTypes();
+
+            return Ok(response);
+
+        }
+
+        [HttpGet]
+        public ActionResult<ServiceResponse<TopProducts_ResponseDTO>> GetTopProducts()
+        {
+            ServiceResponse<TopProducts_ResponseDTO> response = new();
+
+
+            response.Payload = _service.GetTopProduct();
 
             return Ok(response);
 

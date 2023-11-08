@@ -18,12 +18,14 @@ namespace PizzaMaster.BussinessLogic.Services
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
+        private readonly IHomeService _homeService;
         private readonly FileService _fileUploadService;
-        public ProizvodiService(IUnitOfWorkFactory unitOfWorkFactory, IMapper mapper, FileService fileUploadService)
+        public ProizvodiService(IUnitOfWorkFactory unitOfWorkFactory, IMapper mapper, FileService fileUploadService, IHomeService homeService)
         {
             this._unitOfWork = unitOfWorkFactory.Create();
             this._mapper = mapper;
             this._fileUploadService = fileUploadService;
+            this._homeService = homeService;
         }
 
         public List<PastaType_ResponseDTO> GetPastaTypes()
@@ -72,6 +74,16 @@ namespace PizzaMaster.BussinessLogic.Services
             }
 
             return dtos;
+        }
+
+        public TopProducts_ResponseDTO GetTopProduct()
+        {
+            var dto = new TopProducts_ResponseDTO();
+
+            dto.homeDescription = this._homeService.GetHomeDescription().FirstOrDefault();
+            dto.pizzaTypes = this.GetPizzaTypes();
+
+            return dto;
         }
     }
 }

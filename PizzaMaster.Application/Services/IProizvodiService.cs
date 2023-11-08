@@ -13,5 +13,7 @@ namespace PizzaMaster.Application.Services
         List<PizzaType_ResponseDTO> GetPizzaTypes();
 
         List<PastaType_ResponseDTO> GetPastaTypes();
+
+        TopProducts_ResponseDTO GetTopProduct();
     }
 }
