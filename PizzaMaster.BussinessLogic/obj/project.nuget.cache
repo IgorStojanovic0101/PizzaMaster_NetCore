@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "WuVxtoVtHTjWrXFmxss0CgaD7IEuDIV0atf25odURhGiaxeoNYk1XOsxTt1015DH8mYrAv2TDBr/x27QD4JOlA==",
+  "dgSpecHash": "OHc4IUP+K4q+Pt2qWKbMHApYYokwx7tbc0WMnItOm9f8v9aFzFJAM37EKZ/7KxwAQIUrrGgfOYnnNBTOR28YUw==",
   "success": true,
-  "projectFilePath": "D:\\Projects\\.NET Core\\PizzaMaster\\PizzaMaster.BussinessLogic\\PizzaMaster.BussinessLogic.csproj",
+  "projectFilePath": "D:\\Projects\\.NET Core\\PizzaMaster_WebAPI\\PizzaMaster_NetCore\\PizzaMaster.BussinessLogic\\PizzaMaster.BussinessLogic.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Lenovo\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",

@@ -1,16 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PizzaMaster.Application;
 using PizzaMaster.Application.Repositories;
-using PizzaMaster.Data.EF;
-using PizzaMaster.Data.UnitOfWork;
-using PizzaMaster.DatabaseAccess.UnitOfWork;
+using PizzaMaster.DataAccess.UnitOfWork;
+using PizzaMaster.DataAccess.EF;
 using PizzaMaster.Domain.Entities;
 
-namespace PizzaMaster.DatabaseAccess.UnitOfWork
+namespace PizzaMaster.DataAccess.UnitOfWork
 {
-    public class UnitOfWork :  IUnitOfWork
+    public class UnitOfWork : IUnitOfWork
     {
-        
+
         private readonly ApplicationDbContext _applicationDbContext;
 
 
@@ -42,7 +41,7 @@ namespace PizzaMaster.DatabaseAccess.UnitOfWork
         }
         public void SaveChanges()
         {
-             _applicationDbContext.SaveChanges();
+            _applicationDbContext.SaveChanges();
         }
 
 

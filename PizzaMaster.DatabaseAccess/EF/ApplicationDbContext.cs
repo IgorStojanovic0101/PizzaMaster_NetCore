@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using PizzaMaster.Domain.Entities;
 
-namespace PizzaMaster.Data.EF
+namespace PizzaMaster.DataAccess.EF
 {
     public partial class ApplicationDbContext : DbContext
     {
@@ -23,7 +23,7 @@ namespace PizzaMaster.Data.EF
         public virtual DbSet<PizzaType> PizzaTypes { get; set; } = null!;
         public virtual DbSet<Restoran> Restorans { get; set; } = null!;
         public virtual DbSet<User> Users { get; set; } = null!;
-       
+
         public virtual DbSet<Image> Images { get; set; } = null!;
         public virtual DbSet<HomeDesc> HomeDescs { get; set; } = null!;
 
@@ -64,11 +64,11 @@ namespace PizzaMaster.Data.EF
             {
                 entity.Property(e => e.RestoranIme).HasMaxLength(200);
                 entity.Property(e => e.DateFrom).IsRequired();
-            });    
+            });
 
             modelBuilder.Entity<User>(entity =>
             {
-            
+
                 entity.Property(e => e.Username).HasMaxLength(50);
 
                 entity.HasOne(d => d.Restoran)
@@ -83,16 +83,16 @@ namespace PizzaMaster.Data.EF
 
             modelBuilder.Entity<HomeDesc>(entity =>
             {
-                entity.HasOne(hd => hd.Image)         
-                .WithOne(i => i.HomeDesc)       
-                .HasForeignKey<HomeDesc>(hd => hd.ImageId); 
+                entity.HasOne(hd => hd.Image)
+                .WithOne(i => i.HomeDesc)
+                .HasForeignKey<HomeDesc>(hd => hd.ImageId);
 
                 entity.Property(hd => hd.Text)
                 .HasMaxLength(250);
             });
-           
 
-                
+
+
 
             modelBuilder.Entity<Image>()
                 .Property(i => i.Url)

@@ -10,7 +10,7 @@
         "dependencies": {
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "12.0.1",
           "PizzaMaster.Application": "1.0.0",
-          "PizzaMaster.Data": "1.0.0",
+          "PizzaMaster.DataAccess": "1.0.0",
           "PizzaMaster.Domain": "1.0.0",
           "PizzaMaster.Infrastructure": "1.0.0",
           "Serilog.AspNetCore": "7.0.0"
@@ -940,7 +940,7 @@
           "PizzaMaster.Application.dll": {}
         }
       },
-      "PizzaMaster.Data/1.0.0": {
+      "PizzaMaster.DataAccess/1.0.0": {
         "dependencies": {
           "Microsoft.Data.SqlClient": "5.1.1",
           "Microsoft.EntityFrameworkCore": "6.0.22",
@@ -950,7 +950,7 @@
           "PizzaMaster.Domain": "1.0.0"
         },
         "runtime": {
-          "PizzaMaster.Data.dll": {}
+          "PizzaMaster.DataAccess.dll": {}
         }
       },
       "PizzaMaster.Domain/1.0.0": {
@@ -971,6 +971,9 @@
         }
       },
       "PizzaMaster.Shared/1.0.0": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Http.Features": "2.2.0"
+        },
         "runtime": {
           "PizzaMaster.Shared.dll": {}
         }
@@ -1632,7 +1635,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "PizzaMaster.Data/1.0.0": {
+    "PizzaMaster.DataAccess/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

@@ -3,8 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using PizzaMaster.Application;
-using PizzaMaster.Data.SQLConnection;
-using PizzaMaster.DatabaseAccess.UnitOfWork;
 using PizzaMaster.Infrastructure.System;
 using Serilog;
 using Serilog.Formatting.Compact;
@@ -14,9 +12,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using PizzaMaster.Domain.Entities;
-using PizzaMaster.Data.EF;
 using PizzaMaster.Infrastructure.Utilities;
 using Microsoft.AspNetCore.Http.Features;
+using PizzaMaster.DataAccess.SQLConnection;
+using PizzaMaster.DataAccess.EF;
+using PizzaMaster.DataAccess.UnitOfWork;
 
 var builder = WebApplication.CreateBuilder(args);
 

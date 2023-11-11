@@ -1,8 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "G87CZ0ruSjw/c+MlsF9/ySN4cRnLCWfQGj6Jfj774jWW6+YBojkXIcs9nGxCSHe0XgkSTUJm891FdXA1Kjp/DQ==",
+  "dgSpecHash": "ImBwM/RgOBf7O00Z7J/ZHoOj9ZhvR1HYRBjSMtA6SlURcRPIxNaA9Ghk+jG9taQ/14oNSM1TSlw9XrJQRy5UjA==",
   "success": true,
-  "projectFilePath": "D:\\Projects\\.NET Core\\PizzaMaster\\PizzaMaster.Shared\\PizzaMaster.Shared.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "D:\\Projects\\.NET Core\\PizzaMaster_WebAPI\\PizzaMaster_NetCore\\PizzaMaster.Shared\\PizzaMaster.Shared.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.aspnetcore.http.features\\2.2.0\\microsoft.aspnetcore.http.features.2.2.0.nupkg.sha512",
+    "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.extensions.primitives\\2.2.0\\microsoft.extensions.primitives.2.2.0.nupkg.sha512",
+    "C:\\Users\\Lenovo\\.nuget\\packages\\system.memory\\4.5.1\\system.memory.4.5.1.nupkg.sha512",
+    "C:\\Users\\Lenovo\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.5.1\\system.runtime.compilerservices.unsafe.4.5.1.nupkg.sha512"
+  ],
   "logs": []
 }

@@ -5,7 +5,7 @@ VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PizzaMaster.WebAPI", "PizzaMaster.WebAPI\PizzaMaster.WebAPI.csproj", "{B63BCD5D-9ECD-4FA2-9391-E25AEC2CD3C4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PizzaMaster.Data", "PizzaMaster.DatabaseAccess\PizzaMaster.Data.csproj", "{537A002C-3FE4-49CE-B466-94F04917F008}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PizzaMaster.DataAccess", "PizzaMaster.DatabaseAccess\PizzaMaster.DataAccess.csproj", "{537A002C-3FE4-49CE-B466-94F04917F008}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PizzaMaster.BussinessLogic", "PizzaMaster.BussinessLogic\PizzaMaster.BussinessLogic.csproj", "{CE2AF2ED-BDC7-4FB6-82F4-CBEA1430655C}"
 EndProject

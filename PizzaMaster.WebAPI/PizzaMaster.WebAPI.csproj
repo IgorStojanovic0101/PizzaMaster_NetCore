@@ -22,7 +22,7 @@
   <ItemGroup>
     <ProjectReference Include="..\PizzaMaster.Application\PizzaMaster.Application.csproj" />
     <ProjectReference Include="..\PizzaMaster.BussinessLogic\PizzaMaster.BussinessLogic.csproj" />
-    <ProjectReference Include="..\PizzaMaster.DatabaseAccess\PizzaMaster.Data.csproj" />
+    <ProjectReference Include="..\PizzaMaster.DatabaseAccess\PizzaMaster.DataAccess.csproj" />
     <ProjectReference Include="..\PizzaMaster.Infrastructure\PizzaMaster.Infrastructure.csproj" />
   </ItemGroup>
 

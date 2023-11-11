@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "qE3iPy7LhX310dEhBFJ/PLVP4ttYG5J86ZG50WW814Id1DqOwoCiGXpaQbukSSYGT5VYHDR6XSIrNQF/LgfPqw==",
+  "dgSpecHash": "KmZPuuKUFSlMvCS9X1erBZmx79pbKFfTvwqTZ7xCOYLt/hlLujPhSjRTfETu3hXMQg1SFiwbYk4Pep053r/I/Q==",
   "success": true,
-  "projectFilePath": "D:\\Projects\\.NET Core\\PizzaMaster\\PizzaMaster.Infrastructure\\PizzaMaster.Infrastructure.csproj",
+  "projectFilePath": "D:\\Projects\\.NET Core\\PizzaMaster_WebAPI\\PizzaMaster_NetCore\\PizzaMaster.Infrastructure\\PizzaMaster.Infrastructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Lenovo\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",

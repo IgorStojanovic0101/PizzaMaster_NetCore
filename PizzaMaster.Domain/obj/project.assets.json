@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Projects\\.NET Core\\PizzaMaster\\PizzaMaster.Domain\\PizzaMaster.Domain.csproj",
+      "projectUniqueName": "D:\\Projects\\.NET Core\\PizzaMaster_WebAPI\\PizzaMaster_NetCore\\PizzaMaster.Domain\\PizzaMaster.Domain.csproj",
       "projectName": "PizzaMaster.Domain",
-      "projectPath": "D:\\Projects\\.NET Core\\PizzaMaster\\PizzaMaster.Domain\\PizzaMaster.Domain.csproj",
+      "projectPath": "D:\\Projects\\.NET Core\\PizzaMaster_WebAPI\\PizzaMaster_NetCore\\PizzaMaster.Domain\\PizzaMaster.Domain.csproj",
       "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
-      "outputPath": "D:\\Projects\\.NET Core\\PizzaMaster\\PizzaMaster.Domain\\obj\\",
+      "outputPath": "D:\\Projects\\.NET Core\\PizzaMaster_WebAPI\\PizzaMaster_NetCore\\PizzaMaster.Domain\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config",

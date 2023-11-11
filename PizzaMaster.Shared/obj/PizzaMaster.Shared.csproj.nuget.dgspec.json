@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Projects\\.NET Core\\PizzaMaster\\PizzaMaster.Shared\\PizzaMaster.Shared.csproj": {}
+    "D:\\Projects\\.NET Core\\PizzaMaster_WebAPI\\PizzaMaster_NetCore\\PizzaMaster.Shared\\PizzaMaster.Shared.csproj": {}
   },
   "projects": {
-    "D:\\Projects\\.NET Core\\PizzaMaster\\PizzaMaster.Shared\\PizzaMaster.Shared.csproj": {
+    "D:\\Projects\\.NET Core\\PizzaMaster_WebAPI\\PizzaMaster_NetCore\\PizzaMaster.Shared\\PizzaMaster.Shared.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Projects\\.NET Core\\PizzaMaster\\PizzaMaster.Shared\\PizzaMaster.Shared.csproj",
+        "projectUniqueName": "D:\\Projects\\.NET Core\\PizzaMaster_WebAPI\\PizzaMaster_NetCore\\PizzaMaster.Shared\\PizzaMaster.Shared.csproj",
         "projectName": "PizzaMaster.Shared",
-        "projectPath": "D:\\Projects\\.NET Core\\PizzaMaster\\PizzaMaster.Shared\\PizzaMaster.Shared.csproj",
+        "projectPath": "D:\\Projects\\.NET Core\\PizzaMaster_WebAPI\\PizzaMaster_NetCore\\PizzaMaster.Shared\\PizzaMaster.Shared.csproj",
         "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
-        "outputPath": "D:\\Projects\\.NET Core\\PizzaMaster\\PizzaMaster.Shared\\obj\\",
+        "outputPath": "D:\\Projects\\.NET Core\\PizzaMaster_WebAPI\\PizzaMaster_NetCore\\PizzaMaster.Shared\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -39,6 +39,12 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Http.Features": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

@@ -8,7 +8,7 @@ using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using PizzaMaster.Application;
 
-namespace PizzaMaster.Data.SQLConnection
+namespace PizzaMaster.DataAccess.SQLConnection
 {
     public class SqlConnectionFactory : ISqlConnectionFactory
     {
@@ -16,7 +16,7 @@ namespace PizzaMaster.Data.SQLConnection
 
         public SqlConnectionFactory(IConfiguration configuration) => _configuration = configuration;
         public IDbConnection Create() => new SqlConnection(_configuration.GetConnectionString("DefaultConnection"));
-        
+
 
     }
 }

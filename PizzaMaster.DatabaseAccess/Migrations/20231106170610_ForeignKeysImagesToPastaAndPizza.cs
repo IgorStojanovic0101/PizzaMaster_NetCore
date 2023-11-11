@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace PizzaMaster.Data.Migrations
+namespace PizzaMaster.DataAccess.Migrations
 {
     public partial class ForeignKeysImagesToPastaAndPizza : Migration
     {

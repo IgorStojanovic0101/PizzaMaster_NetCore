@@ -1234,6 +1234,9 @@
       "PizzaMaster.Shared/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Microsoft.AspNetCore.Http.Features": "2.2.0"
+        },
         "compile": {
           "bin/placeholder/PizzaMaster.Shared.dll": {}
         },
@@ -4137,11 +4140,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Projects\\.NET Core\\PizzaMaster\\PizzaMaster.Infrastructure\\PizzaMaster.Infrastructure.csproj",
+      "projectUniqueName": "D:\\Projects\\.NET Core\\PizzaMaster_WebAPI\\PizzaMaster_NetCore\\PizzaMaster.Infrastructure\\PizzaMaster.Infrastructure.csproj",
       "projectName": "PizzaMaster.Infrastructure",
-      "projectPath": "D:\\Projects\\.NET Core\\PizzaMaster\\PizzaMaster.Infrastructure\\PizzaMaster.Infrastructure.csproj",
+      "projectPath": "D:\\Projects\\.NET Core\\PizzaMaster_WebAPI\\PizzaMaster_NetCore\\PizzaMaster.Infrastructure\\PizzaMaster.Infrastructure.csproj",
       "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
-      "outputPath": "D:\\Projects\\.NET Core\\PizzaMaster\\PizzaMaster.Infrastructure\\obj\\",
+      "outputPath": "D:\\Projects\\.NET Core\\PizzaMaster_WebAPI\\PizzaMaster_NetCore\\PizzaMaster.Infrastructure\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -4158,14 +4161,14 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "D:\\Projects\\.NET Core\\PizzaMaster\\PizzaMaster.Application\\PizzaMaster.Application.csproj": {
-              "projectPath": "D:\\Projects\\.NET Core\\PizzaMaster\\PizzaMaster.Application\\PizzaMaster.Application.csproj"
+            "D:\\Projects\\.NET Core\\PizzaMaster_WebAPI\\PizzaMaster_NetCore\\PizzaMaster.Application\\PizzaMaster.Application.csproj": {
+              "projectPath": "D:\\Projects\\.NET Core\\PizzaMaster_WebAPI\\PizzaMaster_NetCore\\PizzaMaster.Application\\PizzaMaster.Application.csproj"
             },
-            "D:\\Projects\\.NET Core\\PizzaMaster\\PizzaMaster.Domain\\PizzaMaster.Domain.csproj": {
-              "projectPath": "D:\\Projects\\.NET Core\\PizzaMaster\\PizzaMaster.Domain\\PizzaMaster.Domain.csproj"
+            "D:\\Projects\\.NET Core\\PizzaMaster_WebAPI\\PizzaMaster_NetCore\\PizzaMaster.Domain\\PizzaMaster.Domain.csproj": {
+              "projectPath": "D:\\Projects\\.NET Core\\PizzaMaster_WebAPI\\PizzaMaster_NetCore\\PizzaMaster.Domain\\PizzaMaster.Domain.csproj"
             },
-            "D:\\Projects\\.NET Core\\PizzaMaster\\PizzaMaster.Shared\\PizzaMaster.Shared.csproj": {
-              "projectPath": "D:\\Projects\\.NET Core\\PizzaMaster\\PizzaMaster.Shared\\PizzaMaster.Shared.csproj"
+            "D:\\Projects\\.NET Core\\PizzaMaster_WebAPI\\PizzaMaster_NetCore\\PizzaMaster.Shared\\PizzaMaster.Shared.csproj": {
+              "projectPath": "D:\\Projects\\.NET Core\\PizzaMaster_WebAPI\\PizzaMaster_NetCore\\PizzaMaster.Shared\\PizzaMaster.Shared.csproj"
             }
           }
         }
@@ -4201,6 +4204,9 @@
         "assetTargetFallback": true,
         "warn": true,
         "frameworkReferences": {
+          "Microsoft.AspNetCore.App": {
+            "privateAssets": "none"
+          },
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }

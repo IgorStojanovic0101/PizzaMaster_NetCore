@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace PizzaMaster.Data.Migrations
+namespace PizzaMaster.DataAccess.Migrations
 {
     public partial class INIT : Migration
     {

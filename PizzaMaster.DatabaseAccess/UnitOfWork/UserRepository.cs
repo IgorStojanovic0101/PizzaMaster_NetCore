@@ -1,7 +1,6 @@
-﻿
-using PizzaMaster.Application.Repositories;
+﻿using PizzaMaster.Application.Repositories;
 using PizzaMaster.Data;
-using PizzaMaster.Data.EF;
+using PizzaMaster.DataAccess.EF;
 using PizzaMaster.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -9,21 +8,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PizzaMaster.DatabaseAccess.UnitOfWork
+namespace PizzaMaster.DataAccess.UnitOfWork
 {
-   
+
     public class UserRepository : Repository<User>, IUserRepository
     {
         private ApplicationDbContext _db;
         public UserRepository(ApplicationDbContext db) : base(db)
         {
-            this._db = db;
+            _db = db;
         }
 
         public Task<bool> UpdateUser(string email)
         {
 
-            this._db.Users.ToList().ForEach(customer => { });
+            _db.Users.ToList().ForEach(customer => { });
 
             return Task.FromResult(true);
         }
@@ -31,7 +30,7 @@ namespace PizzaMaster.DatabaseAccess.UnitOfWork
         public List<User> GetAllUsers()
         {
 
-           var models = this._db.Users.ToList();
+            var models = _db.Users.ToList();
 
             return models;
         }

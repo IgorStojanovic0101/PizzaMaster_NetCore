@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using PizzaMaster.Data.EF;
+using PizzaMaster.DataAccess.EF;
 
 #nullable disable
 
-namespace PizzaMaster.Data.Migrations
+namespace PizzaMaster.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     [Migration("20231031212315_addingRelationBeetweenColumns")]
