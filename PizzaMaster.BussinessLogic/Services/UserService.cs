@@ -15,6 +15,7 @@ using PizzaMaster.Shared.DTOs.Home.HomeDescription;
 using PizzaMaster.Shared.DTOs.User;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
@@ -65,7 +66,8 @@ namespace PizzaMaster.BussinessLogic.Services
             UserLoginResponseDTO response = new();
 
             response.Username = dto.Username;
-            response.Token = GenerateToken(dto.Username);
+
+            response.Token = GenerateToken(dto.Username,Roles.User);
 
             return response;
         }
@@ -92,7 +94,7 @@ namespace PizzaMaster.BussinessLogic.Services
             _unitOfWork.SaveChanges();
 
             response.Username = dto.Username;
-            response.Token = GenerateToken(dto.Username);
+            response.Token = GenerateToken(dto.Username,Roles.User);
 
             return response;
         }
@@ -163,15 +165,18 @@ namespace PizzaMaster.BussinessLogic.Services
 
        
 
-        private string GenerateToken(string username)
+        private string GenerateToken(string username, string role)
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Tokens:Key"]));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+            var expires = DateTime.Now.AddHours(8);
             var claims = new[]
             {
-                new Claim(ClaimTypes.NameIdentifier, username),  
+                new Claim(ClaimTypes.NameIdentifier, username),
+                new Claim(ClaimTypes.Role, role),
+                new Claim(JwtRegisteredClaimNames.Exp, new DateTimeOffset(expires).ToUnixTimeSeconds().ToString())
             };
-            var token = new JwtSecurityToken(null,null, claims, expires: DateTime.Now.AddHours(8),signingCredentials: credentials);
+            var token = new JwtSecurityToken(null,null, claims, expires: expires, signingCredentials: credentials);
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
     }

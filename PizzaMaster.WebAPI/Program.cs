@@ -14,7 +14,6 @@ using Microsoft.IdentityModel.Tokens;
 using PizzaMaster.Domain.Entities;
 using PizzaMaster.Infrastructure.Utilities;
 using Microsoft.AspNetCore.Http.Features;
-using PizzaMaster.DataAccess.SQLConnection;
 using PizzaMaster.DataAccess.EF;
 using PizzaMaster.DataAccess.UnitOfWork;
 
@@ -106,7 +105,6 @@ builder.Services.AddSingleton<IConfiguration>(config);
 
 builder.Services.AddDbContext<ApplicationDbContext>();
 builder.Services.AddSingleton<IUnitOfWorkFactory, UnitOfWorkFactory>();
-builder.Services.AddSingleton<ISqlConnectionFactory, SqlConnectionFactory>();
 
 builder.Services.AddScoped<IRestoranService,RetoranService>();
 builder.Services.AddScoped<IUserService,UserService>();

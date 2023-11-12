@@ -5,10 +5,11 @@ using PizzaMaster.Shared.DTOs.User;
 using PizzaMaster.Shared.DTOs;
 using PizzaMaster.Shared.Results;
 using PizzaMaster.Application.Services;
+using PizzaMaster.Infrastructure.System;
 
 namespace PizzaMaster.WebAPI.Controllers
 {
-   // [Authorize]
+    //[Authorize(Roles = Roles.User)]
     public class RestoranController : ControllerBase
     {
         private readonly IRestoranService _service;
@@ -43,11 +44,12 @@ namespace PizzaMaster.WebAPI.Controllers
         {
            ServiceResponse<List<RestoranDTO>> response = new();
 
+            
 
             if (response.Errors.Count > 0)
             {
                 response.Validation = true;
-                return Ok(response); //break
+                return Ok(response);
             }
 
             response.Payload = _service.VratiRestorane();

@@ -1,34 +1,34 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Dapper;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using PizzaMaster.Application;
 using PizzaMaster.Application.Repositories;
 using PizzaMaster.DataAccess.EF;
 using PizzaMaster.Domain.Entities;
+using System.Data;
 
 namespace PizzaMaster.DataAccess.UnitOfWork
 {
     public class RestoranRepository : Repository<Restoran>, IRestoranRepository
     {
-        private ApplicationDbContext _db;
-        public RestoranRepository(ApplicationDbContext db) : base(db) => _db = db;
+        private ApplicationDbContext _dbContext;
+        private readonly IDbConnection _dbConnection;
 
-
-        public Task<bool> UpdateRestoran(string email)
+        public RestoranRepository(ApplicationDbContext dbContext, IDbConnection dbConnection) : base(dbContext)
         {
+            _dbContext = dbContext;
+            _dbConnection = dbConnection;
 
-            _db.Restorans.ToList().ForEach(customer => { });
-
-            return Task.FromResult(true);
         }
 
+        public List<Restoran> GetSomeProperties_DPR()
+        {          
+            Restoran restoran = new Restoran();
 
+            string query = $"SELECT {nameof(restoran.RestoranIme)} FROM Restorans";
 
-        //public List<Restoran> GetAllRestorans()
-        //{
+            return _dbConnection.Query<Restoran>(query).ToList();
 
-        //    var restorans = this._db.Restorans.ToList();
-
-        //    return restorans;
-        //}
-
-
+        }
     }
 }

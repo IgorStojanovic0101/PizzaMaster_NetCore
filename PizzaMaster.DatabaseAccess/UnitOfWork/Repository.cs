@@ -15,6 +15,8 @@ namespace PizzaMaster.DataAccess.UnitOfWork
         private ParameterExpression parameter;
 
         private BinaryExpression? dateTimeExpression;
+
+        private bool ignoreDateTimeExpression = true;
         protected Repository(ApplicationDbContext db)
         {
             _dbSet = db.Set<T>();
@@ -24,7 +26,7 @@ namespace PizzaMaster.DataAccess.UnitOfWork
 
         public IEnumerable<T> Find(Expression<Func<T, bool>> expression, string[]? includes = null)
         {
-            var updatedExpression = UpdatedExpressions(expression, true);
+            var updatedExpression = UpdatedExpressions(expression, ignoreDateTimeExpression);
             var query = _dbSet.Where(updatedExpression).AsQueryable();
 
             query = includes?.Aggregate(query, (current, include) => current.Include(include)) ?? query;
@@ -35,7 +37,7 @@ namespace PizzaMaster.DataAccess.UnitOfWork
 
         public T SingleOrDefault(Expression<Func<T, bool>> expression, string[]? includes = null)
         {
-            var updatedExpression = UpdatedExpressions(expression, true);
+            var updatedExpression = UpdatedExpressions(expression, ignoreDateTimeExpression);
             var query = _dbSet.Where(updatedExpression).AsQueryable();
 
             query = includes?.Aggregate(query, (current, include) => current.Include(include)) ?? query;
@@ -66,7 +68,7 @@ namespace PizzaMaster.DataAccess.UnitOfWork
         public List<T> GetAll(string[]? includes = null)
         {
 
-            var updatedExpression = UpdatedExpressions(null, true);
+            var updatedExpression = UpdatedExpressions(null, ignoreDateTimeExpression);
 
             var query = updatedExpression != null ? _dbSet.Where(updatedExpression).AsQueryable() : _dbSet.AsQueryable();
 

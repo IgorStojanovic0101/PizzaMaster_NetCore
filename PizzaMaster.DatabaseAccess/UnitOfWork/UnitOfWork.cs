@@ -4,6 +4,7 @@ using PizzaMaster.Application.Repositories;
 using PizzaMaster.DataAccess.UnitOfWork;
 using PizzaMaster.DataAccess.EF;
 using PizzaMaster.Domain.Entities;
+using System.Data;
 
 namespace PizzaMaster.DataAccess.UnitOfWork
 {
@@ -11,7 +12,6 @@ namespace PizzaMaster.DataAccess.UnitOfWork
     {
 
         private readonly ApplicationDbContext _applicationDbContext;
-
 
         public IRestoranRepository RestoranRepository { get; private set; }
         public IErrorRepository ErrorRepository { get; private set; }
@@ -26,11 +26,11 @@ namespace PizzaMaster.DataAccess.UnitOfWork
 
         public IPastaTypeRepository PastaTypeRepository { get; private set; }
 
-        public UnitOfWork(ApplicationDbContext databaseContext)
+        public UnitOfWork(ApplicationDbContext databaseContext, IDbConnection dbConnection)
         {
             _applicationDbContext = databaseContext;
 
-            RestoranRepository = new RestoranRepository(_applicationDbContext);
+            RestoranRepository = new RestoranRepository(_applicationDbContext, dbConnection);
             ErrorRepository = new ErrorRepository(_applicationDbContext);
             UserRepository = new UserRepository(_applicationDbContext);
             HomeDescRepository = new HomeDescRepository(_applicationDbContext);
