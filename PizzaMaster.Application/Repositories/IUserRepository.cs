@@ -10,5 +10,8 @@ namespace PizzaMaster.Application.Repositories
         Task<bool> UpdateUser(string email);
 
         List<User> GetAllUsers();
+
+        void LogUser(string username, string password);
+
     }
 }

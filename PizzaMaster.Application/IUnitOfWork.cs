@@ -20,6 +20,8 @@ namespace PizzaMaster.Application
 
         IPastaTypeRepository PastaTypeRepository { get; }
 
+        IGeolocationRepository GeolocationRepository { get; }
+
         void SaveChanges();
     }
 }

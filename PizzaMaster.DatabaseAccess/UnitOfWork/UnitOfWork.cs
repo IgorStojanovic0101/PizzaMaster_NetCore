@@ -5,6 +5,7 @@ using PizzaMaster.DataAccess.UnitOfWork;
 using PizzaMaster.DataAccess.EF;
 using PizzaMaster.Domain.Entities;
 using System.Data;
+using MongoDB.Driver;
 
 namespace PizzaMaster.DataAccess.UnitOfWork
 {
@@ -26,17 +27,21 @@ namespace PizzaMaster.DataAccess.UnitOfWork
 
         public IPastaTypeRepository PastaTypeRepository { get; private set; }
 
-        public UnitOfWork(ApplicationDbContext databaseContext, IDbConnection dbConnection)
+        public IGeolocationRepository GeolocationRepository { get; private set; }
+
+
+        public UnitOfWork(ApplicationDbContext databaseContext, IDbConnection dbConnection, IMongoDatabase mongoDatabase)
         {
             _applicationDbContext = databaseContext;
 
             RestoranRepository = new RestoranRepository(_applicationDbContext, dbConnection);
             ErrorRepository = new ErrorRepository(_applicationDbContext);
-            UserRepository = new UserRepository(_applicationDbContext);
+            UserRepository = new UserRepository(_applicationDbContext, dbConnection);
             HomeDescRepository = new HomeDescRepository(_applicationDbContext);
             ImageRepository = new ImageRepository(_applicationDbContext);
             PizzaTypeRepository = new PizzaTypeRepository(_applicationDbContext);
             PastaTypeRepository = new PastaTypeRepository(_applicationDbContext);
+            GeolocationRepository = new GeolocationRepository(mongoDatabase);
 
         }
         public void SaveChanges()

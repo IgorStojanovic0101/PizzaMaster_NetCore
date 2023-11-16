@@ -11,7 +11,7 @@ namespace PizzaMaster.DataAccess.UnitOfWork
 {
     public class RestoranRepository : Repository<Restoran>, IRestoranRepository
     {
-        private ApplicationDbContext _dbContext;
+        private readonly ApplicationDbContext _dbContext;
         private readonly IDbConnection _dbConnection;
 
         public RestoranRepository(ApplicationDbContext dbContext, IDbConnection dbConnection) : base(dbContext)

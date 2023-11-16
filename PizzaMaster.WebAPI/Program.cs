@@ -112,6 +112,7 @@ builder.Services.AddScoped<IErrorService,ErrorService>();
 builder.Services.AddScoped<IAdminService, AdminService>();
 builder.Services.AddScoped<IHomeService,HomeService>();
 builder.Services.AddScoped<IProizvodiService, ProizvodiService>();
+builder.Services.AddScoped<IGeolocationService, GeolocationService>();
 
 
 builder.Services.AddMvc(options => options.Conventions.Add(new RouteConvention()));
@@ -123,11 +124,15 @@ builder.Services.AddTransient<FileService>();
 
 var logger = new LoggerConfiguration()
  .ReadFrom.Configuration(builder.Configuration)
- .Enrich.FromLogContext().WriteTo.File(new CompactJsonFormatter(), "log.txt")
+  .Enrich.WithThreadId().WriteTo.File(Directory.GetCurrentDirectory() + "\\Logs\\log.txt", rollingInterval: RollingInterval.Infinite, outputTemplate: "{Timestamp:MM/dd/yyyy H:mm:ss zzzz} {ThreadId} {Level} {SourceContext} {Message:lj}{NewLine}{Exception}")
+
  .CreateLogger();
 
 //builder.Logging.ClearProviders();
-builder.Logging.AddSerilog(logger);
+builder.Services.AddLogging(loggingBuilder =>
+{
+    loggingBuilder.AddSerilog(logger);   // Add Serilog to the LoggingBuilder for Winforms
+});
 var app = builder.Build();
 
 //// Configure the HTTP request pipeline.

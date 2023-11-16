@@ -65,7 +65,7 @@ namespace PizzaMaster.BussinessLogic.Services
         {
             UserLoginResponseDTO response = new();
 
-            response.Username = dto.Username;
+            this._unitOfWork.UserRepository.LogUser(dto.Username, dto.Password);
 
             response.Token = GenerateToken(dto.Username,Roles.User);
 

@@ -27,6 +27,7 @@ namespace PizzaMaster.DataAccess.EF
         public virtual DbSet<Image> Images { get; set; } = null!;
         public virtual DbSet<HomeDesc> HomeDescs { get; set; } = null!;
 
+        public virtual DbSet<UserLog> UserLogs { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -99,7 +100,14 @@ namespace PizzaMaster.DataAccess.EF
                 .IsRequired()
                 .HasMaxLength(250);
 
-
+            modelBuilder.Entity<UserLog>(entity =>
+            {
+                entity.Property(i => i.Username).IsRequired().HasMaxLength(250);
+                entity.Property(i => i.Email).IsRequired().HasMaxLength(250);
+            });
+         
+             
+             
 
 
 
