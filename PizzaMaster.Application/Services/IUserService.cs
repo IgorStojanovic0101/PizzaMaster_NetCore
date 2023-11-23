@@ -18,7 +18,7 @@ namespace PizzaMaster.Application.Services
 
        List<string> RegisterValidationErrors(UserRegisterRequestDTO creationDto);
 
-        UserLoginResponseDTO Register(UserRegisterRequestDTO creationDto);
+        UserRegisterResponseDTO Register(UserRegisterRequestDTO creationDto);
 
     }
 }

@@ -40,7 +40,7 @@ namespace PizzaMaster.WebAPI.Controllers
 
         }
         [HttpPost]
-        public ActionResult<ServiceResponse<UserLoginResponseDTO>> Login([FromForm] UserLoginRequestDTO dto)
+        public ActionResult<ServiceResponse<UserLoginResponseDTO>> Login([FromBody] UserLoginRequestDTO dto)
         {
             ServiceResponse<UserLoginResponseDTO> response = new();
 
@@ -61,9 +61,9 @@ namespace PizzaMaster.WebAPI.Controllers
         }
 
         [HttpPost]
-        public ActionResult<ServiceResponse<UserLoginResponseDTO>> Register([FromForm] UserRegisterRequestDTO dto)
+        public ActionResult<ServiceResponse<UserRegisterResponseDTO>> Register([FromForm] UserRegisterRequestDTO dto)
         {
-            ServiceResponse<UserLoginResponseDTO> response = new();
+            ServiceResponse<UserRegisterResponseDTO> response = new();
 
             //Validations
             response.Errors = _service.RegisterValidationErrors(dto);

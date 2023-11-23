@@ -14,6 +14,8 @@ namespace PizzaMaster.Shared.DTOs.User
         public string Username { get; set; }
 
         public string? imageContent { get; set; }
+        public string Token { get; set; }
+
 
     }
 }

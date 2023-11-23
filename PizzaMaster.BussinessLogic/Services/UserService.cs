@@ -72,9 +72,9 @@ namespace PizzaMaster.BussinessLogic.Services
             return response;
         }
 
-        public UserLoginResponseDTO Register(UserRegisterRequestDTO dto)
+        public UserRegisterResponseDTO Register(UserRegisterRequestDTO dto)
         {
-            UserLoginResponseDTO response = new();
+            UserRegisterResponseDTO response = new();
 
             var url = _fileUploadService.UploadFile(dto.File, @"Files\images\user\");
 

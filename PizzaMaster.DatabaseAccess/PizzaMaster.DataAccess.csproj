@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="SQLConnection\**" />
+    <EmbeddedResource Remove="SQLConnection\**" />
+    <None Remove="SQLConnection\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Dapper" Version="2.1.21" />
     <PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.22" />
@@ -24,10 +30,6 @@
     <ProjectReference Include="..\PizzaMaster.Application\PizzaMaster.Application.csproj" />
     <ProjectReference Include="..\PizzaMaster.Domain\PizzaMaster.Domain.csproj" />
     <ProjectReference Include="..\PizzaMaster.Infrastructure\PizzaMaster.Infrastructure.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="SQLConnection\" />
   </ItemGroup>
 
 </Project>
