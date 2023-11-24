@@ -12,7 +12,7 @@ namespace PizzaMaster.Domain.Entities
 
         public int Id { get; set; }
         public string RestoranIme { get; set; } = null!;
-        public DateTime DateFrom { get; set; } 
+        public DateTime? DateFrom { get; set; }
         public DateTime? DateTo { get; set; }
 
         public virtual ICollection<User> Users { get; set; }

@@ -57,9 +57,9 @@ namespace PizzaMaster.Infrastructure.Utilities
 
         public string? ConvertImageToBase64(Image image)
         {
-            if (image == null || string.IsNullOrEmpty(image.Url))
+            if (image == null || string.IsNullOrEmpty(image.Url) || !File.Exists(image.Url))
             {
-                return null;
+                return GetDefaultImageBase64();
             }
             var imageUrl = image.Url;
 
@@ -72,6 +72,21 @@ namespace PizzaMaster.Infrastructure.Utilities
 
             // Create and return the base64 image URL
             return $"data:image/{extension};base64,{base64Image}";
+        }
+
+        private string GetDefaultImageBase64()
+        {
+            string wwwRootPath = _hostEnvironment.ContentRootPath;
+
+            // Construct the correct path for the default image
+            string defaultImagePath = Path.Combine(wwwRootPath, "Files", "images", "default", "defaultUserPhoto.jpg");
+
+            // Provide default image data in base64 format
+            byte[] defaultImageBytes = File.ReadAllBytes(defaultImagePath);
+
+            string base64DefaultImage = Convert.ToBase64String(defaultImageBytes);
+
+            return $"data:image/jpg;base64,{base64DefaultImage}";
         }
 
         public string? ConverVideoToBase64(string url)
