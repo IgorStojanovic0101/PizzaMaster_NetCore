@@ -28,7 +28,7 @@ namespace PizzaMaster.Infrastructure.System
             CreateMap<HomeDesc, HomeDescription_ResponseDTO>().ReverseMap();
 
             CreateMap<PizzaType, PizzaType_ResponseDTO>().ReverseMap();
-            CreateMap<PastaType, PastaType_ResponseDTO>().ReverseMap();
+            CreateMap<PasteType, PastaType_ResponseDTO>().ReverseMap();
 
 
         }

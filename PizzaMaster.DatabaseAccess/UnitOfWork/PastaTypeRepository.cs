@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace PizzaMaster.DataAccess.UnitOfWork
 {
-    internal class PastaTypeRepository : Repository<PastaType>, IPastaTypeRepository
+    internal class PastaTypeRepository : Repository<PasteType>, IPastaTypeRepository
     {
         private ApplicationDbContext _db;
         public PastaTypeRepository(ApplicationDbContext db) : base(db) => _db = db;

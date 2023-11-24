@@ -30,7 +30,7 @@ namespace PizzaMaster.BussinessLogic.Services
 
         public List<PastaType_ResponseDTO> GetPastaTypes()
         {
-            var entities = _unitOfWork.PastaTypeRepository.Find(x => x.ImageId != null, IncludeEnities<PastaType>.All);
+            var entities = _unitOfWork.PastaTypeRepository.Find(x => x.ImageId != null, IncludeEnities<PasteType>.All);
 
             var dtos = new List<PastaType_ResponseDTO>();
 

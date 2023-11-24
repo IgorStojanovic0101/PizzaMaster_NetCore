@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PizzaMaster.Application.Repositories
 {
-    public interface IPastaTypeRepository : IRepository<PastaType>
+    public interface IPastaTypeRepository : IRepository<PasteType>
     {
     }
 }

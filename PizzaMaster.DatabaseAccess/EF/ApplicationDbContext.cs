@@ -19,7 +19,7 @@ namespace PizzaMaster.DataAccess.EF
         }
 
         public virtual DbSet<Error> Errors { get; set; } = null!;
-        public virtual DbSet<PastaType> PasteTypes { get; set; } = null!;
+        public virtual DbSet<PasteType> PasteTypes { get; set; } = null!;
         public virtual DbSet<PizzaType> PizzaTypes { get; set; } = null!;
         public virtual DbSet<Restoran> Restorans { get; set; } = null!;
         public virtual DbSet<User> Users { get; set; } = null!;
@@ -39,13 +39,13 @@ namespace PizzaMaster.DataAccess.EF
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<PastaType>(entity =>
+            modelBuilder.Entity<PasteType>(entity =>
             {
                 entity.Property(e => e.Price).HasColumnType("decimal(18, 2)");
 
                 entity.HasOne(hd => hd.Image)
                     .WithOne(i => i.PastaType)
-                    .HasForeignKey<PastaType>(hd => hd.ImageId);
+                    .HasForeignKey<PasteType>(hd => hd.ImageId);
             });
 
             modelBuilder.Entity<PizzaType>(entity =>
