@@ -35,7 +35,7 @@ namespace PizzaMaster.DataAccess.UnitOfWork
             return query.ToList();
         }
 
-        public T SingleOrDefault(Expression<Func<T, bool>> expression, string[]? includes = null)
+        public virtual T SingleOrDefault(Expression<Func<T, bool>> expression, string[]? includes = null)
         {
             var updatedExpression = UpdatedExpressions(expression, ignoreDateTimeExpression);
             var query = _dbSet.Where(updatedExpression).AsQueryable();
@@ -49,7 +49,7 @@ namespace PizzaMaster.DataAccess.UnitOfWork
 
         public bool Any(Expression<Func<T, bool>> expression) => _dbSet.Any(expression);
 
-        public void Add(T entity)
+        public virtual void Add(T entity)
         {
             _dbSet.Add(entity);
         }
@@ -65,7 +65,7 @@ namespace PizzaMaster.DataAccess.UnitOfWork
         }
 
         //custom expression moze biti null, ako zelim da mi GetAll vrati sve..
-        public List<T> GetAll(string[]? includes = null)
+        public virtual List<T> GetAll(string[]? includes = null)
         {
 
             var updatedExpression = UpdatedExpressions(null, ignoreDateTimeExpression);

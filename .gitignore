@@ -465,3 +465,5 @@ FodyWeavers.xsd
 /PizzaMaster.BussinessLogic/obj/Debug/net6.0/PizzaMaster.BussinessLogic.csproj.AssemblyReference.cache
 /PizzaMaster.BussinessLogic/obj/Debug/net6.0/PizzaMaster.BussinessLogic.assets.cache
 /PizzaMaster.BussinessLogic/obj/Debug/net6.0/ref/PizzaMaster.BussinessLogic.dll
+/PizzaMaster.Domain/bin/Debug/net6.0/PizzaMaster.Domain.deps.json
+/PizzaMaster.Infrastructure/obj/PizzaMaster.Infrastructure.csproj.nuget.g.props

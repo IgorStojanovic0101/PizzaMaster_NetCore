@@ -6,6 +6,7 @@ using PizzaMaster.Application.Repositories;
 using PizzaMaster.DataAccess.EF;
 using PizzaMaster.Domain.Entities;
 using System.Data;
+using System.Linq.Expressions;
 
 namespace PizzaMaster.DataAccess.UnitOfWork
 {
@@ -21,14 +22,51 @@ namespace PizzaMaster.DataAccess.UnitOfWork
 
         }
 
-        public List<Restoran> GetSomeProperties_DPR()
-        {          
-            Restoran restoran = new Restoran();
+      
+        public override List<Restoran> GetAll(string[]? includes = null)
+        {
+            
+            string query = "SELECT * FROM Restorans";
+            var dapperResult = _dbConnection.Query<Restoran>(query).ToList();
 
-            string query = $"SELECT {nameof(restoran.RestoranIme)} FROM Restorans";
 
-            return _dbConnection.Query<Restoran>(query).ToList();
-
+            return dapperResult;
         }
+
+        public override Restoran SingleOrDefault(Expression<Func<Restoran, bool>> expression, string[]? includes = null)
+        {
+            // Use Dapper to execute a SQL query
+            string query = $"SELECT * FROM Restorans WHERE {GetSqlExpression(expression)}";
+            var dapperResult = _dbConnection.QuerySingleOrDefault<Restoran>(query);
+
+            // If using 'includes' from the base method, you may need to handle it accordingly
+
+            return dapperResult;
+        }
+
+        // Helper method to convert LINQ expression to SQL string (you might need to adapt this based on your needs)
+       
+        private string GetSqlExpression(Expression<Func<Restoran, bool>> expression)
+        {
+            var binaryExpression = (BinaryExpression)expression.Body;
+
+            var left = binaryExpression.Left;
+            var right = binaryExpression.Right;
+
+            var memberExpression = left as MemberExpression;
+            var constantExpression = right as ConstantExpression;
+
+            if (memberExpression != null && constantExpression != null)
+            {
+                return $"{memberExpression.Member.Name} = '{constantExpression.Value}'";
+            }
+
+            // Handle other cases as needed
+
+            throw new InvalidOperationException("Unsupported expression type");
+
+            // Handle other cases as needed
+        }
+
     }
 }

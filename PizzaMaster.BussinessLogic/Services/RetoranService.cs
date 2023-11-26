@@ -37,7 +37,7 @@ namespace PizzaMaster.BussinessLogic.Services
         {
 
 
-            var models = _unitOfWork.RestoranRepository.SingleOrDefault(x=>x.RestoranIme.Equals("Vinyl"));
+            var models = _unitOfWork.RestoranRepository.SingleOrDefault(x=>x.RestoranIme == "Vinyl");
 
            
 

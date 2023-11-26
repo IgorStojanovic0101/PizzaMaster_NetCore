@@ -1,6 +1,8 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Driver;
+using MongoDB.Driver.GeoJsonObjectModel;
 using PizzaMaster.Application.Repositories;
+using PizzaMaster.Domain.Documents;
 using PizzaMaster.Infrastructure.System;
 using System;
 using System.Collections.Generic;
@@ -13,18 +15,32 @@ namespace PizzaMaster.DataAccess.UnitOfWork
     public class GeolocationRepository : IGeolocationRepository
     {
         private readonly IMongoDatabase _mongoDatabase;
-        private IMongoCollection<BsonDocument> _kretanjeDostavljaca;
+        private IMongoCollection<LocationDocument> _kretanjeDostavljaca;
         public GeolocationRepository(IMongoDatabase mongoDatabase) 
         {
             _mongoDatabase = mongoDatabase;
-            _kretanjeDostavljaca = this._mongoDatabase.GetCollection<BsonDocument>(MongoCollections.KretanjeDostavljaca);
+            _kretanjeDostavljaca = this._mongoDatabase.GetCollection<LocationDocument>(MongoCollections.KretanjeDostavljaca);
+            CreateGeospatialIndex();
+        }
 
+        private void CreateGeospatialIndex()
+        {
+            var keys = Builders<LocationDocument>.IndexKeys.Geo2DSphere("location");
+            var options = new CreateIndexOptions { Background = true }; // Background indexing to avoid blocking
+            var model = new CreateIndexModel<LocationDocument>(keys, options);
+
+            _kretanjeDostavljaca.Indexes.CreateOne(model);
         }
 
         public string GetGeolocation(double longitude, double latitude)
         {
 
-            var documents = _kretanjeDostavljaca.Find(new BsonDocument()).ToList();
+            var point = GeoJson.Point(GeoJson.Geographic(longitude, latitude));
+
+            var filter = Builders<LocationDocument>.Filter.Near("location", point);
+
+            var documents = _kretanjeDostavljaca.Find(filter).ToList();
+
 
             return "address";
 

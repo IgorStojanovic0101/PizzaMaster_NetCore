@@ -8,3 +8,7 @@
 11/23/2023 19:12:00 +01:00 11 Error PizzaMaster.Infrastructure.System.GlobalExceptionHandlingMiddleware An error occurred while saving the entity changes. See the inner exception for details.
 11/23/2023 19:48:07 +01:00 24 Error PizzaMaster.Infrastructure.System.GlobalExceptionHandlingMiddleware An error occurred while saving the entity changes. See the inner exception for details.
 11/24/2023 20:53:39 +01:00 19 Error PizzaMaster.Infrastructure.System.GlobalExceptionHandlingMiddleware Could not find file 'D:\Projects\.NET Core\PizzaMaster_WebAPI\New folder\PizzaMaster_NetCore\PizzaMaster.WebAPI\Files\images\user\245d7f23-a0d0-48e8-8c64-ccc295bf4fbb.jpg'.
+11/25/2023 17:58:54 +01:00 9 Information PizzaMaster.BussinessLogic.Services.GeolocationService Ovo je fixano
+11/25/2023 18:11:28 +01:00 5 Information PizzaMaster.BussinessLogic.Services.GeolocationService Ovo je fixano
+11/25/2023 18:14:49 +01:00 22 Information PizzaMaster.BussinessLogic.Services.GeolocationService Ovo je fixano
+11/25/2023 18:16:58 +01:00 17 Information PizzaMaster.BussinessLogic.Services.GeolocationService Ovo je fixano

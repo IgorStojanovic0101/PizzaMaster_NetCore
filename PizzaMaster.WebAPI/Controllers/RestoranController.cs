@@ -18,12 +18,11 @@ namespace PizzaMaster.WebAPI.Controllers
   
 
         [HttpPost]
-        public ActionResult<ServiceResponse<RestoranDTO>> TestDTO([FromForm] int id)
+        public ActionResult<ServiceResponse<RestoranDTO>> TestDTO()
         {
             ServiceResponse<RestoranDTO> response = new();
 
 
-            //Validations
             response.Errors = _service.ValidationErrors();
 
 

@@ -17,7 +17,7 @@ namespace PizzaMaster.WebAPI.Controllers
             ServiceResponse<string> response = new();
 
 
-            response.Payload = _service.GetGeolocation(1,1);
+            response.Payload = _service.GetGeolocation(1.1,2.2);
 
             return Ok(response);
 

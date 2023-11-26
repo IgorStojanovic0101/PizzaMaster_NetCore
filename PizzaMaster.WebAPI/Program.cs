@@ -124,7 +124,8 @@ builder.Services.AddTransient<FileService>();
 
 var logger = new LoggerConfiguration()
  .ReadFrom.Configuration(builder.Configuration)
-  .Enrich.WithThreadId().WriteTo.File(Directory.GetCurrentDirectory() + "\\Logs\\log.txt", rollingInterval: RollingInterval.Infinite, outputTemplate: "{Timestamp:MM/dd/yyyy H:mm:ss zzzz} {ThreadId} {Level} {SourceContext} {Message:lj}{NewLine}{Exception}")
+  .Enrich.WithThreadId()
+  .WriteTo.File(Directory.GetCurrentDirectory() + "\\Logs\\log.txt", rollingInterval: RollingInterval.Infinite, outputTemplate: "{Timestamp:MM/dd/yyyy H:mm:ss zzzz} {ThreadId} {Level} {SourceContext} {Message:lj}{NewLine}{Exception}")
 
  .CreateLogger();
 
