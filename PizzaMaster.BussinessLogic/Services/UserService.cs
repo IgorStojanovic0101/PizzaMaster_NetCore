@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Azure.Core;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -18,6 +19,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
@@ -65,9 +67,15 @@ namespace PizzaMaster.BussinessLogic.Services
         {
             UserLoginResponseDTO response = new();
 
-            this._unitOfWork.UserRepository.LogUser(dto.Username, dto.Password);
 
-            response.Token = GenerateToken(dto.Username,Roles.User);
+            var user = this._unitOfWork.UserRepository.TryNewSingleOrDefault(x =>x.Username == dto.Username && x.Password == dto.Password, IncludeEnities<User>.User.userEntities);
+    
+
+           this._unitOfWork.UserRepository.LogUser(dto.Username, dto.Password);
+
+            var roles = user.UserRoles.Select(x => x.Role!.RoleName).AsEnumerable();
+
+            response.Token = GenerateToken(dto.Username, roles);
 
             return response;
         }
@@ -94,7 +102,7 @@ namespace PizzaMaster.BussinessLogic.Services
             _unitOfWork.SaveChanges();
 
             response.Username = dto.Username;
-            response.Token = GenerateToken(dto.Username,Roles.User);
+            response.Token = GenerateToken(dto.Username);
 
             return response;
         }
@@ -165,17 +173,21 @@ namespace PizzaMaster.BussinessLogic.Services
 
        
 
-        private string GenerateToken(string username, string role)
+        private string GenerateToken(string username, IEnumerable<string>? roles = null)
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Tokens:Key"]));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
             var expires = DateTime.Now.AddHours(8);
-            var claims = new[]
+            var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.NameIdentifier, username),
-                new Claim(ClaimTypes.Role, role),
                 new Claim(JwtRegisteredClaimNames.Exp, new DateTimeOffset(expires).ToUnixTimeSeconds().ToString())
             };
+
+            // Add claims for each role
+            if(roles != null)
+                claims.AddRange(roles.Select(role => new Claim(ClaimTypes.Role, role!)));
+
             var token = new JwtSecurityToken(null,null, claims, expires: expires, signingCredentials: credentials);
             return new JwtSecurityTokenHandler().WriteToken(token);
         }

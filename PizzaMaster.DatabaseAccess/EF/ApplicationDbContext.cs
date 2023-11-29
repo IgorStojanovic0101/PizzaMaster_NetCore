@@ -25,6 +25,11 @@ namespace PizzaMaster.DataAccess.EF
         public virtual DbSet<Restoran> Restorans { get; set; } = null!;
         public virtual DbSet<User> Users { get; set; } = null!;
         public virtual DbSet<UserLog> UserLogs { get; set; } = null!;
+        public virtual DbSet<Role> Roles { get; set; } = null!;
+        public virtual DbSet<UserRole> UserRoles { get; set; }
+
+
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -113,6 +118,24 @@ namespace PizzaMaster.DataAccess.EF
 
                 entity.Property(e => e.Username).HasMaxLength(250);
             });
+
+            modelBuilder.Entity<Role>(entity =>
+
+            entity.Property(e => e.RoleName).HasMaxLength(50));
+
+            modelBuilder.Entity<UserRole>()
+             .HasKey(ur => ur.Id);
+
+            modelBuilder.Entity<UserRole>()
+                .HasOne(ur => ur.User)
+                .WithMany(u => u.UserRoles)
+                .HasForeignKey(ur => ur.UserId);
+
+            modelBuilder.Entity<UserRole>()
+                .HasOne(ur => ur.Role)
+                .WithMany(r => r.UserRoles)
+                .HasForeignKey(ur => ur.RoleId);
+     
 
             OnModelCreatingPartial(modelBuilder);
         }

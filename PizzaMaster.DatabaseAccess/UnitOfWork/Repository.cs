@@ -46,6 +46,54 @@ namespace PizzaMaster.DataAccess.UnitOfWork
             return query.SingleOrDefault();
         }
 
+        public virtual T TryNewSingleOrDefault(Expression<Func<T, bool>> expression, IEnumerable<(Expression<Func<T, object>> NavigationProperty, string[] ChildProperties)>? includes = null)
+        {
+            var updatedExpression = UpdatedExpressions(expression, ignoreDateTimeExpression);
+            var query = _dbSet.Where(updatedExpression).AsQueryable();
+
+
+            if (includes != null)
+            {
+                foreach (var include in includes)
+                {
+                    query = query.Include(include.NavigationProperty);
+
+                    foreach (var childProperty in include.ChildProperties)
+                    {
+                        var memberExpression = (MemberExpression)include.NavigationProperty.Body;
+                        var navigationPropertyName = memberExpression.Member.Name;
+
+                        query = query.Include($"{navigationPropertyName}.{childProperty}");
+                    }
+                }
+            }
+
+            //query = query.Include(navigationProperty);
+
+            //var memberExpression = (MemberExpression)navigationProperty.Body;
+            //var navigationPropertyName = memberExpression.Member.Name;
+
+            //foreach (var childProperty in childProperties)
+            //{
+            //    query = query.Include($"{navigationPropertyName}.{childProperty}");
+            //}
+
+            return query.SingleOrDefault();
+        }
+
+
+        public IQueryable<T> IncludeRelatedEntities(IQueryable<T> query, Expression<Func<T, object>> navigationProperty, params string[] childProperties)
+        {
+            query = _dbSet.AsQueryable();
+            query = query.Include(navigationProperty);
+
+            foreach (var childProperty in childProperties)
+            {
+                query = query.Include($"{navigationProperty.Name}.{childProperty}");
+            }
+
+            return query;
+        }
 
         public bool Any(Expression<Func<T, bool>> expression) => _dbSet.Any(expression);
 

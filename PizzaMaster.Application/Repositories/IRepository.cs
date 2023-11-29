@@ -13,5 +13,7 @@ namespace PizzaMaster.Application.Repositories
         void Update(T entity);
         void Delete(T entity);
 
+        T TryNewSingleOrDefault(Expression<Func<T, bool>> expression, IEnumerable<(Expression<Func<T, object>> NavigationProperty, string[] ChildProperties)>? includes = null);
+        IQueryable<T> IncludeRelatedEntities(IQueryable<T> query, Expression<Func<T, object>> navigationProperty, params string[] childProperties);
     }
 }

@@ -5,6 +5,10 @@ namespace PizzaMaster.Domain.Entities
 {
     public partial class User
     {
+        public User() 
+        {
+            UserRoles = new HashSet<UserRole>();
+        }
         public int Id { get; set; }
         public int? RestoranId { get; set; }
         public string Name { get; set; } = null!;
@@ -15,5 +19,10 @@ namespace PizzaMaster.Domain.Entities
 
         public virtual Image? Image { get; set; }
         public virtual Restoran? Restoran { get; set; }
+
+        public virtual ICollection<UserRole> UserRoles { get; set; }
+
+
+
     }
 }

@@ -3,17 +3,19 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PizzaMaster.DataAccess.EF;
 
 #nullable disable
 
-namespace PizzaMaster.Data.Migrations
+namespace PizzaMaster.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231128185240_AddTableRoles")]
+    partial class AddTableRoles
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -265,29 +267,6 @@ namespace PizzaMaster.Data.Migrations
                     b.ToTable("UserLogs");
                 });
 
-            modelBuilder.Entity("PizzaMaster.Domain.Entities.UserRole", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int?>("RoleId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("RoleId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("UserRoles");
-                });
-
             modelBuilder.Entity("PizzaMaster.Domain.Entities.HomeDesc", b =>
                 {
                     b.HasOne("PizzaMaster.Domain.Entities.Image", "Image")
@@ -332,21 +311,6 @@ namespace PizzaMaster.Data.Migrations
                     b.Navigation("Restoran");
                 });
 
-            modelBuilder.Entity("PizzaMaster.Domain.Entities.UserRole", b =>
-                {
-                    b.HasOne("PizzaMaster.Domain.Entities.Role", "Role")
-                        .WithMany("UserRoles")
-                        .HasForeignKey("RoleId");
-
-                    b.HasOne("PizzaMaster.Domain.Entities.User", "User")
-                        .WithMany("UserRoles")
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("Role");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("PizzaMaster.Domain.Entities.Image", b =>
                 {
                     b.Navigation("HomeDesc");
@@ -361,16 +325,6 @@ namespace PizzaMaster.Data.Migrations
             modelBuilder.Entity("PizzaMaster.Domain.Entities.Restoran", b =>
                 {
                     b.Navigation("Users");
-                });
-
-            modelBuilder.Entity("PizzaMaster.Domain.Entities.Role", b =>
-                {
-                    b.Navigation("UserRoles");
-                });
-
-            modelBuilder.Entity("PizzaMaster.Domain.Entities.User", b =>
-                {
-                    b.Navigation("UserRoles");
                 });
 #pragma warning restore 612, 618
         }
