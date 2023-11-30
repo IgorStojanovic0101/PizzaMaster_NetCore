@@ -13,3 +13,4 @@
 11/25/2023 18:14:49 +01:00 22 Information PizzaMaster.BussinessLogic.Services.GeolocationService Ovo je fixano
 11/25/2023 18:16:58 +01:00 17 Information PizzaMaster.BussinessLogic.Services.GeolocationService Ovo je fixano
 11/29/2023 20:19:05 +01:00 17 Error PizzaMaster.Infrastructure.System.GlobalExceptionHandlingMiddleware An error was generated for warning 'Microsoft.EntityFrameworkCore.Query.InvalidIncludePathError': Unable to find navigation 'Roles' specified in string based include path 'UserRoles.Roles'. This exception can be suppressed or logged by passing event ID 'CoreEventId.InvalidIncludePathError' to the 'ConfigureWarnings' method in 'DbContext.OnConfiguring' or 'AddDbContext'.
+11/30/2023 19:45:25 +01:00 18 Error PizzaMaster.Infrastructure.System.GlobalExceptionHandlingMiddleware Object reference not set to an instance of an object.

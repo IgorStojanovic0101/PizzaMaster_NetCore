@@ -24,7 +24,7 @@ namespace PizzaMaster.BussinessLogic.Services
         }
         public void AddAdminData(Admin_RequestDTO dto)
         {
-            string url = _fileUploadService.UploadFile(dto.ImageFile, @"Files\images\admin");
+            string url = _fileUploadService.UploadFile(dto.File, @"Files\images\admin");
 
             var image = new Domain.Entities.Image() { Url = url };
 
@@ -41,7 +41,7 @@ namespace PizzaMaster.BussinessLogic.Services
 
         public void AddVideo(Admin_RequestDTO dto)
         {
-            string url = _fileUploadService.UploadFile(dto.ImageFile, @"Files\videos");
+            string url = _fileUploadService.UploadFile(dto.File, @"Files\videos");
 
         }
     }

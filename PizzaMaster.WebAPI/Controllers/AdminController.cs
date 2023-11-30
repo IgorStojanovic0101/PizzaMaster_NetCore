@@ -20,7 +20,7 @@ namespace PizzaMaster.WebAPI.Controllers
         public ActionResult<ServiceResponse<Admin_ResponseDTO>> SetAdminData([FromForm] Admin_RequestDTO request)
         {
             ServiceResponse<Admin_ResponseDTO> response = new();
-            if (request.ImageFile == null)
+            if (request.File == null)
             {
                 return BadRequest("No image provided");
             }
@@ -35,7 +35,7 @@ namespace PizzaMaster.WebAPI.Controllers
         public ActionResult<ServiceResponse<Admin_ResponseDTO>> AddVideo([FromForm] Admin_RequestDTO request)
         {
             ServiceResponse<Admin_ResponseDTO> response = new();
-            if (request.ImageFile == null)
+            if (request.File == null)
             {
                 return BadRequest("No image provided");
             }

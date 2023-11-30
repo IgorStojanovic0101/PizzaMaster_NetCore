@@ -9,7 +9,7 @@ namespace PizzaMaster.Shared.DTOs.Admin
 {
     public class Admin_RequestDTO
     {
-        public IFormFile ImageFile { get; set; }
+        public IFormFile File { get; set; }
         public string Text { get; set; }
     }
 }
