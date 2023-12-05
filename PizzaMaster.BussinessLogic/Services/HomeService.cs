@@ -27,7 +27,7 @@ namespace PizzaMaster.BussinessLogic.Services
 
         public List<HomeDescription_ResponseDTO> GetHomeDescription()
         {
-            var entities = _unitOfWork.HomeDescRepository.GetAll(IncludeEnities<HomeDesc>.All);
+            var entities = _unitOfWork.HomeDescRepository.GetAll(null);
 
             var dtos = new List<HomeDescription_ResponseDTO>();
 

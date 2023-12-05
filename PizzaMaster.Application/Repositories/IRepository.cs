@@ -4,9 +4,10 @@ namespace PizzaMaster.Application.Repositories
 {
     public interface IRepository<T> where T : class
     {
-        IEnumerable<T> Find(Expression<Func<T, bool>> expression, string[]? includes = null);
+        IEnumerable<T> Find(Expression<Func<T, bool>> expression, IEnumerable<(Expression<Func<T, object>> NavigationProperty, string[] ChildProperties)>? includes = null);
         T SingleOrDefault(Expression<Func<T, bool>> expression, string[]? includes = null);
-        List<T> GetAll(string[]? includes = null);
+        List<T> GetAll(IEnumerable<(Expression<Func<T, object>> NavigationProperty, string[] ChildProperties)>? includes = null);
+
         bool Any(Expression<Func<T, bool>> expression);
 
         void Add(T entity);

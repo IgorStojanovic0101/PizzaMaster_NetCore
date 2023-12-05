@@ -113,7 +113,7 @@ builder.Services.AddScoped<IAdminService, AdminService>();
 builder.Services.AddScoped<IHomeService,HomeService>();
 builder.Services.AddScoped<IProizvodiService, ProizvodiService>();
 builder.Services.AddScoped<IGeolocationService, GeolocationService>();
-
+builder.Services.AddScoped<IDropdownService, DropdownService>();
 
 builder.Services.AddMvc(options => options.Conventions.Add(new RouteConvention()));
 

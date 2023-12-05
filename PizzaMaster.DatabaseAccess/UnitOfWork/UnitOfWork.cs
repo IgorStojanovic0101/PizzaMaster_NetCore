@@ -29,6 +29,8 @@ namespace PizzaMaster.DataAccess.UnitOfWork
 
         public IGeolocationRepository GeolocationRepository { get; private set; }
 
+        public IDropdownRepository DropdownRepository { get; private set; }
+
 
         public UnitOfWork(ApplicationDbContext databaseContext, IDbConnection dbConnection, IMongoDatabase mongoDatabase)
         {
@@ -42,6 +44,7 @@ namespace PizzaMaster.DataAccess.UnitOfWork
             PizzaTypeRepository = new PizzaTypeRepository(_applicationDbContext);
             PastaTypeRepository = new PastaTypeRepository(_applicationDbContext);
             GeolocationRepository = new GeolocationRepository(mongoDatabase);
+            DropdownRepository = new DropdownRepository(_applicationDbContext);
 
         }
         public void SaveChanges()

@@ -123,19 +123,42 @@ namespace PizzaMaster.DataAccess.EF
 
             entity.Property(e => e.RoleName).HasMaxLength(50));
 
-            modelBuilder.Entity<UserRole>()
-             .HasKey(ur => ur.Id);
+            modelBuilder.Entity<UserRole>(entity =>
+            {
+                entity.HasKey(ur => ur.Id);
 
-            modelBuilder.Entity<UserRole>()
-                .HasOne(ur => ur.User)
+                entity.HasOne(ur => ur.User)
                 .WithMany(u => u.UserRoles)
                 .HasForeignKey(ur => ur.UserId);
 
-            modelBuilder.Entity<UserRole>()
-                .HasOne(ur => ur.Role)
-                .WithMany(r => r.UserRoles)
-                .HasForeignKey(ur => ur.RoleId);
-     
+                entity.HasOne(ur => ur.Role)
+                    .WithMany(r => r.UserRoles)
+                    .HasForeignKey(ur => ur.RoleId);
+            });
+
+            modelBuilder.Entity<Dropdown>(entity =>
+            {
+                entity.Property(e => e.DropdownName).HasMaxLength(50);
+            });
+
+            modelBuilder.Entity<DropdownRelationItem>(entity =>
+            {
+                entity.HasKey(ur => ur.Id);
+
+                entity.HasOne(ur => ur.Dropdown)
+                .WithMany(u => u.DropdownRelationItems)
+                .HasForeignKey(ur => ur.DropdownId);
+
+                entity.HasOne(ur => ur.DropItem)
+                    .WithMany(r => r.DropdownRelationItems)
+                    .HasForeignKey(ur => ur.DropItemId);
+            });
+
+            modelBuilder.Entity<DropItem>(entity =>
+            {
+                entity.Property(e=>e.DropItemName).HasMaxLength(50);
+            });
+
 
             OnModelCreatingPartial(modelBuilder);
         }

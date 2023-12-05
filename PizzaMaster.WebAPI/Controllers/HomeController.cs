@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Mvc;
 using PizzaMaster.Application.Services;
 using PizzaMaster.Shared.DTOs;
 using PizzaMaster.Shared.DTOs.Home.HomeDescription;
@@ -6,6 +7,7 @@ using PizzaMaster.Shared.Results;
 
 namespace PizzaMaster.WebAPI.Controllers
 {
+    [EnableCors]
     public class HomeController : ControllerBase
     {
 

@@ -23,7 +23,7 @@ namespace PizzaMaster.DataAccess.UnitOfWork
         }
 
       
-        public override List<Restoran> GetAll(string[]? includes = null)
+        public override List<Restoran> GetAll(IEnumerable<(Expression<Func<Restoran, object>> NavigationProperty, string[] ChildProperties)>? includes = null)
         {
             
             string query = "SELECT * FROM Restorans";

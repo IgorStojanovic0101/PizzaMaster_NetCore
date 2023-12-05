@@ -24,13 +24,27 @@ namespace PizzaMaster.DataAccess.UnitOfWork
             dateTimeExpression = GetDateToFilterExpression(parameter);
         }
 
-        public IEnumerable<T> Find(Expression<Func<T, bool>> expression, string[]? includes = null)
+        public IEnumerable<T> Find(Expression<Func<T, bool>> expression, IEnumerable<(Expression<Func<T, object>> NavigationProperty, string[] ChildProperties)>? includes = null)
         {
             var updatedExpression = UpdatedExpressions(expression, ignoreDateTimeExpression);
             var query = _dbSet.Where(updatedExpression).AsQueryable();
 
-            query = includes?.Aggregate(query, (current, include) => current.Include(include)) ?? query;
+            // query = includes?.Aggregate(query, (current, include) => current.Include(include)) ?? query;
+            if (includes != null)
+            {
+                foreach (var include in includes)
+                {
+                    query = query.Include(include.NavigationProperty);
 
+                    foreach (var childProperty in include.ChildProperties)
+                    {
+                        var memberExpression = (MemberExpression)include.NavigationProperty.Body;
+                        var navigationPropertyName = memberExpression.Member.Name;
+
+                        query = query.Include($"{navigationPropertyName}.{childProperty}");
+                    }
+                }
+            }
 
             return query.ToList();
         }
@@ -113,14 +127,31 @@ namespace PizzaMaster.DataAccess.UnitOfWork
         }
 
         //custom expression moze biti null, ako zelim da mi GetAll vrati sve..
-        public virtual List<T> GetAll(string[]? includes = null)
+        public virtual List<T> GetAll(IEnumerable<(Expression<Func<T, object>> NavigationProperty, string[] ChildProperties)>? includes = null)
         {
 
             var updatedExpression = UpdatedExpressions(null, ignoreDateTimeExpression);
 
             var query = updatedExpression != null ? _dbSet.Where(updatedExpression).AsQueryable() : _dbSet.AsQueryable();
 
-            query = includes?.Aggregate(query, (current, include) => current.Include(include)) ?? query;
+            // query = includes?.Aggregate(query, (current, include) => current.Include(include)) ?? query;
+
+            if (includes != null)
+            {
+                foreach (var include in includes)
+                {
+                    query = query.Include(include.NavigationProperty);
+
+                    foreach (var childProperty in include.ChildProperties)
+                    {
+                        var memberExpression = (MemberExpression)include.NavigationProperty.Body;
+                        var navigationPropertyName = memberExpression.Member.Name;
+
+                        query = query.Include($"{navigationPropertyName}.{childProperty}");
+                    }
+                }
+            }
+
 
             return query.ToList();
         }

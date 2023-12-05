@@ -22,6 +22,8 @@ namespace PizzaMaster.Application
 
         IGeolocationRepository GeolocationRepository { get; }
 
+        IDropdownRepository DropdownRepository { get; }
+
         void SaveChanges();
     }
 }
