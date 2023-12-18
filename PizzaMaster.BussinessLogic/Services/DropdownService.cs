@@ -20,8 +20,9 @@ namespace PizzaMaster.BussinessLogic.Services
             this._mapper = mapper;
             this._unitOfWork = unitOfWorkFactory.Create();
         }
-        public IEnumerable<Dropdown_ResponseDTO> GetAllHeaderDropdowns()
+        public IEnumerable<Dropdown_ResponseDTO> GetAllHeaderDropdowns(List<string> list)
         {
+
             var models = this._unitOfWork.DropdownRepository.GetAll(IncludeEnities.Dropdown.Entities);
             var dtos = _mapper.Map<IEnumerable<Dropdown_ResponseDTO>>( models );
 

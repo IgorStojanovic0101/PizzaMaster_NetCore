@@ -6,10 +6,11 @@ using PizzaMaster.Shared.DTOs;
 using PizzaMaster.Shared.Results;
 using PizzaMaster.Application.Services;
 using PizzaMaster.Infrastructure.System;
+using System.Security.Claims;
 
 namespace PizzaMaster.WebAPI.Controllers
 {
-    //[Authorize(Roles = Roles.User)]
+    //[Authorize]
     public class RestoranController : ControllerBase
     {
         private readonly IRestoranService _service;
@@ -21,6 +22,8 @@ namespace PizzaMaster.WebAPI.Controllers
         public ActionResult<ServiceResponse<RestoranDTO>> TestDTO()
         {
             ServiceResponse<RestoranDTO> response = new();
+            var roles = User.FindAll(ClaimTypes.Role).Select(c => c.Value).ToList();
+            var id =  User.FindAll("UserId").Select(c => c.Value).ToList();
 
 
             response.Errors = _service.ValidationErrors();

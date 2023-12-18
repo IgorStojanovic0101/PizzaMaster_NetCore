@@ -9,6 +9,6 @@ namespace PizzaMaster.Application.Services
 {
     public interface IDropdownService
     {
-        IEnumerable<Dropdown_ResponseDTO> GetAllHeaderDropdowns();
+        IEnumerable<Dropdown_ResponseDTO> GetAllHeaderDropdowns(List<string> list);
     }
 }

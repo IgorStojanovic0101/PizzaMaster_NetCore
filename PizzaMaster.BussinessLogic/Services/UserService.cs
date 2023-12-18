@@ -75,7 +75,7 @@ namespace PizzaMaster.BussinessLogic.Services
 
             var roles = user.UserRoles.Select(x => x.Role!.RoleName).AsEnumerable();
 
-            response.Token = GenerateToken(dto.Username, roles);
+            response.Token = GenerateToken(user.Id.ToString(), user.Name, roles);
 
             return response;
         }
@@ -102,7 +102,7 @@ namespace PizzaMaster.BussinessLogic.Services
             _unitOfWork.SaveChanges();
 
             response.Username = dto.Username;
-            response.Token = GenerateToken(dto.Username);
+            response.Token = GenerateToken(model.Id.ToString(), model.Name);
 
             return response;
         }
@@ -173,15 +173,17 @@ namespace PizzaMaster.BussinessLogic.Services
 
        
 
-        private string GenerateToken(string username, IEnumerable<string>? roles = null)
+        private string GenerateToken(string userId,string name, IEnumerable<string>? roles = null)
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Tokens:Key"]));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
             var expires = DateTime.Now.AddHours(8);
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.NameIdentifier, username),
-                new Claim(JwtRegisteredClaimNames.Exp, new DateTimeOffset(expires).ToUnixTimeSeconds().ToString())
+                new Claim("UserId", userId),
+                new Claim(JwtRegisteredClaimNames.Exp, new DateTimeOffset(expires).ToUnixTimeSeconds().ToString()),
+                new Claim(ClaimTypes.NameIdentifier,name)
+
             };
 
             // Add claims for each role

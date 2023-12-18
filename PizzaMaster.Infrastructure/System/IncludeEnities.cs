@@ -81,16 +81,21 @@ namespace PizzaMaster.Infrastructure.System
             {
                 get
                 {
-                    Expression<Func<PizzaMaster.Domain.Entities.User, object>> navigationProperty = x => x.UserRoles;
+                    Expression<Func<PizzaMaster.Domain.Entities.User, object>> UserRoles = x => x.UserRoles;
+                    Expression<Func<PizzaMaster.Domain.Entities.User, object>> Images = x => x.Image;
+
 
                     var child = ExpressionHelper.GetMemberName((UserRole x) => x.Role);
                     
                     string[] childProperties = { child };
+                    string[] childProperties2 = { };
 
 
                     return new List<(Expression<Func<PizzaMaster.Domain.Entities.User, object>> NavigationProperty, string[] ChildProperties)>
                     {
-                        (navigationProperty, childProperties)
+                        (UserRoles, childProperties),
+                        (Images, childProperties2)
+
                      };
                 }
             }
@@ -107,8 +112,7 @@ namespace PizzaMaster.Infrastructure.System
                     Expression<Func<PizzaMaster.Domain.Entities.Dropdown, object>> navigationProperty = x => x.DropdownRelationItems;
 
                     //var child = ExpressionHelper.GetMemberName((PizzaMaster.Domain.Entities.Dropdown x) => x.DropdownRelationItems.Select(x => x.DropItem));
-                    var child = ExpressionHelper.GetMemberName((DropdownRelationItem x) => x.DropItem
-                  );
+                    var child = ExpressionHelper.GetMemberName((DropdownRelationItem x) => x.DropItem);
                     string[] childProperties = { child };
 
 
