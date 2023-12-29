@@ -2,6 +2,8 @@
 using MongoDB.Driver;
 using MongoDB.Driver.GeoJsonObjectModel;
 using PizzaMaster.Application.Repositories;
+using PizzaMaster.DataAccess.Mongo;
+using PizzaMaster.Domain.Collections;
 using PizzaMaster.Domain.Documents;
 using PizzaMaster.Infrastructure.System;
 using System;
@@ -12,11 +14,11 @@ using System.Threading.Tasks;
 
 namespace PizzaMaster.DataAccess.UnitOfWork
 {
-    public class GeolocationRepository : IGeolocationRepository
+    public class GeolocationRepository : MongoRepository<GeoCollection>, IGeolocationRepository
     {
         private readonly IMongoDatabase _mongoDatabase;
         private IMongoCollection<LocationDocument> _kretanjeDostavljaca;
-        public GeolocationRepository(IMongoDatabase mongoDatabase) 
+        public GeolocationRepository(IMongoDatabase mongoDatabase) : base(mongoDatabase, nameof(GeoCollection)) 
         {
             _mongoDatabase = mongoDatabase;
             _kretanjeDostavljaca = this._mongoDatabase.GetCollection<LocationDocument>(MongoCollections.KretanjeDostavljaca);

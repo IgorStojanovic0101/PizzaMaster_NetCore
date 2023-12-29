@@ -3,17 +3,19 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PizzaMaster.DataAccess.EF;
 
 #nullable disable
 
-namespace PizzaMaster.Data.Migrations
+namespace PizzaMaster.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231221194617_AddingLanguageDictionaryAndRelation")]
+    partial class AddingLanguageDictionaryAndRelation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -47,7 +49,7 @@ namespace PizzaMaster.Data.Migrations
                         .IsUnique()
                         .HasFilter("[LanguageId] IS NOT NULL");
 
-                    b.ToTable("Dictionaries", (string)null);
+                    b.ToTable("Dictionaries");
                 });
 
             modelBuilder.Entity("PizzaMaster.Domain.Entities.Dropdown", b =>
@@ -75,7 +77,7 @@ namespace PizzaMaster.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Dropdown", (string)null);
+                    b.ToTable("Dropdown");
                 });
 
             modelBuilder.Entity("PizzaMaster.Domain.Entities.DropdownRelationItem", b =>
@@ -98,7 +100,7 @@ namespace PizzaMaster.Data.Migrations
 
                     b.HasIndex("DropdownId");
 
-                    b.ToTable("DropdownRelationItem", (string)null);
+                    b.ToTable("DropdownRelationItem");
                 });
 
             modelBuilder.Entity("PizzaMaster.Domain.Entities.DropItem", b =>
@@ -120,7 +122,7 @@ namespace PizzaMaster.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("DropItem", (string)null);
+                    b.ToTable("DropItem");
                 });
 
             modelBuilder.Entity("PizzaMaster.Domain.Entities.Error", b =>
@@ -149,7 +151,7 @@ namespace PizzaMaster.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Errors", (string)null);
+                    b.ToTable("Errors");
                 });
 
             modelBuilder.Entity("PizzaMaster.Domain.Entities.HomeDesc", b =>
@@ -173,7 +175,7 @@ namespace PizzaMaster.Data.Migrations
                     b.HasIndex(new[] { "ImageId" }, "IX_HomeDescs_ImageId")
                         .IsUnique();
 
-                    b.ToTable("HomeDescs", (string)null);
+                    b.ToTable("HomeDescs");
                 });
 
             modelBuilder.Entity("PizzaMaster.Domain.Entities.Image", b =>
@@ -191,7 +193,7 @@ namespace PizzaMaster.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Images", (string)null);
+                    b.ToTable("Images");
                 });
 
             modelBuilder.Entity("PizzaMaster.Domain.Entities.Language", b =>
@@ -209,7 +211,7 @@ namespace PizzaMaster.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Languages", (string)null);
+                    b.ToTable("Languages");
                 });
 
             modelBuilder.Entity("PizzaMaster.Domain.Entities.NameRelationDictionary", b =>
@@ -239,7 +241,7 @@ namespace PizzaMaster.Data.Migrations
                         .IsUnique()
                         .HasFilter("[LanguageId] IS NOT NULL");
 
-                    b.ToTable("NameRelationDictionaries", (string)null);
+                    b.ToTable("NameRelationDictionaries");
                 });
 
             modelBuilder.Entity("PizzaMaster.Domain.Entities.PasteType", b =>
@@ -269,7 +271,7 @@ namespace PizzaMaster.Data.Migrations
                         .IsUnique()
                         .HasFilter("([ImageId] IS NOT NULL)");
 
-                    b.ToTable("PasteTypes", (string)null);
+                    b.ToTable("PasteTypes");
                 });
 
             modelBuilder.Entity("PizzaMaster.Domain.Entities.PizzaType", b =>
@@ -301,7 +303,7 @@ namespace PizzaMaster.Data.Migrations
                         .IsUnique()
                         .HasFilter("([ImageId] IS NOT NULL)");
 
-                    b.ToTable("PizzaTypes", (string)null);
+                    b.ToTable("PizzaTypes");
                 });
 
             modelBuilder.Entity("PizzaMaster.Domain.Entities.Restoran", b =>
@@ -325,7 +327,7 @@ namespace PizzaMaster.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Restorans", (string)null);
+                    b.ToTable("Restorans");
                 });
 
             modelBuilder.Entity("PizzaMaster.Domain.Entities.Role", b =>
@@ -343,7 +345,7 @@ namespace PizzaMaster.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Roles", (string)null);
+                    b.ToTable("Roles");
                 });
 
             modelBuilder.Entity("PizzaMaster.Domain.Entities.User", b =>
@@ -385,7 +387,7 @@ namespace PizzaMaster.Data.Migrations
 
                     b.HasIndex(new[] { "RestoranId" }, "IX_Users_RestoranId");
 
-                    b.ToTable("Users", (string)null);
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("PizzaMaster.Domain.Entities.UserLog", b =>
@@ -411,7 +413,7 @@ namespace PizzaMaster.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("UserLogs", (string)null);
+                    b.ToTable("UserLogs");
                 });
 
             modelBuilder.Entity("PizzaMaster.Domain.Entities.UserRole", b =>
@@ -434,7 +436,7 @@ namespace PizzaMaster.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("UserRoles", (string)null);
+                    b.ToTable("UserRoles");
                 });
 
             modelBuilder.Entity("PizzaMaster.Domain.Entities.Dictionary", b =>

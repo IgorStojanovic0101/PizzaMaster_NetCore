@@ -3,5 +3,7 @@
     public interface IUnitOfWorkFactory
     {
         IUnitOfWork Create();
+
+        IMongoUnitOfWork CreateMongo();
     }
 }

@@ -28,6 +28,9 @@ namespace PizzaMaster.DataAccess.EF
         public virtual DbSet<Role> Roles { get; set; } = null!;
         public virtual DbSet<UserRole> UserRoles { get; set; }
 
+        public virtual DbSet<Language> Languages { get; set; } = null!;
+        public virtual DbSet<Dictionary> Dictionaries { get; set; } = null!;
+        public virtual DbSet<NameRelationDictionary> NameRelationDictionaries { get; set; } = null!;
 
 
 
@@ -158,6 +161,31 @@ namespace PizzaMaster.DataAccess.EF
             {
                 entity.Property(e=>e.DropItemName).HasMaxLength(50);
             });
+
+            modelBuilder.Entity<Language>(entity =>
+            {
+                entity.Property(e => e.Name).HasMaxLength(250);
+
+            });
+
+            modelBuilder.Entity<Dictionary>(entity =>
+            {
+                entity.Property(e => e.Value).HasMaxLength(250);
+                entity.Property(e => e.Name).HasMaxLength(250);
+
+                entity.HasOne(d => d.Language)
+                   .WithOne(p => p.Dictionary)
+                   .HasForeignKey<Dictionary>(d => d.LanguageId);
+            });
+
+
+            modelBuilder.Entity<NameRelationDictionary>(entity =>
+            {
+                entity.HasOne(d => d.Language)
+                  .WithOne(p => p.NameRelationDictionary)
+                  .HasForeignKey<NameRelationDictionary>(d => d.LanguageId);
+            });
+         
 
 
             OnModelCreatingPartial(modelBuilder);

@@ -19,8 +19,11 @@ namespace PizzaMaster.Domain.Entities
 
         public virtual ICollection<DropdownRelationItem> DropdownRelationItems { get; set; }
 
+        public virtual ICollection<NameRelationDictionary> NameRelationDictionaries { get; set; }
+
         public Dropdown() {
             DropdownRelationItems = new HashSet<DropdownRelationItem>();
+            NameRelationDictionaries = new HashSet<NameRelationDictionary>();
 
         }
 

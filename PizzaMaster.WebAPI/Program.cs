@@ -168,6 +168,7 @@ app.UseCors(options =>
 app.UseAuthentication();
 
 app.UseAuthorization();
+app.UseMiddleware<LocalizationMiddleware>();
 
 app.UseMiddleware<GlobalExceptionHandlingMiddleware>();
 

@@ -14,13 +14,13 @@ namespace PizzaMaster.BussinessLogic.Services
 {
     public class GeolocationService : IGeolocationService
     {
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IMongoUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
         private readonly ILogger<GeolocationService> _logger;
         public GeolocationService(IUnitOfWorkFactory unitOfWorkFactory, IMapper mapper, ILogger<GeolocationService> logger)
         {
             this._logger = logger;
-            this._unitOfWork = unitOfWorkFactory.Create();
+            this._unitOfWork = unitOfWorkFactory.CreateMongo();
             this._mapper = mapper;
         }
 
