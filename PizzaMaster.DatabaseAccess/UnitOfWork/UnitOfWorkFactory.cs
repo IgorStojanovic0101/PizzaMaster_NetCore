@@ -1,6 +1,8 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
 using MongoDB.Driver;
 using MongoDB.Driver.Core.Configuration;
 using Neo4jClient;
@@ -18,10 +20,10 @@ namespace PizzaMaster.DataAccess.UnitOfWork
         private readonly string _sqlConnectionString;
         private readonly string _mongoConnectionString;
         private readonly string _neo4jConnectionString;
-        public UnitOfWorkFactory(IConfiguration configuration) 
+        public UnitOfWorkFactory(IConfiguration configuration, IWebHostEnvironment environment) 
         {    
-            this._sqlConnectionString = configuration.GetConnectionString("DefaultConnection");
-            this._mongoConnectionString = configuration.GetConnectionString("MongoDB");
+            this._sqlConnectionString = environment.IsDevelopment() ? configuration.GetConnectionString("DefaultConnection") : configuration.GetSection("ProdConnection").Value;
+            this._mongoConnectionString = environment.IsDevelopment() ? configuration.GetConnectionString("MongoDB"): configuration.GetSection("MongoDB").Value;
 
         }
 

@@ -7,8 +7,8 @@ namespace PizzaMaster.Domain.Entities
     {
         public int Id { get; set; }
         public string Text { get; set; } = null!;
-        public int ImageId { get; set; }
+        public int? ImageId { get; set; } = null!;
 
-        public virtual Image Image { get; set; } = null!;
+        public virtual Image? Image { get; set; } = null!;
     }
 }

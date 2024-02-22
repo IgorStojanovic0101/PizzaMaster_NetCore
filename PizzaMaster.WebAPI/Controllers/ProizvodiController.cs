@@ -9,6 +9,7 @@ namespace PizzaMaster.WebAPI.Controllers
 {
 
     [EnableCors]
+
     public class ProizvodiController : ControllerBase
     {
 

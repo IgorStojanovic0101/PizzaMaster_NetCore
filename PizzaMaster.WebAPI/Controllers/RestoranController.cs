@@ -10,7 +10,7 @@ using System.Security.Claims;
 
 namespace PizzaMaster.WebAPI.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class RestoranController : ControllerBase
     {
         private readonly IRestoranService _service;

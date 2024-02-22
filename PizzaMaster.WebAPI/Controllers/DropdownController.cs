@@ -9,7 +9,8 @@ using System.Security.Claims;
 namespace PizzaMaster.WebAPI.Controllers
 {
     [EnableCors]
-  //  [Authorize]
+    //  [Authorize]
+ 
     public class DropdownController : ControllerBase
     {
         private IDropdownService _dropdownService;

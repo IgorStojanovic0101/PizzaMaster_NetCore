@@ -8,6 +8,7 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace PizzaMaster.WebAPI.Controllers
 {
+   
     public class AdminController : ControllerBase
     {
         private readonly IAdminService _adminService;

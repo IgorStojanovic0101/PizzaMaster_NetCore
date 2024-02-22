@@ -1,7 +1,6 @@
 ﻿using Dapper;
 using Microsoft.EntityFrameworkCore;
 using PizzaMaster.Application.Repositories;
-using PizzaMaster.Data;
 using PizzaMaster.DataAccess.EF;
 using PizzaMaster.Domain.Entities;
 using PizzaMaster.Domain.Enums;

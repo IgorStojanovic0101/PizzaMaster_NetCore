@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using PizzaMaster.DataAccess.Extensions;
 using PizzaMaster.Domain.Entities;
 
 namespace PizzaMaster.DataAccess.EF
@@ -36,17 +37,14 @@ namespace PizzaMaster.DataAccess.EF
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (!optionsBuilder.IsConfigured)
-            {
-                optionsBuilder.UseSqlServer("Name=ConnectionStrings:DefaultConnection", x => x.UseNetTopologySuite());
-            }
+          
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<HomeDesc>(entity =>
             {
-                entity.HasIndex(e => e.ImageId, "IX_HomeDescs_ImageId")
+                entity.HasIndex(e => e.ImageId)
                     .IsUnique();
 
                 entity.Property(e => e.Text).HasMaxLength(250);
@@ -63,9 +61,8 @@ namespace PizzaMaster.DataAccess.EF
 
             modelBuilder.Entity<PasteType>(entity =>
             {
-                entity.HasIndex(e => e.ImageId, "IX_PasteTypes_ImageId")
-                    .IsUnique()
-                    .HasFilter("([ImageId] IS NOT NULL)");
+                entity.HasIndex(e => e.ImageId)
+                    .IsUnique();
 
                 entity.Property(e => e.Price).HasColumnType("decimal(18, 2)");
 
@@ -76,9 +73,8 @@ namespace PizzaMaster.DataAccess.EF
 
             modelBuilder.Entity<PizzaType>(entity =>
             {
-                entity.HasIndex(e => e.ImageId, "IX_PizzaTypes_ImageId")
-                    .IsUnique()
-                    .HasFilter("([ImageId] IS NOT NULL)");
+                entity.HasIndex(e => e.ImageId)
+                    .IsUnique();
 
                 entity.Property(e => e.Description).HasMaxLength(255);
 
@@ -98,11 +94,10 @@ namespace PizzaMaster.DataAccess.EF
 
             modelBuilder.Entity<User>(entity =>
             {
-                entity.HasIndex(e => e.ImageId, "IX_Users_ImageId")
-                    .IsUnique()
-                    .HasFilter("([ImageId] IS NOT NULL)");
+                entity.HasIndex(e => e.ImageId)
+                    .IsUnique();
 
-                entity.HasIndex(e => e.RestoranId, "IX_Users_RestoranId");
+                entity.HasIndex(e => e.RestoranId);
 
                 entity.Property(e => e.Username).HasMaxLength(50);
 
@@ -159,7 +154,7 @@ namespace PizzaMaster.DataAccess.EF
 
             modelBuilder.Entity<DropItem>(entity =>
             {
-                entity.Property(e=>e.DropItemName).HasMaxLength(50);
+                entity.Property(e => e.DropItemName).HasMaxLength(50);
             });
 
             modelBuilder.Entity<Language>(entity =>
@@ -185,8 +180,8 @@ namespace PizzaMaster.DataAccess.EF
                   .WithOne(p => p.NameRelationDictionary)
                   .HasForeignKey<NameRelationDictionary>(d => d.LanguageId);
             });
-         
 
+            modelBuilder.Seed();
 
             OnModelCreatingPartial(modelBuilder);
         }

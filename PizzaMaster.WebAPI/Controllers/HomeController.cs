@@ -8,6 +8,7 @@ using PizzaMaster.Shared.Results;
 namespace PizzaMaster.WebAPI.Controllers
 {
     [EnableCors]
+   
     public class HomeController : ControllerBase
     {
 

@@ -16,33 +16,51 @@ using PizzaMaster.Infrastructure.Utilities;
 using Microsoft.AspNetCore.Http.Features;
 using PizzaMaster.DataAccess.EF;
 using PizzaMaster.DataAccess.UnitOfWork;
+using Azure.Identity;
+using Microsoft.Extensions.Configuration.AzureKeyVault;
 
-var builder = WebApplication.CreateBuilder(args);
+var builder = WebApplication.CreateBuilder(args /*new WebApplicationOptions { EnvironmentName = "Production"}*/);
 
-// Add services to the container.
 
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+if(builder.Environment.IsProduction())
+{
+    string keyVaultUrl = builder.Configuration.GetValue<string>("KeyVault:KeyVaultURL");
+    var keyVaultUri = new Uri(keyVaultUrl);
+
+    var azureCredentials = new DefaultAzureCredential();
+
+
+    builder.Configuration.AddAzureKeyVault(keyVaultUri, azureCredentials);
+
+}
+
+
+builder.Services.AddControllers(options => 
+{  
+    options.Conventions.Add(new RouteConvention());
+});
 builder.Services.AddEndpointsApiExplorer();
 
-
-builder.Services.AddSwaggerGen(c =>
+if (builder.Environment.IsDevelopment())
 {
-    c.SwaggerDoc("v3", new OpenApiInfo { Title = "Swagger Pizza Master Solution", Version = "v3" });
 
-    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    builder.Services.AddSwaggerGen(c =>
     {
-        Description = @"JWT Authorization header using the Bearer scheme. \r\n\r\n
+        c.SwaggerDoc("v3", new OpenApiInfo { Title = "Swagger Pizza Master Solution", Version = "v3" });
+
+        c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+        {
+            Description = @"JWT Authorization header using the Bearer scheme. \r\n\r\n
                       Enter 'Bearer' [space] and then your token in the text input below.
                       \r\n\r\nExample: 'Bearer 12345abcdef'",
-        Name = "Authorization",
-        In = ParameterLocation.Header,
-        Type = SecuritySchemeType.ApiKey,
-        Scheme = "Bearer"
-    });
+            Name = "Authorization",
+            In = ParameterLocation.Header,
+            Type = SecuritySchemeType.ApiKey,
+            Scheme = "Bearer"
+        });
 
-    c.AddSecurityRequirement(new OpenApiSecurityRequirement()
-                  {
+        c.AddSecurityRequirement(new OpenApiSecurityRequirement()
+                      {
                     {
                       new OpenApiSecurityScheme
                       {
@@ -57,12 +75,11 @@ builder.Services.AddSwaggerGen(c =>
                         },
                         new List<string>()
         }
+        });
     });
-});
 
-string issuer = builder.Configuration.GetValue<string>("Tokens:Issuer");
-string signingKey = builder.Configuration.GetValue<string>("Tokens:Key");
-byte[] signingKeyBytes = System.Text.Encoding.UTF8.GetBytes(signingKey);
+
+}
 
 builder.Services.AddAuthentication(opt =>
 {
@@ -71,12 +88,14 @@ builder.Services.AddAuthentication(opt =>
 })
 .AddJwtBearer(options =>
 {
+    string signingKey = builder.Configuration.GetValue<string>("Tokens:Key");
+    byte[] signingKeyBytes = System.Text.Encoding.UTF8.GetBytes(signingKey);
     options.RequireHttpsMetadata = false;
     options.SaveToken = true;
     options.TokenValidationParameters = new TokenValidationParameters()
     {
         ValidateIssuer = false,
-     //   ValidIssuer = issuer,
+        //   ValidIssuer = issuer,
         ValidateAudience = false,
         //ValidAudience = issuer,
         ValidateLifetime = true,
@@ -86,24 +105,35 @@ builder.Services.AddAuthentication(opt =>
     };
 });
 
-builder.Services.AddCors();
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(
+        builder =>
+        {
+            builder.AllowAnyOrigin()
+                   .AllowAnyMethod()
+                   .AllowAnyHeader();
+        });
+});
 
 
 
-builder.Services.AddSwaggerGen();
-var config = new ConfigurationBuilder()
-    .SetBasePath(Directory.GetCurrentDirectory())
-    .AddJsonFile("appsettings.json")
-    .Build();
 
 builder.Services.Configure<FormOptions>(options =>
 {
     options.MultipartBodyLengthLimit = 100 * 1024 * 1024; // 50 MB
 });
 
-builder.Services.AddSingleton<IConfiguration>(config);
 
-builder.Services.AddDbContext<ApplicationDbContext>();
+
+
+
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+{
+    var connectionStr = builder.Environment.IsDevelopment() ? builder.Configuration.GetConnectionString("DefaultConnection") :  builder.Configuration.GetSection("ProdConnection").Value;
+
+    options.UseSqlServer(connectionStr, x => x.UseNetTopologySuite());
+});
 builder.Services.AddSingleton<IUnitOfWorkFactory, UnitOfWorkFactory>();
 
 builder.Services.AddScoped<IRestoranService,RetoranService>();
@@ -115,58 +145,59 @@ builder.Services.AddScoped<IProizvodiService, ProizvodiService>();
 builder.Services.AddScoped<IGeolocationService, GeolocationService>();
 builder.Services.AddScoped<IDropdownService, DropdownService>();
 
-builder.Services.AddMvc(options => options.Conventions.Add(new RouteConvention()));
+builder.Services.AddHttpContextAccessor();
+
 
 builder.Services.AddTransient<GlobalExceptionHandlingMiddleware>();
 builder.Services.AddAutoMapper(typeof(AutoMapperProfiles));
 builder.Services.AddTransient<FileService>();
 
 
-var logger = new LoggerConfiguration()
- .ReadFrom.Configuration(builder.Configuration)
-  .Enrich.WithThreadId()
-  .WriteTo.File(Directory.GetCurrentDirectory() + "\\Logs\\log.txt", rollingInterval: RollingInterval.Infinite, outputTemplate: "{Timestamp:MM/dd/yyyy H:mm:ss zzzz} {ThreadId} {Level} {SourceContext} {Message:lj}{NewLine}{Exception}")
 
- .CreateLogger();
-
-//builder.Logging.ClearProviders();
-builder.Services.AddLogging(loggingBuilder =>
+builder.Services.AddLogging(logging =>
 {
-    loggingBuilder.AddSerilog(logger);   // Add Serilog to the LoggingBuilder for Winforms
+    Log.Logger = new LoggerConfiguration()
+           .ReadFrom.Configuration(builder.Configuration)
+           .Enrich.WithThreadId()
+           .WriteTo.File(
+               Directory.GetCurrentDirectory() + "\\Logs\\log.txt",
+               rollingInterval: RollingInterval.Infinite,
+               outputTemplate: "{Timestamp:MM/dd/yyyy H:mm:ss zzzz} {ThreadId} {Level} {SourceContext} {Message:lj}{NewLine}{Exception}"            
+           )
+           .CreateLogger();
+
+    logging.AddConsole(); // Adds console logging
+    logging.AddDebug(); // Adds debug logging
+    logging.AddSerilog();
+
 });
+
+
+
+ServiceLocator.Initialize(builder.Services);
+
 var app = builder.Build();
 
-//// Configure the HTTP request pipeline.
-//if (app.Environment.IsDevelopment())
-//{
-//    app.UseSwagger();
-//    app.UseSwaggerUI(c =>
-//    {
-//        c.SwaggerEndpoint("/swagger/v2/swagger.json", "Swagger Pizza Master Solution v2");
-//    });
-//}
 
 
-app.UseSwagger();
-app.UseSwaggerUI(c =>
+
+
+if (app.Environment.IsDevelopment())
 {
-    c.SwaggerEndpoint("/swagger/v3/swagger.json", "Swagger Pizza Master Solution v3");
-});
-
+    app.UseSwagger();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v3/swagger.json", "Swagger Pizza Master Solution v3");
+    });
+}
 app.UseHttpsRedirection();
 
 
 app.UseRouting();
 
-app.UseCors(options =>
-{
-    options.AllowAnyOrigin();
-    options.AllowAnyMethod();
-    options.AllowAnyHeader();
-});
+app.UseCors();
 
 app.UseAuthentication();
-
 app.UseAuthorization();
 app.UseMiddleware<LocalizationMiddleware>();
 

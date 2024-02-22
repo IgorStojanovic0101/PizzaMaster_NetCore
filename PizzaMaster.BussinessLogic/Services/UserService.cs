@@ -8,7 +8,6 @@ using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using PizzaMaster.Application;
 using PizzaMaster.Application.Services;
-using PizzaMaster.Data;
 using PizzaMaster.Domain.Entities;
 using PizzaMaster.Infrastructure.System;
 using PizzaMaster.Infrastructure.Utilities;
@@ -33,6 +32,7 @@ namespace PizzaMaster.BussinessLogic.Services
         private readonly IMapper _mapper;
         private readonly IConfiguration _config;
         private readonly FileService _fileUploadService;
+        private readonly ILogger<UserService> _logger;
 
         public UserService(ILogger<UserService> logger, IUnitOfWorkFactory unitOfWorkFactory, IMapper mapper, IConfiguration config, FileService fileUploadService)
         {
@@ -41,6 +41,7 @@ namespace PizzaMaster.BussinessLogic.Services
             _mapper = mapper;
             _config = config;
             _fileUploadService = fileUploadService;
+            _logger = logger;
 
 
         }
@@ -112,6 +113,8 @@ namespace PizzaMaster.BussinessLogic.Services
             var entities = _unitOfWork.UserRepository.GetAll();
 
             var dtos = new List<User_ResponseDTO>();
+
+            _logger.LogInformation("123");
 
             foreach (var entity in entities)
             {

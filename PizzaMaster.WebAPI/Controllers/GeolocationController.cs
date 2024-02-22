@@ -5,6 +5,7 @@ using PizzaMaster.Shared.Results;
 
 namespace PizzaMaster.WebAPI.Controllers
 {
+
     public class GeolocationController : ControllerBase
     {
         private readonly IGeolocationService _service;

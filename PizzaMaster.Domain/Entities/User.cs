@@ -15,7 +15,7 @@ namespace PizzaMaster.Domain.Entities
         public string Email { get; set; } = null!;
         public string Password { get; set; } = null!;
         public string Username { get; set; } = null!;
-        public int? ImageId { get; set; }
+        public int? ImageId { get; set; } = null!;
 
         public virtual Image? Image { get; set; }
         public virtual Restoran? Restoran { get; set; }
