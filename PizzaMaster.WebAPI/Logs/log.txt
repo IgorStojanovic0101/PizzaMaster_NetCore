@@ -464,3 +464,5 @@ IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'Id', N'Emai
 02/22/2024 22:49:25 +01:00 7 Warning Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware Failed to determine the https port for redirect.
 02/22/2024 22:50:12 +01:00 7 Warning Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware Failed to determine the https port for redirect.
 02/22/2024 22:50:38 +01:00 5 Information PizzaMaster.BussinessLogic.Services.UserService 123
+02/22/2024 23:11:29 +01:00 7 Warning Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware Failed to determine the https port for redirect.
+02/22/2024 23:11:46 +01:00 7 Information PizzaMaster.BussinessLogic.Services.UserService 123
