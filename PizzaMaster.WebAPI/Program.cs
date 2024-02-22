@@ -19,7 +19,7 @@ using PizzaMaster.DataAccess.UnitOfWork;
 using Azure.Identity;
 using Microsoft.Extensions.Configuration.AzureKeyVault;
 
-var builder = WebApplication.CreateBuilder(args /*new WebApplicationOptions { EnvironmentName = "Production"}*/);
+var builder = WebApplication.CreateBuilder(new WebApplicationOptions { EnvironmentName = "Production"});
 
 
 if(builder.Environment.IsProduction())
