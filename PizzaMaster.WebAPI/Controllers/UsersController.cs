@@ -34,7 +34,9 @@ namespace PizzaMaster.WebAPI.Controllers
         {
             ServiceResponse<List<User_ResponseDTO>> response = new();
 
-            response.Payload = _service.GetTopUsers();
+            response.Payload = new List<User_ResponseDTO>();
+            response.Payload.Add(new User_ResponseDTO() { Id = 1 , Name = "Igor"});
+           // response.Payload = _service.GetTopUsers();
 
             return Ok(response);
 
